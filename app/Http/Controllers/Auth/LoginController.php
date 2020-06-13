@@ -41,6 +41,9 @@ class LoginController extends Controller
     }
     protected function redirectTo()
     {
+        if(session('intended_url') != "" )
+            return '/get_quote_step2';
+
         if(Auth::user()->role == 'admin')
         {
             return '/admin';
@@ -51,7 +54,7 @@ class LoginController extends Controller
         }
         else if(Auth::user()->role == 'vendor')
         {
-            return '/vendor';
+            return '/ven';
         }
     }
 }

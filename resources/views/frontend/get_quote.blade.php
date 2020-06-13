@@ -43,7 +43,7 @@
                             <div class="toggle-wrap">
                                 <input type="checkbox" name="isStockable" value="yes">
                                 <div class="toggle-content">
-                                    <span class="toggler" style="background: rgb(0, 136, 255);"></span>
+                                    <span class="toggler" style="background: rgb(243, 156, 1);"></span>
                                     <div class="values">
                                         <p>No</p>
                                         <p>Yes</p>
@@ -58,7 +58,7 @@
                         <div class="toggle-wrap">
                             <input type="checkbox" name="isDGR" value="yes">
                             <div class="toggle-content">
-                                <span class="toggler" style="background: rgb(0, 136, 255);"></span>
+                                <span class="toggler" style="background: rgb(243, 156, 1);"></span>
                                 <div class="values">
                                     <p>No</p>
                                     <p>Yes</p>
@@ -165,7 +165,7 @@
                             <div class="toggle-wrap">
                                 <input type="checkbox" name="isClearanceReq" value="yes">
                                 <div class="toggle-content">
-                                    <span class="toggler" style="background: rgb(0, 136, 255);"></span>
+                                    <span class="toggler" style="background: rgb(243, 156, 1);"></span>
                                     <div class="values">
                                         <p>No</p>
                                         <p>Yes</p>
@@ -180,10 +180,10 @@
             <div class="request-footer">
                 <div class="btns">
                     <!-- <button type="submit" class="request-btn prev disabled"
-                        style="background: rgb(0, 136, 255);">
+                        style="background: rgb(243, 156, 1);">
                         <i class="fal fa-angle-left"></i>
                     </button> -->
-                    <button type="submit" class="request-btn next " style="background: rgb(0, 136, 255);">
+                    <button type="submit" class="request-btn next " style="background: rgb(243, 156, 1);">
                         <span>Next</span>
                         <i class="fal fa-angle-right"></i>
                     </button>

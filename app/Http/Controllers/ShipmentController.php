@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Freight;
 
 class ShipmentController extends Controller
 {
+    public function __construct()
+    {
+        //Specify required role for this controller here in checkRole:xyz
+        // $this->middleware(['auth', 'checkRole:user'])->only(['form_quote_step2']); 
+    }
     public function get_quote_step1(Request $request)
     {
-        // dd( $request->all() );
-        // Delete any previous session
-        session()->forget('type');
-
         // Store step1 in session
         session([
             'type' => $request->type,
@@ -23,42 +25,69 @@ class ShipmentController extends Controller
         ]);
         session()->save();
 
-        return redirect(route('get_quote_step2'));
+        $redirect_to = null;
         if($request->type == 'lcl' || $request->transportation_type == 'air')
         {
-            return redirect(route('get_quote_step2'));
+            $redirect_to = url('get_quote_step2');
         }
         else if($request->transportation_type == 'sea' && $request->type == 'fcl')
         {
             return 'page 3 coming soon';
-            return redirect(route('get_quote_step2'));
         }
+        else
+        {
+            $redirect_to = url('get_quote_step2');
+        }
+
+        if(Auth::check())
+        {
+            return redirect($redirect_to);
+        }
+        else
+        {
+            session([
+                'intended_url' => $redirect_to
+            ]);
+            session()->save();
+            return redirect()->route('login');
+        }
+
     }
     public function form_quote_step2(Request $request)
     {
-        // dd( Auth::check() );
-        // Store all values in session
-        session([
-            'type' => $request->type,
-            'value_of_goods' => $request->value_of_goods,
-            'isStockable' => $request->isStockable,
-            'calculate_by' => $request->calculate_by,
-            'gross_vol' => $request->gross_vol,
-            'cargo_weight' => $request->cargo_weight,
-            'remarks' => $request->remarks,
-            'isClearanceReq' => $request->isClearanceReq,
-        ]);
-        session()->save();
+        dd( $request->all() );
+        if(session('origin') == "")
+        {
+            return redirect()->back();
+        }
+
+        $freight = new Freight;
+        $freight->user_id = Auth::user()->id;
+        $freight->origin = session('origin');
+        $freight->destination = session('destination');
+        $freight->transportation_type = session('transportation_type');
+        $freight->type = session('type');
+        $freight->ready_to_load_date = session('ready_to_load_date');
+
+        
+        $freight->value_of_goods = $request->value_of_goods;
+        $freight->isStockable = $request->isStockable ? $request->isStockable : 'No';
+        $freight->calculate_by = $request->calculate_by;
+        $freight->remarks = $request->remarks;
+        $freight->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
+
         if($request->calculate_by == 'units')
         {
-            session([
-                'quantity' => $request->quantity,
-                'l' => $request->l,
-                'w' => $request->w,
-                'h' => $request->h
-            ]);
-            session()->save();
+            $freight->quantity = $request->quantity;
+            $freight->l = $request->l;
+            $freight->w = $request->w;
+            $freight->h = $request->h;
         }
-        return redirect()->route('login');
+        else
+        {
+            $freight->gross_vol = $request->gross_vol;
+            $freight->cargo_weight = $request->cargo_weight;
+        }
+        $freight->save();
     }
 }

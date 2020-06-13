@@ -13,7 +13,7 @@
 
 .progressbar p span {
     font-size: 14px;
-    color: #08f;
+    color: #F39C12;
     margin-left: 5px
 }
 
@@ -26,7 +26,7 @@
 .progressbar .line-wrapper .line {
     height: 10px;
     min-width: 10px;
-    background-color: #08f;
+    background-color: #F39C12;
     border-radius: 10px;
     transition: width, .3s ease
 }
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
     height: 60px;
-    background-color: #08f;
+    background-color: #F39C12;
     color: #fff;
     font-size: 18px;
     font-weight: 600;
@@ -126,7 +126,7 @@
 }
 
 .categories .list-wrapper ul li.active span {
-    background-color: #08f;
+    background-color: #F39C12;
     color: #fff;
     box-shadow: 0px 0px 3px rgba(94, 126, 150, 0.25)
 }
@@ -136,12 +136,12 @@
 }
 
 .categories .list-wrapper ul li:hover span {
-    color: #08f;
+    color: #F39C12;
     box-shadow: 0px 0px 3px rgba(94, 126, 150, 0.25)
 }
 
 .categories .list-wrapper ul li:hover i {
-    color: #08f
+    color: #F39C12
 }
 
 .categories .list-wrapper ul li:hover.active span {
@@ -230,7 +230,7 @@ h2 {
 }
 
 .request-input input:focus {
-    border-color: #08f
+    border-color: #F39C12
 }
 
 .request-input input:focus+.category-autocomplete {
@@ -318,7 +318,7 @@ h2 {
 }
 
 .category-autocomplete li:hover {
-    color: #08f;
+    color: #F39C12;
     background-color: #E2F2FF
 }
 
@@ -395,7 +395,7 @@ h2 {
     right: 15px;
     top: 50%;
     margin-top: -12px;
-    color: #08f;
+    color: #F39C12;
     pointer-events: none
 }
 
@@ -471,7 +471,7 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #08f;
+    background-color: #F39C12;
     box-shadow: 2px 2px 2px rgba(94, 126, 150, 0.05), -2px -2px 2px rgba(94, 126, 150, 0.05);
     border-radius: 30px;
     transition: all .1s linear
@@ -532,7 +532,7 @@ h2 {
 
 .ant-cascader-picker:focus .ant-cascader-input {
     box-shadow: none !important;
-    border-color: #08f !important
+    border-color: #F39C12 !important
 }
 
 .ant-cascader-menu {
@@ -557,7 +557,7 @@ h2 {
 
 .ant-cascader-menu-item:hover {
     background-color: #fff !important;
-    color: #08f !important
+    color: #F39C12 !important
 }
 
 .ant-cascader-menu-item text {
@@ -566,7 +566,7 @@ h2 {
 
 .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
 .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover {
-    color: #08f !important;
+    color: #F39C12 !important;
     font-weight: 500 !important;
     background-color: #F8FCFF !important
 }
@@ -624,12 +624,12 @@ h2 {
     border-radius: 5px;
     margin: 0 10px;
     font-weight: 600;
-    background-color: #08f
+    background-color: #F39C12
 }
 
 .success .btn-block a.btn.light {
     background-color: #E2F2FF;
-    color: #08f
+    color: #F39C12
 }
 
 .success .btn-block a.btn:hover {
@@ -665,7 +665,7 @@ h2 {
 }
 
 .shipment-type .item.active {
-    background-color: #08f;
+    background-color: #F39C12;
     color: #fff
 }
 
@@ -675,7 +675,7 @@ h2 {
 
 .shipment-type .item:hover {
     box-shadow: inset -3px -3px 3px rgba(94, 126, 150, 0.1), inset 3px 3px 3px rgba(94, 126, 150, 0.1);
-    color: #08f
+    color: #F39C12
 }
 
 h3 {
@@ -738,8 +738,8 @@ h3 {
 }
 
 .delivery-change .radio-group .custom-radio input:checked+span {
-    background-color: #08f;
-    border-color: #08f
+    background-color: #F39C12;
+    border-color: #F39C12
 }
 
 .delivery-change .radio-group .custom-radio input:checked+span:before {
@@ -821,8 +821,8 @@ h3 {
 }
 
 .request-radio-group .request-radio input[type=radio]:checked+span {
-    background-color: #08f;
-    border-color: #08f
+    background-color: #F39C12;
+    border-color: #F39C12
 }
 
 .request-radio-group .request-radio input[type=radio]:checked+span:before {
@@ -1705,7 +1705,7 @@ h3 {
     font-size: 24px;
     font-weight: 500;
     text-transform: uppercase;
-    color: #08f;
+    color: #F39C12;
     position: absolute;
     margin: 0;
     left: 15px;
@@ -1878,7 +1878,7 @@ h3 {
 
 .from-item p.tip {
     font-size: 24px;
-    color: #08f;
+    color: #F39C12;
     font-weight: 500;
     text-transform: uppercase;
     position: absolute;
@@ -2010,7 +2010,7 @@ h3 {
 }
 
 .react-datepicker .react-datepicker__navigation--next {
-    border-left-color: #08f !important
+    border-left-color: #F39C12 !important
 }
 
 .react-datepicker .react-datepicker__navigation--next:focus {
@@ -2019,7 +2019,7 @@ h3 {
 }
 
 .react-datepicker .react-datepicker__navigation--previous {
-    border-right-color: #08f !important
+    border-right-color: #F39C12 !important
 }
 
 .react-datepicker .react-datepicker__navigation--previous:focus {
@@ -2038,7 +2038,7 @@ h3 {
 }
 
 .react-datepicker .react-datepicker__header .react-datepicker__current-month {
-    color: #08f;
+    color: #F39C12;
     font-size: 14px;
     font-weight: 500;
     padding: 12px 0

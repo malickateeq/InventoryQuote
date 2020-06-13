@@ -21,22 +21,25 @@ class RedirectIfAuthenticated
         // if (Auth::guard($guard)->check()) {
         //     return redirect(RouteServiceProvider::HOME);
         // }
+
         if (Auth::guard($guard)->check()) 
         {
+            if(session('intended_url') != "" && session('origin') != "" )
+                return redirect(url('get_quote_step2'));
+                
             if(Auth::user()->role == 'admin')
             {
                 return redirect('/admin');
             }
             else if(Auth::user()->role == 'user')
             {
-                return redirect('/user');
+                return redirect();
             }
             else if(Auth::user()->role == 'vendor')
             {
                 return redirect('/ven');
             }
         }
-
         return $next($request);
     }
 }

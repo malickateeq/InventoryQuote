@@ -19,8 +19,46 @@
 
                 <li class="navSection secondary">
                     <!-- <a class="rootLink colorize pricing" href="services/plans/index.html">Ports</a>  -->
+                    @guest
+                        <a class="rootLink item-dashboard colorize" href="{{ route('login') }}">Sign in
+                    @else
+                        <div id="nav-prof"> 
+                            <a class="dropdown-toggle rootLink colorize" href="javascript:;" data-toggle="dropdown"> 
+                                <!-- <i class="fa fa-user"></i>  -->
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-closer">
+                                <div class="country-lang-pointer"></div>
+                                <li class="clearfix dropdown-header dropdown-stop">
+                                    <div class="user-mini-pic">
+                                        <i class="fa fa-user"></i>
+                                        <!-- <img src="/design/images/avatars/2.svg" alt="logo"> -->
+                                    </div>
+                                    <div class="user-info">
+                                        <div class="user-name"> {{ Auth::user()->name }} </div>
+                                        <div class="user-company">{{ Auth::user()->role }}</div>
+                                        <div class="user-id">Profile ID: {{ Auth::user()->id }}</div>
+                                    </div>
+                                </li>
 
-                    <a class="rootLink item-dashboard colorize" href="{{ route('login') }}">Sign in
+                                <li> <a href="{{ route('user') }}"> <i class="fad fa-user"></i> Profile </a> </li>
+                                <!-- <li> <a href="/user/inbox"> <i class="fad fa-inbox-in"></i> Inbox </a> </li> -->
+                                <!-- <li> <a href="/user/profile#profile-about"> <i class="fas fa-cog"></i> Settings </a> -->
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fad fa-sign-out"></i> {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
                         <!-- <i class="fal fa-sign-right"></i> -->
                     </a>
                 </li>
@@ -59,7 +97,7 @@
 
                                         </ul>
                                     </div> -->
-                                    
+
                                     <!--                                     
                                     <div class="mobileSecondaryNav">
                                         <ul>
@@ -71,14 +109,14 @@
                                     </div> -->
 
                                 </div> <a class="collapsible" href="#">URL</a>
-                                </div> <a class="collapsible" href="#">LRU</a>
+                            </div> <a class="collapsible" href="#">LRU</a>
 
-                            </div>
                         </div>
                     </div>
-                </li>
-                <!-- Mobile navbar -->
-            </ul>
+        </div>
+        </li>
+        <!-- Mobile navbar -->
+        </ul>
         </div>
         <div class="dropdownRoot">
             <div class="dropdownBackground" style="transform: translateX(452px) scaleX(0.707692) scaleY(1.1075);">
@@ -100,20 +138,20 @@
                                             <h3 class="linkTitle">Link1</h3>
                                             <p class="linkSub">Link one description will go here</p>
                                         </div>
-                                    </a> 
+                                    </a>
                                 </li>
 
-                                <li> 
-                                    <a class="linkContainer item-payments" href="#"> 
+                                <li>
+                                    <a class="linkContainer item-payments" href="#">
                                         <i class="far fa-crosshairs fa-2x"></i>
                                         <div class="productLinkContent">
                                             <h3 class="linkTitle">Link2</h3>
                                             <p class="linkSub">Link two description will proceed here</p>
                                         </div>
-                                    </a> 
+                                    </a>
                                 </li>
 
-                            <!--
+                                <!--
 
                                 <li> 
                                     <a class="linkContainer item-subscriptions" href="container/tracking/index.html">
@@ -307,14 +345,14 @@
                                 
                                 -->
 
-                                <li> 
+                                <li>
                                     <a class="linkContainer item-payments" href="#">
                                         <i class="fal fa-wind-warning fa-2x"></i>
                                         <div class="productLinkContent">
                                             <h3 class="linkTitle">Link 3 <span class="new-badge">New</span></h3>
                                             <p class="linkSub"> It always contains dummy text </p>
                                         </div>
-                                    </a> 
+                                    </a>
                                 </li>
 
                                 <li>
@@ -323,17 +361,16 @@
                             </ul>
                         </div>
                         <ul class="linkGroup linkList prodsubGroup">
-                            <li> 
-                                <a class="linkContainer item-pricing" href="#"
-                                    data-action-source="nav">
+                            <li>
+                                <a class="linkContainer item-pricing" href="#" data-action-source="nav">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-tags"></i> URL1 </h3>
-                                </a> 
+                                </a>
                             </li>
 
-                            <li> 
+                            <li>
                                 <a class="linkContainer item-workswith" href="#">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-tools"></i> URL2 </h3>
-                                </a> 
+                                </a>
                             </li>
 
                         </ul>
@@ -347,8 +384,7 @@
                                 <h3 class="linkTitle linkIcon"> <i class="fad fa-circle"></i> Whatever link
                                 </h3> <span class="linkSub">subtitles.</span>
                             </a>
-                            <a class="linkContainer withIcon item-documentation"
-                                href="#">
+                            <a class="linkContainer withIcon item-documentation" href="#">
                                 <h3 class="linkTitle linkIcon"> <i class="fad fa-map-marker-alt"></i> Font awesome
                                 </h3>
                             </a>
@@ -415,31 +451,29 @@
                         -->
 
                         <ul class="linkGroup linkList developersGroup">
-                            <li> 
+                            <li>
                                 <a class="linkContainer item-apiReference" href="#">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-circle"></i> cobweb </h3>
-                                </a> 
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="dropdownSection right" data-dropdown="company">
                     <div class="dropdownContent">
                         <div class="linkGroup documentationGroup">
-                            <a class="linkContainer withIcon item-documentation"
-                                href="#">
+                            <a class="linkContainer withIcon item-documentation" href="#">
                                 <h3 class="linkTitle linkIcon"> <i class="fas fa-user-tie"></i> About Us
                                 </h3>
-                            </a> 
+                            </a>
                         </div>
                         <div class="linkGroup blogGroup">
-                            
-                            <a class="linkContainer withIcon item-documentation"
-                                href="#">
+
+                            <a class="linkContainer withIcon item-documentation" href="#">
                                 <h3 class="linkTitle linkIcon"> <i class="fad fa-phone"></i> Contact us </h3>
-                            </a> 
-                            
+                            </a>
+
                             <!--
                             <ul class="blogPosts">
                                 <li><a

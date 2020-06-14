@@ -17,7 +17,18 @@ class SiteController extends Controller
     {
         $data['page_title'] = 'Request a quote | LogistiQuote';
         $data['page_name'] = 'get_quote_step2';
-        return view('frontend.get_quote', $data);
+        if(session('type') == 'lcl' || session('transportation_type') == 'air')
+        {
+            return view('frontend.get_quote_lcl', $data);
+        }
+        else if(session('transportation_type') == 'sea' && session('type') == 'fcl')
+        {
+            return view('frontend.get_quote_fcl', $data);
+        }
+        else
+        {
+            return "An error occurred!";
+        }
     }
 
 }

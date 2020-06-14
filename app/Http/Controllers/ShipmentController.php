@@ -25,20 +25,7 @@ class ShipmentController extends Controller
         ]);
         session()->save();
 
-        $redirect_to = null;
-        if($request->type == 'lcl' || $request->transportation_type == 'air')
-        {
-            $redirect_to = url('get_quote_step2');
-        }
-        else if($request->transportation_type == 'sea' && $request->type == 'fcl')
-        {
-            return 'page 3 coming soon';
-        }
-        else
-        {
-            $redirect_to = url('get_quote_step2');
-        }
-
+        $redirect_to = url('get_quote_step2');
         if(Auth::check())
         {
             return redirect($redirect_to);

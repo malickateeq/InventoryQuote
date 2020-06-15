@@ -14,6 +14,8 @@ class VendorController extends Controller
     }
     public function index()
     {
-        return "vendor";
+        $data['page_title'] = 'Dashboard | LogistiQuote';
+        $data['page_name'] = 'ven_dashboard';
+        return view('panels.ven.dashboard', $data);
     }
 }

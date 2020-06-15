@@ -1,99 +1,44 @@
 @extends('panels.user.master')
 @section('content')
 
-<div class="col-xl-12 col-md-12 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
 
-                <form action="{{ route('quotation.store') }}" method="POST">
+<div class="row">
+    <div class="col-xl-8 col-md-8 mb-4 offset-md-2">
+        <div class="card card shadow">
+            <h5 class="card-header">Quotation</h5>
+            <div class="card-body">
+
+                <form action="{{ route('quotation.update', $quotation->id) }}" method="POST">
                     @csrf
-                    <h5> <b> Origin </b> </h5>
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
-                                id="validationServer03" placeholder="City" name="origin_city" required>
-                            @error('origin_city')
+                        <div class="col-md-6 mb-3">
+                            <h5> <b> Origin </b> </h5>
+                            <input type="text" class="form-control @error('origin') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $quotation->origin }}"
+                                name="origin" required>
+                            @error('origin')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('origin_state') is-invalid @enderror"
-                                id="validationServer04" placeholder="State" name="origin_state" required>
-                            @error('origin_state')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('origin_country') is-invalid @enderror"
-                                id="validationServer03" placeholder="Country" name="origin_country" required>
-                            @error('origin_country')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <input type="text" class="form-control @error('origin_zip') is-invalid @enderror"
-                                id="validationServer05" placeholder="Zip" name="origin_zip" required>
-                            @error('origin_zip')
+                        <div class="col-md-6 mb-3">
+                            <h5> <b> Destination </b> </h5>
+                            <input type="text" class="form-control @error('destination') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $quotation->destination }}"
+                                name="destination" required>
+                            @error('destination')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                     </div>
-
-                    <h5> <b> Destination </b> </h5>
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('destination_city') is-invalid @enderror"
-                                id="validationServer03" placeholder="City" name="destination_city" required>
-                            @error('destination_city')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('destination_state') is-invalid @enderror"
-                                id="validationServer04" placeholder="State" name="destination_state" required>
-                            @error('destination_state')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <input type="text" class="form-control @error('destination_country') is-invalid @enderror"
-                                id="validationServer03" placeholder="Country" name="destination_country" required>
-                            @error('destination_country')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <input type="text" class="form-control @error('destination_zip') is-invalid @enderror"
-                                id="validationServer05" placeholder="Zip" name="destination_zip" required>
-                            @error('destination_zip')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-
-
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationServer01">Ready to load date</label>
-                            <input type="text" class="form-control" name="date" value="" required />
-
+                            <input type="text" class="form-control" name="date" value="{{ $quotation->date }}" required />
                         </div>
                     </div>
 
@@ -103,8 +48,8 @@
                             <select class="custom-select mr-sm-2" id="transportation_type"
                                 name="transportation_type">
                                 <option selected="">Choose...</option>
-                                <option value="ocean">Ocean Freight</option>
-                                <option value="air">Air Freight</option>
+                                <option value="ocean" <?php echo ($quotation->transportation_type == 'ocean') ? 'selected="selected"' : ''; ?> >Ocean Freight</option>
+                                <option value="air" <?php echo ($quotation->transportation_type == 'air') ? 'selected="selected"' : ''; ?>>Air Freight</option>
                             </select>
                         </div>
                         <div class="col-auto my-1">
@@ -120,7 +65,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <input type="number" class="form-control @error('value_of_goods') is-invalid @enderror"
-                                id="validationServer03" placeholder="Value of Goods (USD)" name="value_of_goods"
+                                value="{{ $quotation->value_of_goods }}" placeholder="Value of Goods (USD)" name="value_of_goods"
                                 required>
                             @error('value_of_goods')
                             <div class="invalid-feedback">
@@ -132,7 +77,7 @@
                         <div class="row" id="for_flc">
                             <div class="col-md-5 mb-3">
                                 <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
-                                    id="validationServer04" placeholder="No of containers" name="no_of_containers" required>
+                                value="{{ $quotation->no_of_containers }}" placeholder="No of containers" name="no_of_containers" required>
                                 @error('no_of_containers')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -141,10 +86,10 @@
                             </div>
                             <div class="col-md-5 mb-3">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="container_size">
-                                    <option selected="">Container size</option>
-                                    <option value="20f">20ft</option>
-                                    <option value="40f">40ft</option>
-                                    <option value="40f_hc">40ft HC</option>
+                                    <option>Container size</option>
+                                    <option value="20f" <?php echo ($quotation->transportation_type == '20f') ? 'selected="selected"' : ''; ?> >20ft</option>
+                                    <option value="40f"<?php echo ($quotation->transportation_type == '40f') ? 'selected="selected"' : ''; ?> >40ft</option>
+                                    <option value="40f_hc"<?php echo ($quotation->transportation_type == '40f_hc') ? 'selected="selected"' : ''; ?> >40ft HC</option>
                                 </select>
                             </div>
                         </div>
@@ -156,7 +101,7 @@
                             <div class="col-auto my-1">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing"
-                                        name="isStockable" value="Yes">
+                                        name="isStockable" value="Yes" <?php if($quotation->isStockable == 'Yes') echo 'checked="checked"'; ?>>
                                     <label class="custom-control-label" for="customControlAutosizing">Is
                                         Stockable</label>
                                 </div>
@@ -166,7 +111,7 @@
                             <div class="col-auto my-1">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing2"
-                                        name="isSDGR" value="Yes">
+                                        name="isDGR" value="Yes" <?php if($quotation->isDGR == 'Yes') echo 'checked="checked"'; ?>>
                                     <label class="custom-control-label" for="customControlAutosizing2">Is DGR</label>
                                 </div>
                             </div>
@@ -179,13 +124,13 @@
                         <div class="col-md-6 mb-3">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" name="calculate_by" value="shipment"
-                                    class="custom-control-input">
+                                    class="custom-control-input" <?php if($quotation->calculate_by == 'shipment') echo 'checked="checked"'; ?>>
                                 <label class="custom-control-label" for="customRadioInline1">Calculate by total
                                     shipment</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline2" name="calculate_by" value="units"
-                                    class="custom-control-input">
+                                    class="custom-control-input" <?php if($quotation->calculate_by == 'units') echo 'checked="checked"'; ?>>
                                 <label class="custom-control-label" for="customRadioInline2">Calculate by units</label>
                             </div>
                         </div>
@@ -195,7 +140,7 @@
                         <div class="form-row">
                             <div class="col-md-3 mb-3">
                                 <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity" required>
+                                value="{{ $quotation->quantity }}" placeholder="Quantity" name="quantity" required>
                                 @error('quantity')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -204,7 +149,7 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <input type="number" class="form-control @error('total_weight') is-invalid @enderror"
-                                    id="validationServer04" placeholder="Gross Weight" name="total_weight" required>
+                                value="{{ $quotation->total_weight }}" placeholder="Gross Weight" name="total_weight" required>
                                 @error('total_weight')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -218,14 +163,14 @@
                         <div class="form-row">
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity_units" required>
+                                value="{{ $quotation->quantity }}" placeholder="Quantity" name="quantity_units" required>
                                 @error('quantity_units')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-                            <div class="col-md-1 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <!-- <label for="">Dimensions</label> -->
                                 <input type="number" class="form-control @error('l') is-invalid @enderror"
                                     id="validationServer04" placeholder="length" name="l" required>
@@ -235,7 +180,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="col-md-1 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('w') is-invalid @enderror"
                                     id="validationServer03" placeholder="width" name="w" required>
                                 @error('w')
@@ -244,7 +189,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="col-md-1 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('h') is-invalid @enderror"
                                     id="validationServer03" placeholder="height" name="h" required>
                                 @error('h')
@@ -255,7 +200,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
-                                    id="validationServer04" placeholder="Gross Weight" name="total_weight_units" disabled>
+                                value="{{ $quotation->total_weight }}" name="total_weight_units" disabled>
                                 @error('total_weight_units')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -268,10 +213,10 @@
                     <hr>
                     <h5 class="mt-4"> <b> Other Info </b> </h5>
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             
                             <label for="exampleFormControlTextarea1">Remarks</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks">{{ $quotation->remarks }}</textarea>
                             @error('value_of_goods')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -280,11 +225,11 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="col-auto my-1">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing3"
-                                        name="isClearanceReq" value="Yes">
+                                        name="isClearanceReq" value="Yes" <?php if($quotation->isClearanceReq == 'Yes') echo 'checked="checked"'; ?>>
                                     <label class="custom-control-label" for="customControlAutosizing3">Required Customs
                                         Clearance?</label>
                                 </div>
@@ -292,24 +237,45 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Request Quotation</button>
+                    <button class="btn btn-primary" type="submit">Update Quotation</button>
                 </form>
 
             </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('bottom_scripts')
-
 <script>
     $(document).ready(function() 
     {
         $('#shipment').hide();
         $('#units').hide();
         $('#for_flc').hide();
+
+        var trans_type = {!! json_encode($quotation->transportation_type) !!};
+        var type = {!! json_encode($quotation->calculate_by) !!};
+        if(type == 'units')
+        {
+            $('#units').show();
+        }
+        else
+        {
+            $('#shipment').show();
+        }
+        
+        if(trans_type == 'ocean')
+        {
+            $('#type_of_shipment').empty();
+            $("#type_of_shipment").append(new Option("LCL", "lcl"));
+            $("#type_of_shipment").append(new Option("FCL", "fcl"));
+        }
+        else
+        {
+            $('#type_of_shipment').empty();
+            $("#type_of_shipment").append(new Option("AIR", "air"));
+        }
 
         $("#transportation_type").change(function()
         {
@@ -384,11 +350,7 @@
                 minYear: parseInt(moment().format('YYYY'), 10),
                 autoApply: true,
                 maxYear: 2050
-            },
-            // function(start, end, label) {
-            //     var years = moment().diff(start, 'years');
-            //     alert("You are " + years + " years old!");
-            // }
+            }
         );
     });
 

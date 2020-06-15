@@ -13,6 +13,8 @@ class AdminController extends Controller
     }
     public function index()
     {
-        return "admin";
+        $data['page_title'] = 'Dashboard | LogistiQuote';
+        $data['page_name'] = 'admin_dashboard';
+        return view('panels.admin.dashboard', $data);
     }
 }

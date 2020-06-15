@@ -1,15 +1,13 @@
 @extends('panels.user.master')
 @section('content')
 
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">My Quotations</h1>
-        <a href="{{ route('quotation.add') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="{{ route('quotation.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add Quotation
         </a>
     </div>
@@ -25,25 +23,16 @@
                 <table class="table table-bordered" id="quotations_table" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Route</th>
-                            <th>Transportation Type</th>
-                            <th>Ready to load</th>
+                            <th width="5%">ID</th>
+                            <th width="20%">Route</th>
+                            <th width="10%">Transportation Type</th>
+                            <th width="13%">Ready to load</th>
                             <th>Worth</th>
-                            <th>Gross Weight</th>
+                            <th width="10%">Gross Weight</th>
                             <th>Remarks</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <!-- <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </tfoot> -->
                     <tbody>
                         @foreach($quotations as $quotation)
                         <tr>
@@ -63,6 +52,23 @@
                             <td>{{ $quotation->value_of_goods }} $</td>
                             <td>{{ $quotation->total_weight }} KG</td>
                             <td>{{ $quotation->remarks }}</td>
+                            <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-success fa-2x" data-toggle="dropdown">
+                                    <i class="fad fa-ellipsis-v-alt"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('quotation.show', $quotation->id) }}">View</a>
+                                    <a class="dropdown-item" href="{{ route('quotation.edit', $quotation->id) }}">Edit</a>
+                                    <form action="{{ route('quotation.destroy', $quotation->id ) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="dropdown-item">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -73,9 +79,7 @@
 
 </div>
 <!-- /.container-fluid -->
-
 @endsection
-
 
 @section('bottom_scripts')
 <script>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Freight;
+use App\Quotation;
 
 class ShipmentController extends Controller
 {
@@ -42,39 +42,57 @@ class ShipmentController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
-        dd( $request->all() );
+        if(Auth::user()->role == 'vendor' || Auth::user()->role == 'admin')
+        {
+            return Auth::user()->role.' is not allowed to perform this action.';
+        }
+
         if(session('origin') == "")
         {
             return redirect()->back();
         }
 
-        $freight = new Freight;
-        $freight->user_id = Auth::user()->id;
-        $freight->origin = session('origin');
-        $freight->destination = session('destination');
-        $freight->transportation_type = session('transportation_type');
-        $freight->type = session('type');
-        $freight->ready_to_load_date = session('ready_to_load_date');
+        $quotation = new Quotation;
+        $quotation->user_id = Auth::user()->id;
+        $quotation->quotation_id = mt_rand();
+        $quotation->origin = session('origin');
+        $quotation->destination = session('destination');
+        $quotation->transportation_type = session('transportation_type');
+        $quotation->type = session('type');
+        $quotation->ready_to_load_date = session('ready_to_load_date');
 
         
-        $freight->value_of_goods = $request->value_of_goods;
-        $freight->isStockable = $request->isStockable ? $request->isStockable : 'No';
-        $freight->calculate_by = $request->calculate_by;
-        $freight->remarks = $request->remarks;
-        $freight->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
+        $quotation->value_of_goods = $request->value_of_goods;
+        $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
+        $quotation->isDGR = $request->isDGR ? $request->isDGR : 'No';
+        $quotation->calculate_by = $request->calculate_by;
+        $quotation->remarks = $request->remarks;
+        $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
+        
+        $quotation->total_weight = $request->total_weight;
 
+        if(session('transportation_type') == 'sea' && session('type') == 'fcl')
+        {
+            $quotation->container_size = $request->container_size;
+            $quotation->no_of_containers = $request->no_of_containers;
+        }
         if($request->calculate_by == 'units')
         {
-            $freight->quantity = $request->quantity;
-            $freight->l = $request->l;
-            $freight->w = $request->w;
-            $freight->h = $request->h;
+            $quotation->quantity = $request->quantity_units;
         }
         else
         {
-            $freight->gross_vol = $request->gross_vol;
-            $freight->cargo_weight = $request->cargo_weight;
+            $quotation->quantity = $request->quantity;
         }
-        $freight->save();
+        $quotation->save();
+
+        session()->forget('origin');
+        session()->forget('destination');
+        session()->forget('transportation_type');
+        session()->forget('type');
+        session()->forget('ready_to_load_date');
+        session()->forget('intended_url');
+
+        return redirect(route('user.quotations'));
     }
 }

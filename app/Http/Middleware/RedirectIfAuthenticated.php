@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) 
         {
             if(session('intended_url') != "" && session('origin') != "" )
-                return redirect(url('get_quote_step2'));
+                return redirect('/get_quote_step2');
                 
             if(Auth::user()->role == 'admin')
             {
@@ -33,7 +33,7 @@ class RedirectIfAuthenticated
             }
             else if(Auth::user()->role == 'user')
             {
-                return redirect();
+                return redirect('/user');
             }
             else if(Auth::user()->role == 'vendor')
             {

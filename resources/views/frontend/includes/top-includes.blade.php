@@ -6,12 +6,12 @@
     <script type="text/javascript" src="{{ asset('public/frontend/libs/jquery-ui-custom.mine23c.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/libs/bootstrap-datepicker.mine23c.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/libs/select2.min489b.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/slick.mine23c.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/gsap.min8347.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/TweenMax.min8347.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/ScrollMagic.min8347.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/animation.gsap.min8347.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/frontend/libs/debug.addIndicators.min8347.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/slick.mine23c.js') }}"></script> -->
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/gsap.min8347.js') }}"></script> bubbles -->
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/TweenMax.min8347.js') }}"></script> -->
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/ScrollMagic.min8347.js') }}"></script> -->
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/animation.gsap.min8347.js') }}"></script> -->
+    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/debug.addIndicators.min8347.js') }}"></script> -->
 
     @if( isset($page_name) )
         @if($page_name == 'homepage')
@@ -23,9 +23,10 @@
         @endif
     @endif
     
-    <!-- Login page css -->
-    <link href="{{ asset('public/frontend/css/auth.css') }}" media="screen" rel="stylesheet" type="text/css" />
-
+    @if( ! isset($page_name) )
+        <!-- Login page css -->
+        <link href="{{ asset('public/frontend/css/auth.css') }}" media="screen" rel="stylesheet" type="text/css" />
+    @endif
 
     <!-- Font awesome includes -->
     <link rel="stylesheet" href="{{ asset('public/fontawesome/css/all.css') }}">

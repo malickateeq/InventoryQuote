@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFreightsTable extends Migration
+class CreateQuotationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFreightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('freights', function (Blueprint $table) 
-        {
+        Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('quotation_id');
             $table->string('origin')->nullable();
             $table->string('destination')->nullable();
             $table->string('transportation_type')->nullable();
@@ -24,15 +24,20 @@ class CreateFreightsTable extends Migration
             $table->timestamp('ready_to_load_date')->nullable();
             $table->string('value_of_goods')->comment('In USD')->nullable();
             $table->string('isStockable')->nullable();
+            $table->string('isDGR')->nullable();
             $table->string('calculate_by')->comment('units or shipment')->nullable();
-            $table->string('gross_vol')->nullable();
-            $table->string('cargo_weight')->nullable();
+            $table->string('total_weight')->nullable();
+            $table->string('quantity')->nullable();
             $table->string('remarks')->nullable();
             $table->string('isClearanceReq')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('l')->nullable();
-            $table->string('w')->nullable();
-            $table->string('h')->nullable();
+            
+            // For Sea+FCL
+            $table->string('no_of_containers')->nullable();
+            $table->string('container_size')->nullable();
+            
+            // $table->string('l')->nullable();
+            // $table->string('w')->nullable();
+            // $table->string('h')->nullable();
             $table->timestamps();
         });
     }
@@ -44,6 +49,6 @@ class CreateFreightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('freights');
+        Schema::dropIfExists('quotations');
     }
 }

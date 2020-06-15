@@ -15,10 +15,7 @@
                     <div class="icon"><i class="fad fa-container-storage"></i></div>
                     <p>fcl</p>
                 </div>
-                <!-- <div class="item">
-                    <div class="icon"><i class="fad fa-mountains"></i></div>
-                    <p>bulk</p>
-                </div> -->
+                
                 <input type="hidden" name="type" value="lcl">
             </div>
 
@@ -107,18 +104,18 @@
 
                     <div class="form-row" id="shipment">
                         <div class="request-input small">
-                            <p class="name">Volume</p>
+                            <p class="name">Number of Pieces (Quantity)</p>
                             <div class="input-wrap  ">
-                                <input type="number" title="Volume" name="gross_vol" placeholder="0" step="any"
-                                    autocomplete="off" required="" value="">
-                                <p class="label">CBM</p>
+                                <input type="number" title="Quantity" name="quantity"
+                                    placeholder="0" step="any" autocomplete="off" required="" value="">
+                                <p class="label">PCS</p>
                             </div>
                         </div>
                         <div class="request-input small">
                             <p class="name">Gross Weight</p>
-                            <div class="input-wrap  "><input type="number" title="Gross Weight" name="cargo_weight"
+                            <div class="input-wrap  "><input type="number" title="Gross Weight" name="total_weight"
                                     placeholder="0" step="any" autocomplete="off" required="" value="">
-                                <p class="label">Mt</p>
+                                <p class="label">KG</p>
                             </div>
                         </div>
                     </div>
@@ -126,8 +123,8 @@
                     <div class="form-row" id="units">
                         <div class="request-input small">
                             <p class="name">Quantity</p>
-                            <div class="input-wrap  "><input type="number" title="Quantity" name="quantity"
-                                    placeholder="" step="any" autocomplete="off" required="" value=""></div>
+                            <div class="input-wrap  "><input type="number" title="Quantity" name="quantity_units" placeholder=""
+                                    step="any" autocomplete="off" required="" value=""></div>
                         </div>
                         <div class="dimensions">
                             <div class="request-input small">
@@ -151,15 +148,15 @@
                         <div class="request-input small">
                             <p class="name">Gross Weight</p>
                             <div class="input-wrap  ">
-                                <input type="number" title="Gross Weight" name="gross_weight" placeholder="" step="any"
-                                    autocomplete="off" disabled="" value="">
-                                <p class="label">Mt</p>
+                                <input type="number" title="Gross Weight" name="total_weight_units"
+                                    placeholder="" step="any" autocomplete="off" disabled="" value="">
+                                <p class="label">KG</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="shipment-total">
-                        <p>Shipment total: <span id="cbn">0</span> CBM <span id="kg">0</span> kg</p>
+                        <p>Shipment total: <span id="pcs">0</span> PCS <span id="kg">0</span> kg</p>
                     </div>
 
                 </div>
@@ -174,7 +171,7 @@
                         <p class="name">Remarks</p>
                         <div class="input-wrap  ">
                             <textarea name="remarks" id="" cols="45" rows="3"
-                                style="border-radius: 5px; border: 1px solid gray;"></textarea>
+                                style="border-radius: 5px; border: 1px solid gray;" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -215,71 +212,84 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#units').hide();
-        $("input[name=quantity]").prop('required', false);
-        $("input[name=l]").prop('required', false);
-        $("input[name=w]").prop('required', false);
-        $("input[name=h]").prop('required', false);
-        $("input[name=gross_weight]").prop('required', false);
-
+    $(document).ready(function() 
+    {
+        $('#units').hide(); 
+        $("input[name=quantity_units]").prop('required',false);
+        $("input[name=l]").prop('required',false);
+        $("input[name=w]").prop('required',false);
+        $("input[name=h]").prop('required',false);
+        $("input[name=total_weight_units]").prop('required',false); 
+        
         // On calculation radio button clicks
-        $('input:radio').change(function () {
+        $('input:radio').change(function()
+        {
             var el = $(this).val();
-            if (el == 'units') {
+            if(el == 'units')
+            {
                 $('#units').show();
                 $('#shipment').hide();
 
-                $("input[name=gross_vol]").prop('required', false);
-                $("input[name=cargo_weight]").prop('required', false);
-            } else {
+                $("input[name=quantity]").prop('required',false);
+                $("input[name=total_weight]").prop('required',false);
+            }
+            else
+            {
                 $('#units').hide();
                 $('#shipment').show();
-
-                $("input[name=quantity]").prop('required', false);
-                $("input[name=l]").prop('required', false);
-                $("input[name=w]").prop('required', false);
-                $("input[name=h]").prop('required', false);
-                $("input[name=gross_weight]").prop('required', false);
-            }
+                
+                $("input[name=quantity_units]").prop('required',false);
+                $("input[name=l]").prop('required',false);
+                $("input[name=w]").prop('required',false);
+                $("input[name=h]").prop('required',false);
+                $("input[name=total_weight_units]").prop('required',false);
+            }   
         });
 
 
         // Live results on calculations
-        $("input[name=gross_vol], input[name=cargo_weight], input[name=quantity], input[name=l], input[name=w], input[name=h], input[name=gross_weight]")
-            .keyup(function () {
-                var el = $(this).attr("name");
-                if (el == 'gross_vol') {
-                    if ($(this).val() == "") {
-                        $("#cbn").text('1');
-                    } else {
-                        $("#cbn").text($(this).val());
-                    }
-                } else if (el == 'cargo_weight') {
-                    if ($(this).val() == "") {
-                        $("#kg").text('1');
-                    } else {
-                        $("#kg").text($(this).val());
-                    }
+        $("input[name=quantity_units], input[name=total_weight_units], input[name=total_weight], input[name=quantity], input[name=l], input[name=w], input[name=h]" ).keyup(function() 
+        {
+            var el = $(this).attr("name");
+            if(el == 'quantity')
+            {
+                if($(this).val() == "")
+                {
+                    $("#pcs").text('1');
                 }
-
-                // For units
-                else {
-                    var quantity = $('input[name=quantity]').val() ? parseFloat($('input[name=quantity]')
-                        .val()) : 1;
-                    var l = $('input[name=l]').val() ? parseFloat($('input[name=l]').val()) : 1;
-                    var w = $('input[name=w]').val() ? parseFloat($('input[name=w]').val()) : 1;
-                    var h = $('input[name=h]').val() ? parseFloat($('input[name=h]').val()) : 1;
-                    // var gross_weight = $('input[name=gross_weight]').val() ? parseFloat( $('input[name=gross_weight]').val() ) : 1;
-
-                    var vol_weight = (l * w * h) / 6000 * quantity;
-                    $('input[name=gross_weight]').val(vol_weight);
-                    $("#kg").text(vol_weight);
+                else
+                {
+                    $("#pcs").text($(this).val());
                 }
-            });
+            }
+            else if(el == 'total_weight')
+            {
+                if($(this).val() == "")
+                {
+                    $("#kg").text('1');
+                }
+                else
+                {
+                    $("#kg").text($(this).val());
+                }
+            }
+
+            // For units
+            else
+            {   
+                var quantity = $('input[name=quantity_units]').val() ? parseFloat( $('input[name=quantity_units]').val() ) : 1;
+                var l = $('input[name=l]').val() ? parseFloat( $('input[name=l]').val() ) : 1;
+                var w = $('input[name=w]').val() ? parseFloat( $('input[name=w]').val() ) : 1;
+                var h = $('input[name=h]').val() ? parseFloat( $('input[name=h]').val() ) : 1;
+                
+                var total_weight = (l*w*h)/6000 * quantity;
+                $('input[name=total_weight_units]').val(total_weight);
+                $("#kg").text(total_weight);
+                $("#pcs").text(quantity);
+            }
+        });
 
     });
-
 </script>
 
 @endsection

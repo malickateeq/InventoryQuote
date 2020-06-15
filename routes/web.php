@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('test', function () {
+    dd( mt_rand() );
+});
+
 Route::get('clear', function () {
     // // app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
     \Artisan::call('view:clear');
@@ -25,9 +29,15 @@ Route::post('/form_quote_step2', 'ShipmentController@form_quote_step2')->name('f
 
 // User Routes
 Route::get('/user', 'UserController@index')->name('user');
+Route::get('/user/profile', 'UserController@profile')->name('user.profile');
+Route::get('/user/quotations', 'UserController@quotations')->name('user.quotations');
+Route::get('/quotation/add', 'UserController@add_quotation')->name('quotation.add');
+Route::post('/quotation/store', 'UserController@sotre_quotation')->name('quotation.store');
 
 // vendor Routes
 Route::get('/ven', 'VendorController@index')->name('vendor');
+Route::get('/ven/profile', 'VendorController@profile')->name('vendor.profile');
 
 // admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');

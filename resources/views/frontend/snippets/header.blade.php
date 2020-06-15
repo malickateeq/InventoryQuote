@@ -41,7 +41,7 @@
                                     </div>
                                 </li>
 
-                                <li> <a href="{{ route('user') }}"> <i class="fad fa-user"></i> Profile </a> </li>
+                                <li> <a href="{{ route('user') }}"> <i class="fad fa-user"></i> Dashboard </a> </li>
                                 <!-- <li> <a href="/user/inbox"> <i class="fad fa-inbox-in"></i> Inbox </a> </li> -->
                                 <!-- <li> <a href="/user/profile#profile-about"> <i class="fas fa-cog"></i> Settings </a> -->
                                 </li>

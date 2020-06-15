@@ -3,126 +3,6 @@
 
 
 <div class="main-content">
-    <script type='application/ld+json'>
-        {
-            "@context": "http://www.schema.org",
-            "@type": "Corporation",
-            "name": "LogistiQuote LP",
-            "url": "https://www.LogistiQuote.com/",
-            "logo": "https://www.LogistiQuote.com/design/images/logonew.png') }}",
-            "description": "Digital Broker & Freight Forwarder",
-            "location": {
-                "@type": "Place",
-                "name": "Capital Business Centre",
-                "hasMap": ["http://mygeoposition.com/loc/35.9055890,14.4691870/?zoomLevel=undefined&mapType=undefined",
-                    "https://www.google.com/maps/place/Capital+Business+Centre,+Triq+Taz-Zwejt,+San+Gwann+SGN+3000,+Malta/@35.9055890,14.4691870,15z/",
-                    "https://wego.here.com/directions/mix//Capital-Business-Centre,-Triq-Taz-Zwejt,-San-Gwann-SGN-3000,-Malta:35.9055890,14.4691870?map=35.9055890,14.4691870,15,normal",
-                    "http://www.bing.com/maps/?lvl=14&amp;cp=35.9055890~14.4691870",
-                    "http://www.openstreetmap.org/search?query=Capital%20Business%20Centre,%20Triq%20Taz-Zwejt,%20San%20Gwann%20SGN%203000,%20Malta#map=15/35.9055890/14.4691870"
-                ],
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Suite 2, Office 2, The Penthouse, Capital Business Centre, Entrance C, Triq taz-Zwejt",
-                    "addressLocality": "San Gwann",
-                    "postalCode": "SGN 3000",
-                    "addressCountry": "Malta"
-                }
-            },
-            "email": "sales@LogistiQuote.com",
-            "contactPoint": [{
-                "@type": "ContactPoint",
-                "telephone": "+44 207 048 64 38",
-                "contactType": "customer service",
-                "areaServed": "GB"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+34 931 72 76 22",
-                "contactType": "customer service",
-                "areaServed": "ES"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+33 970 40 80 88",
-                "contactType": "customer service",
-                "areaServed": "FR"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+380 48 752 85 19",
-                "contactType": "customer service",
-                "areaServed": "UA"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+7 499 403 37 83",
-                "contactType": "customer service",
-                "areaServed": "RU"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+98 218 862 93 16",
-                "contactType": "customer service",
-                "areaServed": "IR"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+91 976 974 84 85",
-                "contactType": "customer service",
-                "areaServed": "IN"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+66 80 81 88 871",
-                "contactType": "customer service",
-                "areaServed": "TH"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+86 188 241 915 71",
-                "contactType": "customer service",
-                "areaServed": "CN"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+86 137 643 318 14",
-                "contactType": "customer service",
-                "areaServed": "CN"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+82 232 75 2674",
-                "contactType": "customer service",
-                "areaServed": "KR"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+61 405 475 533",
-                "contactType": "customer service",
-                "areaServed": "AU"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+64 98 89 14 40",
-                "contactType": "customer service",
-                "areaServed": "NZ"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+64 98 89 14 40",
-                "contactType": "customer service",
-                "areaServed": "NZ"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+1 323 986 6199",
-                "contactType": "customer service",
-                "areaServed": "US"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+1 888 600 0747",
-                "contactType": "customer service",
-                "areaServed": "US"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+1 416 524 7796",
-                "contactType": "customer service",
-                "areaServed": "CA"
-            }, {
-                "@type": "ContactPoint",
-                "telephone": "+1 718 425 31 69",
-                "contactType": "customer service",
-                "areaServed": "US"
-            }]
-        }
-
-    </script>
 
     <div class="wrapper-home-pages">
         <section class="wrapper-header-block">
@@ -221,12 +101,7 @@
                                                                 </a>
                                                                 <span class="transcript">LESS CONTAINER LOAD</span>
                                                             </li>
-                                                            <!-- <li>
-                                                                <a data-mode="sea" data-type="bulk" href="javascript:;">
-                                                                    <i class="fad fa-circle"></i><span>BULK</span>
-                                                                </a>
-                                                                <span class="transcript">BULK & BREAK BULK</span> 
-                                                            </li> -->
+
                                                             <li>
                                                                 <a data-mode="air" data-type="air" href="javascript:;">
                                                                     <i class="fad fa-plane"></i><span>AIR</span>
@@ -235,7 +110,7 @@
                                                             </li>
                                                         </ul>
                                                     </div> 
-                                                    <input type="hidden" name="type" value="">
+                                                    <input type="hidden" name="type" value="fcl">
                                                 </div>
 
                                                 <div class="route-btn">
@@ -391,8 +266,6 @@
             </div>
         </div>
 
-        <script>
-        </script>
     </div>
     
 </div>

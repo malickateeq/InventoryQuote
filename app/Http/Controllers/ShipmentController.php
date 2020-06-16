@@ -63,7 +63,7 @@ class ShipmentController extends Controller
         $quotation->type = session('type');
 
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', session('ready_to_load_date') );
-        $quotation->ready_to_load_date = $ready_to_load_date;
+        $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
 
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';

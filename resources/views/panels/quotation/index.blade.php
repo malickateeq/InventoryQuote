@@ -43,8 +43,18 @@
                                 to 
                                 <span class="text-danger">{{ $quotation->destination }}</span>
                             </td>
-                            <td>{{ $quotation->status }}</td>
-                            <td>{{ $quotation->proposals_received }}</td>
+                            <td>
+                                @if($quotation->status == 'active')
+                                    <span class="badge badge-success">{{ $quotation->status }}</span>
+                                @elseif($quotation->status == 'withdrawn')
+                                    <span class="badge badge-danger">{{ $quotation->status }}</span>
+                                @elseif($quotation->status == 'completed')
+                                    <span class="badge badge-primary">{{ $quotation->status }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                <span class="badge badge-pill badge-danger">{{ $quotation->proposals_received }}</span>
+                            </td>
                             <td>{{ $quotation->transportation_type }} ({{ $quotation->type }})</td>
                             <td>
                                 <?php

@@ -70,7 +70,7 @@ class QuotationController extends Controller
         $quotation->transportation_type = $request->transportation_type;
         $quotation->type = $request->type;
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
-        $quotation->ready_to_load_date = $ready_to_load_date;
+        $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
         
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -159,7 +159,7 @@ class QuotationController extends Controller
         $quotation->transportation_type = $request->transportation_type;
         $quotation->type = $request->type;
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
-        $quotation->ready_to_load_date = $ready_to_load_date;
+        $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
         
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -198,7 +198,10 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        Quotation::destroy($id);
+        $quotation = Quotation::findOrFail($id); 
+        $quotation->status = 'withdrawn';
+        $quotation->save();
+        return redirect(route('quotation.index'));
     }
 
     /**

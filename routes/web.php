@@ -40,6 +40,7 @@ Route::post('/ven/update_profile', 'VendorController@update_profile')->name('ven
 // admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');
+Route::post('/admin/update_profile', 'AdminController@update_profile')->name('admin.update_profile');
 
 Route::resource('/quotation', 'QuotationController');
 Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view_all');
@@ -49,6 +50,7 @@ Route::post('/quotations', 'QuotationController@search')->name('quotations.searc
 
 
 Route::resource('/proposal', 'ProposalController');
+Route::get('/proposals', 'ProposalController@view_all')->name('proposals.view_all');
 Route::get('/make_proposal/{id}', 'ProposalController@make_proposal')->name('proposal.make');
 Route::get('proposals_received/', 'ProposalController@proposals_received')->name('proposals.received');
 Route::get('/accept_proposal/{id}', 'ProposalController@accept_proposal')->name('proposal.accept');

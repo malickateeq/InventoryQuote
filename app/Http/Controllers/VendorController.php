@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Quotation;
 use App\User;
+use App\Proposal;
 use Carbon\Carbon;
 
 class VendorController extends Controller
@@ -19,6 +20,11 @@ class VendorController extends Controller
     }
     public function index()
     {
+        $data['proposals_made'] = Proposal::where('partner_id', Auth::user()->id)->count();
+        $data['accepted_proposals'] = Proposal::where('partner_id', Auth::user()->id)
+        ->where('status', 'completed')->count();
+        $data['active_proposals'] = Proposal::where('partner_id', Auth::user()->id)
+        ->where('status', 'active')->count();
         $data['page_title'] = 'Dashboard | LogistiQuote';
         $data['page_name'] = 'ven_dashboard';
         return view('panels.ven.dashboard', $data);

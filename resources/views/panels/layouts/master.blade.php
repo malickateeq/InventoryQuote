@@ -109,12 +109,60 @@
             <li class="nav-item <?php echo ($page_name == 'proposals') ? 'active' : ''; ?>">
                 <a class="nav-link" href="{{ route('proposals.received') }}">
                     <i class="fad fa-file-signature"></i>
-                    <span>Proposals Received</span></a>
+                    <span>Proposals Received</span>
+                </a>
             </li>
 
             <!-- Nav Item - Profile -->
             <li class="nav-item <?php echo ($page_name == 'profile') ? 'active' : ''; ?>">
                 <a class="nav-link" href="{{ route('user.profile') }}">
+                    <i class="fad fa-user-alt"></i>
+                    <span>Profile</span></a>
+            </li>
+            
+            @elseif(Auth::user()->role == 'admin')
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item <?php echo ($page_name == 'dashboard') ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('admin') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Quotations
+            </div>
+
+            <!-- Nav Item - My Quotations -->
+            <li
+                class="nav-item <?php echo ($page_name == 'quotations' || $page_name == 'add_quotation' || $page_name == 'edit_quotation' || $page_name == 'create_quotation') ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('quotations.view_all') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quotations</span></a>
+            </li>
+            
+            <!-- Nav Item - My proposals -->
+            <li class="nav-item <?php echo ($page_name == 'proposals') ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('proposals.view_all') }}">
+                    <i class="fad fa-file-signature"></i>
+                    <span>Proposals</span></a>
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                OTHER
+            </div>
+
+            <!-- Nav Item - Profile -->
+            <li class="nav-item <?php echo ($page_name == 'profile') ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('admin.profile') }}">
                     <i class="fad fa-user-alt"></i>
                     <span>Profile</span></a>
             </li>
@@ -221,10 +269,10 @@
                                     Profile
                                 </a>
                                 @elseif(Auth::user()->role == 'admin')
-                                <!-- <a class="dropdown-item" href="{{ route('user.profile') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> -->
+                                <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                <!-- </a> -->
+                                </a>
                                 @endif
 
                                 <a class="dropdown-item" href="#">

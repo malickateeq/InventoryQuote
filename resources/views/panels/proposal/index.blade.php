@@ -24,6 +24,7 @@
                     <thead>
                         <tr>
                             <th>Quotation ID</th>
+                            <th>Status</th>
                             <th>Local Charges</th>
                             <th>Freight Charges</th>
                             <th>Destination Local Charges</th>
@@ -38,6 +39,15 @@
                         @foreach($proposals as $proposal)
                         <tr>
                             <td> <b>{{ $proposal->quotation->quotation_id }} </b> </td>
+                            <td>
+                                @if($proposal->status == 'active')
+                                    <span class="badge badge-success">{{ $proposal->status }}</span>
+                                @elseif($proposal->status == 'withdrawn')
+                                    <span class="badge badge-danger">{{ $proposal->status }}</span>
+                                @elseif($proposal->status == 'completed')
+                                    <span class="badge badge-primary">{{ $proposal->status }}</span>
+                                @endif
+                            </td>
                             <td>{{ $proposal->local_charges }}$</td>
                             <td>{{ $proposal->freight_charges }}$</td>
                             <td>{{ $proposal->destination_local_charges }}$</td>

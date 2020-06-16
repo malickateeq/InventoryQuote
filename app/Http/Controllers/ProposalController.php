@@ -23,6 +23,13 @@ class ProposalController extends Controller
         $data['page_title'] = 'View proposals | LogistiQuote';
         return view('panels.proposal.index', $data);
     }
+    public function view_all()
+    {
+        $data['proposals'] = Proposal::get();
+        $data['page_name'] = 'proposals';
+        $data['page_title'] = 'View proposals | LogistiQuote';
+        return view('panels.proposal.index', $data);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -91,7 +98,7 @@ class ProposalController extends Controller
         $proposal->total = (float)$request->customs_clearance_charges+(float)$request->destination_local_charges+(float)$request->freight_charges+(float)$request->local_charges;
 
         $valid_till = Carbon::createFromFormat('d-m-Y', $request->valid_till );
-        $proposal->valid_till = $valid_till;
+        $proposal->valid_till = $valid_till->addMinutes(1);
 
         $proposal->remarks = $request->remarks;
 
@@ -152,7 +159,10 @@ class ProposalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proposal = Proposal::findOrFail($id);
+        $proposal->status = 'withdrawn';
+        $proposal->save();
+        return redirect(route('proposal.index'));
     }
     
     public function accept_proposal($id)
@@ -163,6 +173,7 @@ class ProposalController extends Controller
         $quotation->status = 'completed';
         $proposal->save();
         $quotation->save();
+        return redirect(route('proposals.received'));
         //
     }
 }

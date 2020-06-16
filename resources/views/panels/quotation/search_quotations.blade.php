@@ -97,11 +97,12 @@
                             <tr>
                                 <th width="5%">ID</th>
                                 <th width="20%">Route</th>
-                                <th width="10%">Transportation Type</th>
+                                <th>Status</th>
+                                <th>Proposals Received</th>
+                                <th width="10%">Transportation</th>
                                 <th width="13%">Ready to load</th>
                                 <th>Worth</th>
                                 <th width="10%">Gross Weight</th>
-                                <th>Remarks</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -114,6 +115,18 @@
                                     to
                                     <span class="text-danger">{{ $quotation->destination }}</span>
                                 </td>
+                                <td>
+                                    @if($quotation->status == 'active')
+                                    <span class="badge badge-success">{{ $quotation->status }}</span>
+                                    @elseif($quotation->status == 'withdrawn')
+                                    <span class="badge badge-danger">{{ $quotation->status }}</span>
+                                    @elseif($quotation->status == 'completed')
+                                    <span class="badge badge-primary">{{ $quotation->status }}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="badge badge-pill badge-danger">{{ $quotation->proposals_received }}</span>
+                                </td>
                                 <td>{{ $quotation->transportation_type }} ({{ $quotation->type }})</td>
                                 <td>
                                     <?php
@@ -123,7 +136,6 @@
                                 </td>
                                 <td>{{ $quotation->value_of_goods }} $</td>
                                 <td>{{ $quotation->total_weight }} KG</td>
-                                <td>{{ $quotation->remarks }}</td>
                                 <td>
                                     <a class=" btn btn-primary fa-2x"
                                         href="{{ route('quotation.show', $quotation->id) }}">

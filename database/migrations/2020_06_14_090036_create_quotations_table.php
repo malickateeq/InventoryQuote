@@ -33,6 +33,7 @@ class CreateQuotationsTable extends Migration
             $table->string('remarks')->nullable();
             $table->string('isClearanceReq')->nullable();
             $table->string('status')->default('active')->comment('active,withdrawn,completed');
+            $table->integer('proposals_received')->default(0);
             
             // For Sea+FCL
             $table->string('no_of_containers')->nullable();

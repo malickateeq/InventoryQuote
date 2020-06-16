@@ -1,4 +1,4 @@
-@extends('panels.ven.master')
+@extends('panels.layouts.master')
 @section('content')
 
 <div class="row">
@@ -55,6 +55,36 @@
                         </div>
                     </div>
 
+                    <h5> <b> Vendor Details </b> </h5>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for=""> Vendor Name: </label>
+                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $proposal->vendor->name }}" readonly
+                                name="local_charges" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for=""> Vendor Phone: </label>
+                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $proposal->vendor->phone }}" readonly
+                                name="freight_charges" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for=""> Vendor Email: </label>
+                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $proposal->vendor->email }}" readonly
+                                name="local_charges" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for=""> Vendor Additional Email: </label>
+                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $proposal->vendor->additional_email }}" readonly
+                                name="freight_charges" required>
+                        </div>
+                    </div>
+
                     <hr>
                     <h5 class="mt-4"> <b> Other Info </b> </h5>
                     <div class="form-row">
@@ -68,11 +98,7 @@
                     
                 </form>
                 @if(Auth::user()->role == 'user')
-                <form action="{{ route('quotation.destroy', $proposal->id ) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-success" type="submit">Accept Proposal</button>
-                </form>
+                <a href="{{ route('proposal.accept', $proposal->id) }}" class="btn btn-success">Accept Proposal</a>
                 @elseif(Auth::user()->role == 'vendor')
                 <a href="{{ route('proposal.make', $proposal->id) }}" class="btn btn-danger">Withdraw Proposal</a>
                 @endif

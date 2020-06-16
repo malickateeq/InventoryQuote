@@ -50,6 +50,8 @@ Route::post('/quotations', 'QuotationController@search')->name('quotations.searc
 
 Route::resource('/proposal', 'ProposalController');
 Route::get('/make_proposal/{id}', 'ProposalController@make_proposal')->name('proposal.make');
+Route::get('proposals_received/', 'ProposalController@proposals_received')->name('proposals.received');
+Route::get('/accept_proposal/{id}', 'ProposalController@accept_proposal')->name('proposal.accept');
 
 // Merging translated file scripts
 Route::get('merge_them', function () {

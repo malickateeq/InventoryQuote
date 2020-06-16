@@ -1,4 +1,4 @@
-@extends('panels.user.master')
+@extends('panels.layouts.master')
 @section('content')
 
 <!-- Begin Page Content -->
@@ -25,11 +25,12 @@
                         <tr>
                             <th width="5%">ID</th>
                             <th width="20%">Route</th>
-                            <th width="10%">Transportation Type</th>
+                            <th>Status</th>
+                            <th>Proposals Received</th>
+                            <th width="10%">Transportation</th>
                             <th width="13%">Ready to load</th>
                             <th>Worth</th>
                             <th width="10%">Gross Weight</th>
-                            <th>Remarks</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -42,6 +43,8 @@
                                 to 
                                 <span class="text-danger">{{ $quotation->destination }}</span>
                             </td>
+                            <td>{{ $quotation->status }}</td>
+                            <td>{{ $quotation->proposals_received }}</td>
                             <td>{{ $quotation->transportation_type }} ({{ $quotation->type }})</td>
                             <td>
                                 <?php
@@ -51,7 +54,6 @@
                             </td>
                             <td>{{ $quotation->value_of_goods }} $</td>
                             <td>{{ $quotation->total_weight }} KG</td>
-                            <td>{{ $quotation->remarks }}</td>
                             <td>
                             <div class="dropdown">
                                 <button type="button" class="btn btn-success fa-2x" data-toggle="dropdown">

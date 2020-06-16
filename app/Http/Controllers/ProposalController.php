@@ -23,6 +23,19 @@ class ProposalController extends Controller
         $data['page_title'] = 'View proposals | LogistiQuote';
         return view('panels.proposal.index', $data);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function proposals_received()
+    {
+        $data['proposals'] = Proposal::where('user_id', Auth::user()->id)
+        ->get();
+        $data['page_name'] = 'proposals';
+        $data['page_title'] = 'View proposals | LogistiQuote';
+        return view('panels.proposal.index', $data);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,8 +68,9 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
-            'quotationn_id' => ['required'],
+            'quotation_id' => ['required'],
             'local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'freight_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'destination_local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
@@ -67,7 +81,7 @@ class ProposalController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         $proposal = new Proposal;
-        $proposal->quotation_id = $request->quotationn_id;
+        $proposal->quotation_id = $request->quotation_id;
         $proposal->partner_id = Auth::user()->id;
         // $proposal->proposal_id = mt_rand();
         $proposal->local_charges = $request->local_charges;
@@ -81,7 +95,15 @@ class ProposalController extends Controller
 
         $proposal->remarks = $request->remarks;
 
+
+        $quotation = Quotation::findOrFail($request->quotation_id);
+        $quotation->proposals_received += 1;
+
+        $proposal->user_id = $quotation->user_id;
+
         $proposal->save();
+        $quotation->save();
+        
         return redirect(route('proposal.index'));
     }
 
@@ -130,6 +152,17 @@ class ProposalController extends Controller
      */
     public function destroy($id)
     {
+        //
+    }
+    
+    public function accept_proposal($id)
+    {
+        $proposal = Proposal::findOrFail($id);
+        $proposal->status = 'completed';
+        $quotation = Quotation::findOrFail($proposal->quotation_id);
+        $quotation->status = 'completed';
+        $proposal->save();
+        $quotation->save();
         //
     }
 }

@@ -17,6 +17,7 @@ class CreateProposalsTable extends Migration
             $table->id();
             $table->integer('quotation_id');
             $table->integer('partner_id');
+            $table->integer('user_id');
             $table->string('local_charges')->nullable()->comment('USD');
             $table->string('freight_charges')->nullable()->comment('USD');
             $table->string('destination_local_charges')->nullable()->comment('USD');

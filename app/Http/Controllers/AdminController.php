@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Quotation;
 use App\User;
@@ -61,5 +62,54 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->back();
+    }
+    public function all_users()
+    {
+        $data['page_title'] = 'All Users | LogistiQuote';
+        $data['page_name'] = 'all_users';
+        $data['users'] = User::where('role', 'user')->get();
+        return view('panels.admin.users', $data);
+    }
+    public function all_vendors()
+    {
+        $data['page_title'] = 'All Vendors | LogistiQuote';
+        $data['page_name'] = 'all_vendors';
+        $data['profile'] = User::where('role', 'vendor')->first();
+        return view('panels.admin.user_profile', $data);
+    }
+    public function view_user($id)
+    {
+        $data['page_title'] = 'View User | LogistiQuote';
+        $data['page_name'] = 'view_user';
+        $data['profile'] = User::where('id', $id)->first();
+        return view('panels.admin.user_profile', $data);
+    }
+    
+    public function update_user_profile(Request $request)
+    {
+        //Validate data
+        $this->validate($request,[
+            'name' => 'required|string|min:3|max:191',
+            // 'email' => 'required|string|email|max:191',
+            'phone' => 'required|string|min:9|max:20',
+            'password' => 'nullable|min:6|max:191',
+        ]);
+        $user = User::findOrFail($request->id);
+
+        //Update password appropriately
+        if($request->password != ""){
+            $request->password = Hash::make($request->password);
+        }
+        else{
+            $request->password = $user->password;
+        }
+
+        //Update record in User table
+        $user->name = $request->name;
+        $user->password = $request->password;
+        $user->phone = $request->phone;
+        $user->save();
+
+        return redirect(route('admin.all_users'));
     }
 }

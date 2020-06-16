@@ -40,7 +40,11 @@ Route::post('/ven/update_profile', 'VendorController@update_profile')->name('ven
 // admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');
-Route::post('/admin/update_profile', 'AdminController@update_profile')->name('admin.update_profile');
+Route::post('/admin/update_profile', 'AdminController@update_user_profile')->name('admin.update_profile');
+Route::get('/view_user/{id}', 'AdminController@view_user')->name('admin.view_user');
+Route::get('/all_users', 'AdminController@all_users')->name('admin.all_users');
+Route::get('/all_vendors', 'AdminController@all_vendors')->name('admin.all_vendors');
+
 
 Route::resource('/quotation', 'QuotationController');
 Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view_all');

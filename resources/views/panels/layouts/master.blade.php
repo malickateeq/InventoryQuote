@@ -157,6 +157,30 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
+                Customers
+            </div>
+
+            <!-- Nav Item - My Quotations -->
+            <li
+                class="nav-item <?php echo ($page_name == 'all_users' || $page_name == 'add_user' || $page_name == 'edit_user' || $page_name == 'admin.view_user') ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('admin.all_users') }}">
+                    <i class="far fa-users"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <!-- Nav Item - My Quotations -->
+            <li
+                class="nav-item <?php echo ($page_name == 'all_vendors' || $page_name == 'add_vendor' || $page_name == 'edit_vendor' ) ? 'active' : ''; ?>">
+                <a class="nav-link" href="{{ route('admin.all_vendors') }}">
+                    <i class="far fa-users-crown"></i>
+                    <span>Vendors</span></a>
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
                 OTHER
             </div>
 

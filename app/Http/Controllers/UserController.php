@@ -36,10 +36,9 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required|string|min:3|max:191',
             // 'email' => 'required|string|email|max:191',
-            'phone' => 'required|string|min:9|max:14',
-            'password' => 'sometimes|min:6',
+            'phone' => 'required|string|min:9|max:20',
+            'password' => 'nullable|min:6|max:191',
         ]);
-        dd( $request->all() );
         $user = User::findOrFail(Auth::user()->id);
 
         //Update password appropriately
@@ -55,6 +54,8 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->phone = $request->phone;
         $user->save();
+
+        return redirect()->back();
     }
     public function quotations()
     {

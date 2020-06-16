@@ -1,4 +1,4 @@
-@extends('panels.user.master')
+@extends('panels.ven.master')
 @section('content')
 
 <!-- Begin Page Content -->

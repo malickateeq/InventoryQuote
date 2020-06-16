@@ -187,4 +187,72 @@ class QuotationController extends Controller
     {
         Quotation::destroy($id);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view_all()
+    {
+        $data['quotations'] = Quotation::get();
+        $data['page_name'] = 'quotations';
+        $data['page_title'] = 'View quotations | LogistiQuote';
+        return view('panels.quotation.search_quotations', $data);
+    }
+    public function search(Request $request)
+    {
+        // dd( $request->all() );
+
+        $origin = $request->origin;
+        $destination = $request->destination;
+        $isStockable = $request->isStockable;
+        $isDGR = $request->isDGR;
+        $transportation_type = $request->transportation_type;
+        $type = $request->type;
+        $isClearanceReq = $request->isClearanceReq;
+
+        $data['quotations'] = Quotation::
+        where(function ($q) use($origin) {
+            if ($origin) {
+                $q->where('origin', 'LIKE', "%{$origin}%");
+            }
+        })
+        ->orWhere(function ($q) use($destination) {
+            if ($destination) {
+                $q->where('destination', 'LIKE', "%{$destination}%");
+            }
+        })
+        ->orWhere(function ($q) use($isStockable) {
+            if ($isStockable) {
+                $q->where('isStockable', 'LIKE', "%{$isStockable}%" );
+            }
+        })
+        ->orWhere(function ($q) use($isDGR) {
+            if ($isDGR) {
+                $q->where('isDGR', 'LIKE', "%{$isDGR}%" );
+            }
+        })
+        ->orWhere(function ($q) use($transportation_type) {
+            if ($transportation_type) {
+                $q->where('transportation_type', 'LIKE', "%{$transportation_type}%" );
+            }
+        })
+        ->orWhere(function ($q) use($type) {
+            if ($type) {
+                $q->where('type', 'LIKE', "%{$type}%" );
+            }
+        })
+        ->orWhere(function ($q) use($isClearanceReq) {
+            if ($isClearanceReq) {
+                $q->where('isClearanceReq', 'LIKE', "%{$isClearanceReq}%" );
+            }
+        })
+        ->orderBy('created_at')->get();
+
+        $data['page_name'] = 'quotations';
+        $data['page_title'] = 'View quotations | LogistiQuote';
+        return view('panels.quotation.search_quotations', $data);
+    }
 }

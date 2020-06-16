@@ -16,12 +16,15 @@ class CreateQuotationsTable extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('quotation_id');
+            $table->integer('quotation_id');
             $table->string('origin')->nullable();
             $table->string('destination')->nullable();
+            $table->string('zip')->nullable();
             $table->string('transportation_type')->nullable();
             $table->string('type')->comment('FCL, LCL, AIR')->nullable();
-            $table->timestamp('ready_to_load_date')->nullable();
+            $table->dateTime('ready_to_load_date', 0)->nullable();
+            // $table->dateTimeTz('created_at', 0);
+            // $table->timestamp('ready_to_load_date')->nullable();
             $table->string('value_of_goods')->comment('In USD')->nullable();
             $table->string('isStockable')->nullable();
             $table->string('isDGR')->nullable();
@@ -35,9 +38,9 @@ class CreateQuotationsTable extends Migration
             $table->string('no_of_containers')->nullable();
             $table->string('container_size')->nullable();
             
-            // $table->string('l')->nullable();
-            // $table->string('w')->nullable();
-            // $table->string('h')->nullable();
+            $table->string('l')->nullable();
+            $table->string('w')->nullable();
+            $table->string('h')->nullable();
             $table->timestamps();
         });
     }

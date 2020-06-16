@@ -31,17 +31,21 @@ Route::post('/form_quote_step2', 'ShipmentController@form_quote_step2')->name('f
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/user/profile', 'UserController@profile')->name('user.profile');
 Route::post('/user/update_profile', 'UserController@update_profile')->name('user.update_profile');
-// Route::post('/quotation/store', 'UserController@sotre_quotation')->name('quotation.store');
 
 // vendor Routes
 Route::get('/ven', 'VendorController@index')->name('vendor');
 Route::get('/ven/profile', 'VendorController@profile')->name('vendor.profile');
+Route::post('/user/update_profile', 'VendorController@update_profile')->name('vendor.update_profile');
 
 // admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');
 
 Route::resource('/quotation', 'QuotationController');
+Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view_all');
+Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
+
+Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
 
 // Merging translated file scripts
 Route::get('merge_them', function () {

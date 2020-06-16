@@ -196,16 +196,25 @@
                     </div>
                     
                 </form>
+                @if(Auth::user()->role == 'user')
                 <form action="{{ route('quotation.destroy', $quotation->id ) }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="DELETE">
                     <button class="btn btn-danger" type="submit">Delete Quotation</button>
                 </form>
+                @elseif(Auth::user()->role == 'vendor')
+                <form action="{{ route('quotation.destroy') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
+                    <button class="btn btn-danger" type="submit">Make Offer</button>
+                </form>
+                @endif
             </div>
         </div>
 
     </div>
 
 </div>
+
 
 @endsection

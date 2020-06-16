@@ -30,6 +30,7 @@ Route::post('/form_quote_step2', 'ShipmentController@form_quote_step2')->name('f
 // User Routes
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/user/profile', 'UserController@profile')->name('user.profile');
+Route::post('/user/update_profile', 'UserController@update_profile')->name('user.update_profile');
 // Route::post('/quotation/store', 'UserController@sotre_quotation')->name('quotation.store');
 
 // vendor Routes

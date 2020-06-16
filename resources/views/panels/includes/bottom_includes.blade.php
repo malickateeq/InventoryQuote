@@ -16,7 +16,7 @@
   <script src="{{ asset('public/panel/js/demo/chart-area-demo.js') }}"></script>
   <script src="{{ asset('public/panel/js/demo/chart-pie-demo.js') }}"></script>
 
-  @if($page_name == 'view_quotations')
+  @if($page_name == 'quotations')
     <!-- Page level plugins -->
     <script src="{{ asset('public/panel/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('public/panel/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>

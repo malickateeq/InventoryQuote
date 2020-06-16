@@ -16,7 +16,7 @@ class QuotationController extends Controller
     public function index()
     {
         $data['quotations'] = Quotation::where('user_id', Auth::user()->id)->get();
-        $data['page_name'] = 'view_quotations';
+        $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.index', $data);
     }
@@ -91,8 +91,6 @@ class QuotationController extends Controller
             $quotation->quantity = $request->quantity;
         }
         $quotation->save();
-
-        return redirect(route('user.quotations'));
     }
 
     /**
@@ -177,8 +175,6 @@ class QuotationController extends Controller
             $quotation->quantity = $request->quantity;
         }
         $quotation->save();
-        return redirect(route('user.quotations'));
-        //
     }
 
     /**
@@ -190,6 +186,5 @@ class QuotationController extends Controller
     public function destroy($id)
     {
         Quotation::destroy($id);
-        return redirect(route('user.quotations'));
     }
 }

@@ -31,8 +31,7 @@
                                 <div class="country-lang-pointer"></div>
                                 <li class="clearfix dropdown-header dropdown-stop">
                                     <div class="user-mini-pic">
-                                        <i class="fa fa-user"></i>
-                                        <!-- <img src="/design/images/avatars/2.svg" alt="logo"> -->
+                                        <img src="{{ asset('public/uploads/profile_pic/avatar.png') }}" alt="logo">
                                     </div>
                                     <div class="user-info">
                                         <div class="user-name"> {{ Auth::user()->name }} </div>
@@ -41,7 +40,7 @@
                                     </div>
                                 </li>
 
-                                <li> <a href="{{ route('user') }}"> <i class="fad fa-user"></i> Dashboard </a> </li>
+                                <li> <a href="{{ route('user') }}"> <i class="fad fa-tachometer-alt-fast"></i> Dashboard </a> </li>
                                 <!-- <li> <a href="/user/inbox"> <i class="fad fa-inbox-in"></i> Inbox </a> </li> -->
                                 <!-- <li> <a href="/user/profile#profile-about"> <i class="fas fa-cog"></i> Settings </a> -->
                                 </li>

@@ -63,7 +63,7 @@
                                 id="validationServer03" value="{{ $quotation->value_of_goods }}" readonly
                                 name="value_of_goods" required>
                         </div>
-
+                        @if($quotation->type == 'fcl')
                         <div class="row" id="for_flc">
                             <div class="col-md-5 mb-3">
                                 <label class="mr-sm-2">Number of containers</label>
@@ -80,6 +80,7 @@
                                     name="no_of_containers" required>
                             </div>
                         </div>
+                        @endif
                     </div>
 
                     <div class="form-row">
@@ -148,19 +149,57 @@
                     @elseif($quotation->calculate_by == 'units')
                     <div>
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <label for="">Quantity</label>
-                                <input type="number"
-                                    class="form-control @error('quantity_units') is-invalid @enderror"
+                                <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
                                     value="{{ $quotation->quantity }}" readonly name="quantity_units" required>
+                                @error('quantity_units')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="">Gross Weight (KG)</label>
-                                <input type="number"
-                                    class="form-control @error('total_weight_units') is-invalid @enderror"
-                                    value="{{ $quotation->total_weight }}" readonly name="total_weight_units"
-                                    disabled>
+                            <div class="col-md-2 mb-3">
+                                <label for="">Lenght (cm)</label>
+                                <input type="number" class="form-control @error('l') is-invalid @enderror"
+                                    value="{{ $quotation->l }}" readonly name="l" required>
+                                @error('l')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="">Width (cm)</label>
+                                <input type="number" class="form-control @error('w') is-invalid @enderror"
+                                    value="{{ $quotation->w }}" readonly name="w" required>
+                                @error('w')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="">Height (cm)</label>
+                                <input type="number" class="form-control @error('h') is-invalid @enderror"
+                                    value="{{ $quotation->h }}" readonly name="h" required>
+                                @error('h')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="">Gross weight (KG)</label>
+                                <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
+                                    value="{{ $quotation->total_weight }}" readonlyWeight" name="total_weight_units" disabled>
+                                @error('total_weight_units')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            
                         </div>
                     </div>
                     @endif
@@ -203,11 +242,7 @@
                     <button class="btn btn-danger" type="submit">Delete Quotation</button>
                 </form>
                 @elseif(Auth::user()->role == 'vendor')
-                <form action="{{ route('quotation.destroy') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="quotation_id" value="{{$quotation->id}}">
-                    <button class="btn btn-danger" type="submit">Make Offer</button>
-                </form>
+                <a href="{{ route('proposal.make', $quotation->id) }}" class="btn btn-danger">Make Offer</a>
                 @endif
             </div>
         </div>
@@ -215,6 +250,5 @@
     </div>
 
 </div>
-
 
 @endsection

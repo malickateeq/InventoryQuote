@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Quotation;
+use Carbon\Carbon;
+use DateTime;
 
 class ShipmentController extends Controller
 {
@@ -21,7 +23,7 @@ class ShipmentController extends Controller
             'transportation_type' => $request->transportation_type,
             'origin' => $request->origin,
             'destination' => $request->destination,
-            'date' => $request->date,
+            'ready_to_load_date' => $request->date,
         ]);
         session()->save();
 
@@ -38,10 +40,10 @@ class ShipmentController extends Controller
             session()->save();
             return redirect()->route('login');
         }
-
     }
     public function form_quote_step2(Request $request)
     {
+        // dd( $request->all() );
         if(Auth::user()->role == 'vendor' || Auth::user()->role == 'admin')
         {
             return Auth::user()->role.' is not allowed to perform this action.';
@@ -59,9 +61,10 @@ class ShipmentController extends Controller
         $quotation->destination = session('destination');
         $quotation->transportation_type = session('transportation_type');
         $quotation->type = session('type');
-        $quotation->ready_to_load_date = session('ready_to_load_date');
 
-        
+        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', session('ready_to_load_date') );
+        $quotation->ready_to_load_date = $ready_to_load_date;
+
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
         $quotation->isDGR = $request->isDGR ? $request->isDGR : 'No';
@@ -79,6 +82,9 @@ class ShipmentController extends Controller
         if($request->calculate_by == 'units')
         {
             $quotation->quantity = $request->quantity_units;
+            $quotation->l = $request->l;
+            $quotation->w = $request->w;
+            $quotation->h = $request->h;
         }
         else
         {
@@ -93,6 +99,6 @@ class ShipmentController extends Controller
         session()->forget('ready_to_load_date');
         session()->forget('intended_url');
 
-        return redirect(route('user.quotations'));
+        return redirect(route('quotation.index'));
     }
 }

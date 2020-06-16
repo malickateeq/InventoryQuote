@@ -19,12 +19,11 @@ class CreateQuotationsTable extends Migration
             $table->integer('quotation_id');
             $table->string('origin')->nullable();
             $table->string('destination')->nullable();
-            $table->string('zip')->nullable();
+            $table->string('origin_zip')->nullable();
+            $table->string('destination_zip')->nullable();
             $table->string('transportation_type')->nullable();
             $table->string('type')->comment('FCL, LCL, AIR')->nullable();
-            $table->dateTime('ready_to_load_date', 0)->nullable();
-            // $table->dateTimeTz('created_at', 0);
-            // $table->timestamp('ready_to_load_date')->nullable();
+            $table->timestamp('ready_to_load_date', 0)->nullable();
             $table->string('value_of_goods')->comment('In USD')->nullable();
             $table->string('isStockable')->nullable();
             $table->string('isDGR')->nullable();
@@ -33,6 +32,7 @@ class CreateQuotationsTable extends Migration
             $table->string('quantity')->nullable();
             $table->string('remarks')->nullable();
             $table->string('isClearanceReq')->nullable();
+            $table->string('status')->default('active')->comment('active,withdrawn,completed');
             
             // For Sea+FCL
             $table->string('no_of_containers')->nullable();

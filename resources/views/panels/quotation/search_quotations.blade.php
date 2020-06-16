@@ -129,7 +129,6 @@
                                         href="{{ route('quotation.show', $quotation->id) }}">
                                         <i class="fas fa-eye"></i>
                                     </a>
-
                                 </td>
                             </tr>
                             @endforeach

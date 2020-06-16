@@ -25,7 +25,7 @@
   @endif
 
   
-  @if($page_name == 'add_quotation' || $page_name == 'edit_quotation' || $page_name == 'create_quotation')
+  @if($page_name == 'add_quotation' || $page_name == 'edit_quotation' || $page_name == 'create_quotation' || $page_name == 'make_proposal')
     <script type="text/javascript" src="{{ asset('public/vendor/datepicker/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/vendor/datepicker/daterangepicker.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/vendor/datepicker/daterangepicker.css') }}" >

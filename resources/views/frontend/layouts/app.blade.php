@@ -25,12 +25,7 @@
 
 </head>
 
-<body> 
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MQKQ58" height="0" width="0" style="display:none;visibility:hidden">
-        </iframe>
-    </noscript>
-
+<body>
     @include('frontend.snippets.header')
 
     @yield('content')
@@ -38,6 +33,8 @@
     @include('frontend.snippets.footer')
 
     @include('frontend.includes.bottom-scripts')
+    
+    @yield('bottom_scripts')
 
 </body>
 

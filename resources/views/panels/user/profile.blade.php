@@ -116,15 +116,6 @@
                                     @enderror
                             </div>
 
-
-                            <!-- <div class="form-group">
-                                <label for="profile pic">Profile Picture</label>
-                                <div class="col-sm10">
-                                    <input type="file" class="file-input" name="profile_pic">
-                                    <has-error form="form" field="profile_pic"></has-error>
-                                </div>
-                            </div> -->
-
                         </div>
 
                         <div class="modal-footer col-10">

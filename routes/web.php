@@ -35,7 +35,7 @@ Route::post('/user/update_profile', 'UserController@update_profile')->name('user
 // vendor Routes
 Route::get('/ven', 'VendorController@index')->name('vendor');
 Route::get('/ven/profile', 'VendorController@profile')->name('vendor.profile');
-Route::post('/user/update_profile', 'VendorController@update_profile')->name('vendor.update_profile');
+Route::post('/ven/update_profile', 'VendorController@update_profile')->name('vendor.update_profile');
 
 // admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin');
@@ -46,6 +46,10 @@ Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
 
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
+
+
+Route::resource('/proposal', 'ProposalController');
+Route::get('/make_proposal/{id}', 'ProposalController@make_proposal')->name('proposal.make');
 
 // Merging translated file scripts
 Route::get('merge_them', function () {

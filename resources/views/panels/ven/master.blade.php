@@ -56,6 +56,13 @@
           <span>Quotations</span></a>
       </li>
 
+      <!-- Nav Item - My proposals -->
+      <li class="nav-item <?php echo ($page_name == 'proposals') ? 'active' : ''; ?>">
+        <a class="nav-link" href="{{ route('proposal.index') }}">
+          <i class="fad fa-file-signature"></i>
+          <span>Proposals</span></a>
+      </li>
+
       <!-- Nav Item - Profile -->
       <li class="nav-item <?php echo ($page_name == 'profile') ? 'active' : ''; ?>">
         <a class="nav-link" href="{{ route('vendor.profile') }}">

@@ -41,13 +41,21 @@
                             @enderror
                         </div>
 
-                        <div class="select-wrapper @error('role') error @enderror">
+                        <div class="select-wrapper @error('role') error @enderror" id="role">
                             <select name="role">
                                 <option disabled="" value="" selected=""> Create account as</option>
                                 <option data-tel="user" value="user">User</option>
                                 <option data-tel="vendor" value="vendor">Vendor</option>
                             </select>
                             @error('role')
+                                <p class="errorInputMsg">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        
+                        <div class="input-wrapper @error('additional_email') error @enderror" id="additional_email">
+                            <input class="input" type="text" name="additional_email" placeholder=" " value="{{ old('additional_email') }}">
+                            <span class="placeholder">Additional E-mail</span>
+                            @error('additional_email')
                                 <p class="errorInputMsg">{{ $message }}</p>
                             @enderror
                         </div>
@@ -362,4 +370,25 @@
     </section>
 </div>
 
+@endsection
+
+
+@section('bottom_scripts')
+<script>
+    $(document).ready(function() 
+    {
+        $('#additional_email').hide();
+        $("#role").change(function()
+        {
+            if($(this).find(':selected').val() == 'vendor')
+            {
+                $('#additional_email').show();
+            }
+            else if($(this).find(':selected').val() == 'user')
+            {
+                $('#additional_email').hide();
+            }
+        });
+    });
+</script>
 @endsection

@@ -38,7 +38,8 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationServer01">Ready to load date</label>
-                            <input type="text" class="form-control" name="date" value="{{ $quotation->date }}" required />
+                            <?php $date = Carbon\Carbon::parse($quotation->ready_to_load_date); ?>
+                            <input type="text" class="form-control" name="ready_to_load_date" value="{{ $date->format('d-m-Y') }}" required />
                         </div>
                     </div>
 
@@ -77,7 +78,7 @@
                         <div class="row" id="for_flc">
                             <div class="col-md-5 mb-3">
                                 <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
-                                value="{{ $quotation->no_of_containers }}" placeholder="No of containers" name="no_of_containers" required>
+                                value="{{ $quotation->no_of_containers }}" placeholder="No of containers" name="no_of_containers">
                                 @error('no_of_containers')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -173,7 +174,7 @@
                             <div class="col-md-2 mb-3">
                                 <!-- <label for="">Dimensions</label> -->
                                 <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    id="validationServer04" placeholder="length" name="l" required>
+                                    id="validationServer04" placeholder="length" name="l" value="{{ $quotation->l }}" required>
                                 @error('l')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -182,7 +183,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    id="validationServer03" placeholder="width" name="w" required>
+                                    id="validationServer03" placeholder="width" name="w" value="{{ $quotation->w }}" required>
                                 @error('w')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -191,7 +192,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    id="validationServer03" placeholder="height" name="h" required>
+                                    id="validationServer03" placeholder="height" name="h" value="{{ $quotation->h }}" required>
                                 @error('h')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -255,16 +256,27 @@
         $('#for_flc').hide();
 
         var trans_type = {!! json_encode($quotation->transportation_type) !!};
-        var type = {!! json_encode($quotation->calculate_by) !!};
-        if(type == 'units')
+        var calculated_by = {!! json_encode($quotation->calculate_by) !!};
+        var type = {!! json_encode($quotation->type) !!};
+        if(calculated_by == 'units')
         {
             $('#units').show();
+            $("input[name=quantity]").prop('required',false);
+            $("input[name=total_weight]").prop('required',false);
         }
         else
         {
             $('#shipment').show();
+            $("input[name=quantity_units]").prop('required',false);
+            $("input[name=l]").prop('required',false);
+            $("input[name=w]").prop('required',false);
+            $("input[name=h]").prop('required',false);
+            $("input[name=total_weight_units]").prop('required',false);
         }
-        
+        if(type == 'fcl')
+        {
+            $('#for_flc').show();
+        }
         if(trans_type == 'ocean')
         {
             $('#type_of_shipment').empty();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Quotation;
+use Carbon\Carbon;
 
 class QuotationController extends Controller
 {
@@ -52,7 +53,7 @@ class QuotationController extends Controller
             'destination_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'transportation_type' => ['required', 'string', 'min:3', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
-            'date' => ['required', 'string', 'min:3', 'max:255'],
+            'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
             'value_of_goods' => ['required', 'numeric', 'min:3', 'max:255'],
             'calculate_by' => ['required', 'string', 'min:3', 'max:255'],
             'remarks' => ['required', 'string', 'min:3', 'max:255'],
@@ -64,9 +65,12 @@ class QuotationController extends Controller
         $quotation->quotation_id = mt_rand();
         $quotation->origin = $request->origin_city.', '.$request->origin_state.', '.$request->origin_country.'. '.$request->origin_zip;
         $quotation->destination = $request->destination_city.', '.$request->destination_state.', '.$request->destination_country.'. '.$request->destination_zip;
+        $quotation->origin_zip = $request->origin_zip;
+        $quotation->destination_zip = $request->destination_zip;
         $quotation->transportation_type = $request->transportation_type;
         $quotation->type = $request->type;
-        $quotation->ready_to_load_date = $request->ready_to_load_date;
+        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
+        $quotation->ready_to_load_date = $ready_to_load_date;
         
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -85,12 +89,16 @@ class QuotationController extends Controller
         if($request->calculate_by == 'units')
         {
             $quotation->quantity = $request->quantity_units;
+            $quotation->l = $request->l;
+            $quotation->w = $request->w;
+            $quotation->h = $request->h;
         }
         else
         {
             $quotation->quantity = $request->quantity;
         }
         $quotation->save();
+        return redirect(route('quotation.index'));
     }
 
     /**
@@ -137,7 +145,7 @@ class QuotationController extends Controller
             'destination' => ['required', 'string', 'min:3', 'max:255'],
             'transportation_type' => ['required', 'string', 'min:3', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
-            'date' => ['required', 'string', 'min:3', 'max:255'],
+            'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
             'value_of_goods' => ['required', 'numeric', 'min:3', 'max:255'],
             'calculate_by' => ['required', 'string', 'min:3', 'max:255'],
             'remarks' => ['required', 'string', 'min:3', 'max:255'],
@@ -150,7 +158,8 @@ class QuotationController extends Controller
         $quotation->destination = $request->destination;
         $quotation->transportation_type = $request->transportation_type;
         $quotation->type = $request->type;
-        $quotation->ready_to_load_date = $request->ready_to_load_date;
+        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
+        $quotation->ready_to_load_date = $ready_to_load_date;
         
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -169,12 +178,16 @@ class QuotationController extends Controller
         if($request->calculate_by == 'units')
         {
             $quotation->quantity = $request->quantity_units;
+            $quotation->l = $request->l;
+            $quotation->w = $request->w;
+            $quotation->h = $request->h;
         }
         else
         {
             $quotation->quantity = $request->quantity;
         }
         $quotation->save();
+        return redirect(route('quotation.index'));
     }
 
     /**

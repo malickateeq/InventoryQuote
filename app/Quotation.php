@@ -13,4 +13,8 @@ class Quotation extends Model
         'total_weight', 'quantity', 'remarks', 'isClearanceReq', 'no_of_containers', 
         'container_size'
         ];
+        
+    protected $dates = [
+        'ready_to_load_date',
+    ];
 }

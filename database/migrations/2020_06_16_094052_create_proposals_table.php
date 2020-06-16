@@ -23,7 +23,8 @@ class CreateProposalsTable extends Migration
             $table->string('customs_clearance_charges')->nullable()->comment('USD');
             $table->string('total')->nullable()->comment('USD');
             $table->string('url')->nullable()->comment('Offer link');
-            $table->dateTime('valid_till', 0)->nullable();
+            $table->string('status')->default('active')->comment('active,withdrawn,completed');
+            $table->timestamp('valid_till', 0)->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

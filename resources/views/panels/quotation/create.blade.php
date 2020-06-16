@@ -94,7 +94,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationServer01">Ready to load date</label>
-                            <input type="text" class="form-control" name="date" value="" required />
+                            <input type="text" class="form-control" name="ready_to_load_date" value="" required />
 
                         </div>
                     </div>
@@ -312,6 +312,42 @@
         $('#units').hide();
         $('#for_flc').hide();
 
+        // On load
+       if($("#transportation_type").find(':selected').val() == 'ocean')
+        {
+            $('#type_of_shipment').empty();
+            $("#type_of_shipment").append(new Option("LCL", "lcl"));
+            $("#type_of_shipment").append(new Option("FCL", "fcl"));
+        }
+        else if($("#transportation_type").find(':selected').val() == 'air')
+        {
+            $('#type_of_shipment').empty();
+            $("#type_of_shipment").append(new Option("AIR", "air"));
+        }
+        if($("#type_of_shipment").find(':selected').val() == 'fcl')
+        {
+            $('#for_flc').show();
+        }
+        if($("input[name='calculate_by']").find(':selected').val() == 'units')
+        {
+            $('#units').show();
+            $('#shipment').hide();
+
+            $("input[name=quantity]").prop('required',false);
+            $("input[name=total_weight]").prop('required',false);
+        }
+        else if($("input[name='calculate_by']").find(':selected').val() == 'shipment')
+        {
+            $('#units').hide();
+            $('#shipment').show();
+            
+            $("input[name=quantity_units]").prop('required',false);
+            $("input[name=l]").prop('required',false);
+            $("input[name=w]").prop('required',false);
+            $("input[name=h]").prop('required',false);
+            $("input[name=total_weight_units]").prop('required',false);
+        }
+
         $("#transportation_type").change(function()
         {
             if($(this).find(':selected').val() == 'ocean')
@@ -379,12 +415,15 @@
 
     });
     $(function () {
-        $('input[name="date"]').daterangepicker({
+        $('input[name="ready_to_load_date"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: parseInt(moment().format('YYYY'), 10),
                 autoApply: true,
-                maxYear: 2050
+                maxYear: 2050,
+                locale: {
+                    format: 'D-M-YYYY'
+                }
             }
         );
     });

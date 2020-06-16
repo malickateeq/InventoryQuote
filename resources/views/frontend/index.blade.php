@@ -76,8 +76,8 @@
                                                         <div class="date-block">
                                                             <span class="top-title">Ready to load</span>
                                                             <input class="date-day" name="date" type="text"
-                                                                data-date-format="d M, yyyy" autocomplete="off"
-                                                                readonly required> 
+                                                                data-date-format="dd-mm-yyyy" autocomplete="off"
+                                                                readonly required id="ready_to_load_date"> 
                                                         </div>
                                                     </div>
 

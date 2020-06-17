@@ -183,8 +183,11 @@ class ProposalController extends Controller
         $proposal->save();
         $quotation->save();
 
-        // Send proposal email to user
-        send_accept_proposal_mail($proposal->user_id, $quotation->id);
+        // Send accept proposal email to partner
+        send_accept_proposal_mail($proposal->user_id, $proposal->partner_id, $quotation->id);
+
+        // Notify/Thanks user
+        send_notify_user_mail($proposal->user_id, $proposal->partner_id, $quotation->id);
 
         return redirect(route('proposals.received'));
         //

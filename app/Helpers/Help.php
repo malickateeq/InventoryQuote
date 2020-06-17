@@ -75,21 +75,18 @@ function send_proposal_mail($user_id, $quotation_id)
     });
 }
 
-function send_accept_proposal_mail($user_id, $partner_id)
+function send_accept_proposal_mail($user_id, $partner_id, $quotation_id)
 {
-    $user = User::findOrFail($user_id);
-    $to_name = $user->name;
-    $to_email = $user->email;
+    $user = User::findOrFail($user_id)->toArray();
+    $partner = User::findOrFail($partner_id)->toArray();
+    $to_name = $partner['name'];
+    $to_email = $partner['email'];
     // $to_email = 'malickateeq@gmail.com';
-    $proposals = Proposal::where('user_id', $user_id)
-    ->where('status', 'active')
-    ->where('quotation_id', $quotation_id)->get()->toArray();
-    $quotation = Quotation::findOrFail($quotation_id);
+    $quotation = Quotation::findOrFail($quotation_id)->toArray();
 
-    // dd($proposals);
     
     $data = array(
-                "proposals" => $proposals,
+                "user" => $user,
             // "company_name" => "LogistiQuote", 
             // "email"=> "test@sdf.com", 
             // "additional_email" => "asd@ad.com", 
@@ -97,17 +94,43 @@ function send_accept_proposal_mail($user_id, $partner_id)
             // "body" => "Blah blah blah!"
         );
 
-    Mail::send('emails.proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
+    Mail::send('emails.accept_proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
     {
         $message->to($to_email, $to_name)
-        ->subject('Proposals received related to Quotation#: '.$quotation->quotation_id);
+        ->subject('Proposals accepted of Quotation#: '.$quotation['quotation_id']);
         $message->from(
             env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
-            'Quotation#'.$quotation->quotation_id.' proposals | LogistiQuote'   // Title, Subject
+            'Quotation#'.$quotation->quotation_id.'\'s proposal accepted | LogistiQuote'   // Title, Subject
         );
     });
 }
 
-function send_notify_user_mail($proposal_id)
+function send_notify_user_mail($user_id, $partner_id, $quotation_id)
 {
+    $user = User::findOrFail($user_id)->toArray();
+    $partner = User::findOrFail($partner_id)->toArray();
+    $to_name = $user['name'];
+    $to_email = $user['email'];
+    // $to_email = 'malickateeq@gmail.com';
+    $quotation = Quotation::findOrFail($quotation_id)->toArray();
+
+    
+    $data = array(
+                "partner" => $partner,
+            // "company_name" => "LogistiQuote", 
+            // "email"=> "test@sdf.com", 
+            // "additional_email" => "asd@ad.com", 
+            // "phone" => "12345678", 
+            // "body" => "Blah blah blah!"
+        );
+
+    Mail::send('emails.notify_user', $data, function($message) use ($to_name, $to_email, $quotation) 
+    {
+        $message->to($to_email, $to_name)
+        ->subject('Quotation#: '.$quotation['quotation_id'].' completion.');
+        $message->from(
+            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            'Quotation#'.$quotation->quotation_id.'\'s completed | LogistiQuote'   // Title, Subject
+        );
+    });
 }

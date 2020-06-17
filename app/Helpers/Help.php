@@ -1,8 +1,9 @@
 <?php
 use App\Quotation;
 use App\Proposal;
+use App\User;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Carbon helper
@@ -39,4 +40,74 @@ function carbon_format($timestamp, $format)
     $carbon_date = Carbon::parse($timestamp);
     $formatted_date = $carbon_date->format($format);
     return $formatted_date;
+}
+
+function send_proposal_mail($user_id, $quotation_id)
+{
+    $user = User::findOrFail($user_id);
+    $to_name = $user->name;
+    $to_email = $user->email;
+    // $to_email = 'malickateeq@gmail.com';
+    $proposals = Proposal::where('user_id', $user_id)
+    ->where('status', 'active')
+    ->where('quotation_id', $quotation_id)->get()->toArray();
+    $quotation = Quotation::findOrFail($quotation_id);
+
+    // dd($proposals);
+    
+    $data = array(
+                "proposals" => $proposals,
+            // "company_name" => "LogistiQuote", 
+            // "email"=> "test@sdf.com", 
+            // "additional_email" => "asd@ad.com", 
+            // "phone" => "12345678", 
+            // "body" => "Blah blah blah!"
+        );
+
+    Mail::send('emails.proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
+    {
+        $message->to($to_email, $to_name)
+        ->subject('Proposals received related to Quotation#: '.$quotation->quotation_id);
+        $message->from(
+            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            'Quotation#'.$quotation->quotation_id.' proposals | LogistiQuote'   // Title, Subject
+        );
+    });
+}
+
+function send_accept_proposal_mail($user_id, $partner_id)
+{
+    $user = User::findOrFail($user_id);
+    $to_name = $user->name;
+    $to_email = $user->email;
+    // $to_email = 'malickateeq@gmail.com';
+    $proposals = Proposal::where('user_id', $user_id)
+    ->where('status', 'active')
+    ->where('quotation_id', $quotation_id)->get()->toArray();
+    $quotation = Quotation::findOrFail($quotation_id);
+
+    // dd($proposals);
+    
+    $data = array(
+                "proposals" => $proposals,
+            // "company_name" => "LogistiQuote", 
+            // "email"=> "test@sdf.com", 
+            // "additional_email" => "asd@ad.com", 
+            // "phone" => "12345678", 
+            // "body" => "Blah blah blah!"
+        );
+
+    Mail::send('emails.proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
+    {
+        $message->to($to_email, $to_name)
+        ->subject('Proposals received related to Quotation#: '.$quotation->quotation_id);
+        $message->from(
+            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            'Quotation#'.$quotation->quotation_id.' proposals | LogistiQuote'   // Title, Subject
+        );
+    });
+}
+
+function send_notify_user_mail($proposal_id)
+{
 }

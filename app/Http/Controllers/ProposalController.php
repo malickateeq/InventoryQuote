@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class ProposalController extends Controller
 {
+    public function __construct()
+    {
+        //Specify required role for this controller here in checkRole:xyz
+        // $this->middleware(['auth', 'checkRole:user']); 
+        $this->middleware(['auth']); 
+    }
     /**
      * Display a listing of the resource.
      *
@@ -90,7 +96,7 @@ class ProposalController extends Controller
         $proposal = new Proposal;
         $proposal->quotation_id = $request->quotation_id;
         $proposal->partner_id = Auth::user()->id;
-        // $proposal->proposal_id = mt_rand();
+        $proposal->url = mt_rand();
         $proposal->local_charges = $request->local_charges;
         $proposal->freight_charges = $request->freight_charges;
         $proposal->destination_local_charges = $request->destination_local_charges;
@@ -110,6 +116,9 @@ class ProposalController extends Controller
 
         $proposal->save();
         $quotation->save();
+
+        // Send proposal email to user
+        send_proposal_mail($proposal->user_id, $quotation->id);
         
         return redirect(route('proposal.index'));
     }
@@ -173,6 +182,10 @@ class ProposalController extends Controller
         $quotation->status = 'completed';
         $proposal->save();
         $quotation->save();
+
+        // Send proposal email to user
+        send_accept_proposal_mail($proposal->user_id, $quotation->id);
+
         return redirect(route('proposals.received'));
         //
     }

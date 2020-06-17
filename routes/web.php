@@ -1,9 +1,14 @@
 <?php
 
+use App\Proposal;
 use Illuminate\Support\Facades\Route;
 
 Route::get('test', function () {
-
+    $prop = Proposal::first();
+    $url = URL::route('proposal.mail_view', $prop->url);
+    print '<a href="'.$url.'">View</a>';
+    return;
+    // send_proposal_mail(1, 1);
 });
 
 Route::get('clear', function () {
@@ -26,6 +31,8 @@ Route::post('/get_quote_step1', 'ShipmentController@get_quote_step1')->name('get
 
 Route::get('/get_quote_step2', 'SiteController@get_quote_step2')->name('get_quote_step2');
 Route::post('/form_quote_step2', 'ShipmentController@form_quote_step2')->name('form_quote_step2');
+
+Route::get('/mail_view_proposal/{token}', 'SiteController@mail_view_proposal')->name('proposal.mail_view');
 
 // User Routes
 Route::get('/user', 'UserController@index')->name('user');

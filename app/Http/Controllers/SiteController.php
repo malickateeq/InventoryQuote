@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Proposal;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -31,4 +32,9 @@ class SiteController extends Controller
         }
     }
 
+    public function mail_view_proposal($token)
+    {
+        $proposal = Proposal::where('url', $token)->first();
+        return redirect(route('proposal.show', $proposal->id));
+    }
 }

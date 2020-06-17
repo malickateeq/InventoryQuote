@@ -125,7 +125,10 @@
 
                 @elseif(Auth::user()->role == 'vendor')
                     @if($proposal->status == 'active')
-                        <a href="{{ route('proposal.destroy', $proposal->id) }}" class="btn btn-danger">Withdraw Proposal</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#withdrawproposal">
+                            Withdraw Proposal
+                        </button>
                     @elseif($proposal->status == 'withdrawn')
                         <p class="text-danger"> <b> You've withdrawn this proposal!</b> </p>
                     @elseif($proposal->status == 'completed')
@@ -156,6 +159,34 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <a href="{{ route('proposal.accept', $proposal->id) }}" class="btn btn-primary">Continue</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="withdrawproposal" tabindex="-1" role="dialog" aria-labelledby="withdrawproposalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Proposal for <b class="text-warning">quotation#{{ $proposal->quotation->quotation_id }} </b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you want to withdraw this proposal?
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('proposal.destroy', $proposal->id ) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

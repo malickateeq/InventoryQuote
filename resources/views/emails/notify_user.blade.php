@@ -2,10 +2,10 @@
 <p> Thank you for using our tender. </p>
 <p> The Company that will operate your shipment: </p>
 
-<h5> Company Name: {{ $partner['company_name'] }} </h5>
-<h5> Company Email: {{ $partner['email'] }} </h5>
-<h5> Company Additional Email: {{ $partner['additional_email'] }} </h5>
-<h5> Company Phone: {{ $partner['phone'] }} </h5>
+<p> <b> Company Name: {{ $partner['company_name'] }} </b> </p>
+<p> <b> Company Email: {{ $partner['email'] }} </b> </p>
+<p> <b> Company Additional Email: {{ $partner['additional_email'] }} </b> </p>
+<p> <b> Company Phone: {{ $partner['phone'] }} </b> </p>
 
 <p> They will contact you ASAP to move forward. </p>
 <p> We will be happy to see you again. </p>

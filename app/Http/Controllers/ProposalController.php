@@ -103,8 +103,9 @@ class ProposalController extends Controller
         $proposal->customs_clearance_charges = $request->customs_clearance_charges;
         $proposal->total = (float)$request->customs_clearance_charges+(float)$request->destination_local_charges+(float)$request->freight_charges+(float)$request->local_charges;
 
-        $valid_till = Carbon::createFromFormat('d-m-Y', $request->valid_till );
-        $proposal->valid_till = $valid_till->addMinutes(1);
+        // Range or Carbon
+        // range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.
+        $proposal->valid_till = Carbon::createFromFormat('d-m-Y', $request->valid_till );
 
         $proposal->remarks = $request->remarks;
 

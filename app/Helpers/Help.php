@@ -67,10 +67,10 @@ function send_proposal_mail($user_id, $quotation_id)
     Mail::send('emails.proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
     {
         $message->to($to_email, $to_name)
-        ->subject('Proposals received related to Quotation#: '.$quotation->quotation_id);
+        ->subject('Proposals received related to Quotation#: '.$quotation['quotation_id']);
         $message->from(
             env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
-            'Quotation#'.$quotation->quotation_id.' proposals | LogistiQuote'   // Title, Subject
+            'Quotation#'.$quotation['quotation_id'].' proposals | LogistiQuote'   // Title, Subject
         );
     });
 }
@@ -100,7 +100,7 @@ function send_accept_proposal_mail($user_id, $partner_id, $quotation_id)
         ->subject('Proposals accepted of Quotation#: '.$quotation['quotation_id']);
         $message->from(
             env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
-            'Quotation#'.$quotation->quotation_id.'\'s proposal accepted | LogistiQuote'   // Title, Subject
+            'Quotation#'.$quotation['quotation_id'].'\'s proposal accepted | LogistiQuote'   // Title, Subject
         );
     });
 }
@@ -130,7 +130,7 @@ function send_notify_user_mail($user_id, $partner_id, $quotation_id)
         ->subject('Quotation#: '.$quotation['quotation_id'].' completion.');
         $message->from(
             env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
-            'Quotation#'.$quotation->quotation_id.'\'s completed | LogistiQuote'   // Title, Subject
+            'Quotation#'.$quotation['quotation_id'].'\'s completed | LogistiQuote'   // Title, Subject
         );
     });
 }

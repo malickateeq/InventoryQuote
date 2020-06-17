@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct()
     {
         //Specify required role for this controller here in checkRole:xyz
-        $this->middleware(['auth', 'checkRole:user']); 
+        $this->middleware(['auth', 'checkRole:user', 'verified']); 
     }
     public function index()
     {

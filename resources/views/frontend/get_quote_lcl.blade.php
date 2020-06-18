@@ -29,6 +29,43 @@
             <h2>Description Of Goods</h2>
             <div class="shipment-form">
 
+            
+                <div class="request-select large">
+                    <p class="label">Incoterms</p>
+                    <div class="select-wrap  blue">
+                        <select name="incoterms" required="" id="incoterms">
+                            <option>Choose..</option>
+                            <option value="EXW">EXW (Ex Works Place)</option>
+                            <option value="FOB">FOB (Free On Board Port)</option>
+                            <option value="CIP/CIF">CIF/CIP (Cost Insurance & Freight / Carriage & Insurance Paid)
+                            </option>
+                            <option value="DAP">DAP (Delivered At Place)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="exw">
+                    <div class="from-row">
+                        <div class="request-input large">
+                            <p class="name">Pick Up Address</p>
+                            <div class="input-wrap  ">
+                                <input type="text" title="Pick Up Address" name="pickup_address"
+                                    placeholder="Pick Up Address" step="any" autocomplete="off" value="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-row">
+                        <div class="request-input large">
+                            <p class="name">Final destination address</p>
+                            <div class="input-wrap  ">
+                                <input type="text" title="Final destination address" name="final_destination_address"
+                                    placeholder="Final destination address" step="any" autocomplete="off" value=""
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="from-row">
                     <div class="request-input large">
                         <p class="name">Value of the goods in USD</p>
@@ -118,44 +155,65 @@
                         </div>
                     </div>
 
-                    <div class="form-row" id="units">
+                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
+                        <label for="" style="margin: 30px 10px 0px 0px; font-weight: bold;">Pallet#1</label>
                         <div class="request-input small">
                             <p class="name">Quantity</p>
-                            <div class="input-wrap  "><input type="number" title="Quantity" name="quantity_units" placeholder=""
-                                    step="any" autocomplete="off" required="" value=""></div>
+                            <div class="input-wrap">
+                                <input type="number" title="Quantity" name="quantity_units[]" class="require"
+                                    placeholder="Q" step="any" autocomplete="off" value="">
+                            </div>
                         </div>
                         <div class="dimensions">
                             <div class="request-input small">
                                 <p class="name">Dimensions</p>
-                                <div class="input-wrap  "><input type="number" title="Dimensions" name="l"
-                                        placeholder="L" step="any" autocomplete="off" required="" value=""></div>
+                                <div class="input-wrap">
+                                    <input type="number" title="Dimensions" name="l[]" class="require" placeholder="L"
+                                        step="any" autocomplete="off" value="">
+                                </div>
                             </div>
                             <div class="request-input small">
                                 <p class="name"> </p>
-                                <div class="input-wrap  "><input type="number" title=" " name="w" placeholder="W"
-                                        step="any" autocomplete="off" required="" value=""></div>
+                                <div class="input-wrap">
+                                    <input type="number" title=" " name="w[]" placeholder="W" class="require" step="any"
+                                        autocomplete="off" value="">
+                                </div>
                             </div>
                             <div class="request-input small">
                                 <p class="name"> </p>
-                                <div class="input-wrap  "><input type="number" title=" " name="h" placeholder="H"
-                                        step="any" autocomplete="off" required="" value="">
+                                <div class="input-wrap">
+                                    <input type="number" title=" " name="h[]" placeholder="H" class="require" step="any"
+                                        autocomplete="off" value="">
                                     <p class="label">CM</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="request-input small">
+                        <!-- <div class="request-input small">
                             <p class="name">Gross Weight</p>
-                            <div class="input-wrap  ">
-                                <input type="number" title="Gross Weight" name="total_weight_units"
-                                    placeholder="" step="any" autocomplete="off" disabled="" value="">
+                            <div class="input-wrap">
+                                <input type="number" title="Gross Weight" name="total_weight_units[]" placeholder=""
+                                    step="any" autocomplete="off" disabled="" value="">
                                 <p class="label">KG</p>
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
+                    
+                    <div class="form-row" id="dynamic_buttons">
+                        <button type="button" class="request-btn btn-sm" id="add-button"
+                            style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                            <!-- <span>Add New</span> -->
+                            <i class="fal fa-plus"></i>
+                        </button>
+                        <button type="button" class="request-btn btn-sm" id="remove-button"
+                            style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                            <!-- <span>Add New</span> -->
+                            <i class="fal fa-minus"></i>
+                        </button>
                     </div>
 
-                    <div class="shipment-total">
+                    <!-- <div class="shipment-total">
                         <p>Shipment total: <span id="pcs">0</span> PCS <span id="kg">0</span> kg</p>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -208,84 +266,162 @@
         </form>
     </div>
 </div>
-<script>
-    $(document).ready(function() 
-    {
-        $('#units').hide();
-        $("input[name=quantity_units]").prop('required',false);
-        $("input[name=l]").prop('required',false);
-        $("input[name=w]").prop('required',false);
-        $("input[name=h]").prop('required',false);
-        $("input[name=total_weight_units]").prop('required',false); 
-        
-        // On calculation radio button clicks
-        $('input:radio').change(function()
-        {
-            var el = $(this).val();
-            if(el == 'units')
-            {
-                $('#units').show();
-                $('#shipment').hide();
 
-                $("input[name=quantity]").prop('required',false);
-                $("input[name=total_weight]").prop('required',false);
-            }
-            else
-            {
-                $('#units').hide();
+<script>
+    $(document).ready(function () {
+
+        $('#exw').hide();
+        $('.dynamic-field').hide();
+        $('#dynamic_buttons')
+            .hide();
+        // $(".require").prop('required', false);
+
+        // On calculation radio button clicks
+        $('input:radio').change(function () {
+            var el = $(this).val();
+            if (el == 'units') {
+                $('#dynamic_buttons').show();
+                $('.dynamic-field').show();
+                // $(".require").prop('required', true);
+
+                $('#shipment').hide();
+                $("input[name=quantity]").prop('required', false);
+                $("input[name=total_weight]").prop('required', false);
+            } else {
+                $('.dynamic-field').hide();
+                $('#dynamic_buttons').hide();
                 $('#shipment').show();
-                
-                $("input[name=quantity_units]").prop('required',false);
-                $("input[name=l]").prop('required',false);
-                $("input[name=w]").prop('required',false);
-                $("input[name=h]").prop('required',false);
-                $("input[name=total_weight_units]").prop('required',false);
-            }   
+
+                // $(".require").prop('required', false);
+            }
+        });
+
+        // On Incoterms button clicks
+        $('#incoterms').change(function () {
+            var el = $(this).val();
+            console.log(el);
+            if (el == 'EXW') {
+                $('#exw').show();
+                $("input[name=pickup_address]").prop('required', true);
+                $("input[name=final_destination_address]").prop('required',
+                    true);
+            } else {
+                $('#exw').hide();
+                $("input[name=pickup_address]").prop('required', false);
+                $("input[name=final_destination_address]").prop('required',
+                    false);
+            }
         });
 
         // Live results on calculations
-        $("input[name=quantity_units], input[name=total_weight_units], input[name=total_weight], input[name=quantity], input[name=l], input[name=w], input[name=h]" ).keyup(function() 
-        {
-            var el = $(this).attr("name");
-            if(el == 'quantity')
-            {
-                if($(this).val() == "")
-                {
-                    $("#pcs").text('1');
+        $(
+                "input[name=quantity_units], input[name=total_weight_units], input[name=total_weight], input[name=quantity], input[name=l], input[name=w], input[name=h]"
+            )
+            .keyup(function () {
+                var el = $(this).attr("name");
+                if (el == 'quantity') {
+                    if ($(this).val() == "") {
+                        $("#pcs").text('1');
+                    } else {
+                        $("#pcs").text($(this).val());
+                    }
+                } else if (el == 'total_weight') {
+                    if ($(this).val() == "") {
+                        $("#kg").text('1');
+                    } else {
+                        $("#kg").text($(this).val());
+                    }
                 }
-                else
-                {
-                    $("#pcs").text($(this).val());
-                }
-            }
-            else if(el == 'total_weight')
-            {
-                if($(this).val() == "")
-                {
-                    $("#kg").text('1');
-                }
-                else
-                {
-                    $("#kg").text($(this).val());
-                }
-            }
 
-            // For units
-            else
-            {   
-                var quantity = $('input[name=quantity_units]').val() ? parseFloat( $('input[name=quantity_units]').val() ) : 1;
-                var l = $('input[name=l]').val() ? parseFloat( $('input[name=l]').val() ) : 1;
-                var w = $('input[name=w]').val() ? parseFloat( $('input[name=w]').val() ) : 1;
-                var h = $('input[name=h]').val() ? parseFloat( $('input[name=h]').val() ) : 1;
-                
-                var total_weight = (l*w*h)/6000 * quantity;
-                $('input[name=total_weight_units]').val(total_weight);
-                $("#kg").text(total_weight);
-                $("#pcs").text(quantity);
-            }
-        });
+                // For units
+                // else {
+                //     var quantity = $('input[name=quantity_units]').val() ? parseFloat($(
+                //         'input[name=quantity_units]').val()) : 1;
+                //     var l = $('input[name=l]').val() ? parseFloat($('input[name=l]').val()) : 1;
+                //     var w = $('input[name=w]').val() ? parseFloat($('input[name=w]').val()) : 1;
+                //     var h = $('input[name=h]').val() ? parseFloat($('input[name=h]').val()) : 1;
+
+                //     var total_weight = (l * w * h) / 6000 * quantity;
+                //     $('input[name=total_weight_units]').val(total_weight);
+                //     $("#kg").text(total_weight);
+                //     $("#pcs").text(quantity);
+                // }
+            });
 
     });
+
+</script>
+
+<!-- Add dynamic input fields -->
+<script>
+    $(document).ready(function () {
+        var buttonAdd = $("#add-button");
+        var buttonRemove = $("#remove-button");
+        var className = ".dynamic-field";
+        var count = 0;
+        var field = "";
+        var maxFields = 50;
+
+        function totalFields() {
+            return $(className).length;
+        }
+
+        function addNewField() {
+            count = totalFields() + 1;
+            field = $("#units-1").clone();
+            field.attr("id", "units-" + count);
+            field.children("label").text("Pallet# " + count);
+            field.find("input").val("");
+            $(className + ":last").after($(field));
+        }
+
+        function removeLastField() {
+            if (totalFields() > 1) {
+                $(className + ":last").remove();
+            }
+        }
+
+        function enableButtonRemove() {
+            if (totalFields() === 2) {
+                buttonRemove.removeAttr("disabled");
+                buttonRemove.addClass("shadow-sm");
+            }
+        }
+
+        function disableButtonRemove() {
+            if (totalFields() === 1) {
+                buttonRemove.attr("disabled", "disabled");
+                buttonRemove.removeClass("shadow-sm");
+            }
+        }
+
+        function disableButtonAdd() {
+            if (totalFields() === maxFields) {
+                buttonAdd.attr("disabled", "disabled");
+                buttonAdd.removeClass("shadow-sm");
+            }
+        }
+
+        function enableButtonAdd() {
+            if (totalFields() === (maxFields - 1)) {
+                buttonAdd.removeAttr("disabled");
+                buttonAdd.addClass("shadow-sm");
+            }
+        }
+
+        buttonAdd.click(function () {
+            addNewField();
+            enableButtonRemove();
+            disableButtonAdd();
+        });
+
+        buttonRemove.click(function () {
+            removeLastField();
+            disableButtonRemove();
+            enableButtonAdd();
+        });
+    });
+
 </script>
 
 @endsection

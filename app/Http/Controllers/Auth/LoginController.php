@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -38,15 +39,21 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        print "cntrl lgin cnstrctr.";
+        // if(session('pending_task') != "" && session('origin') != "" && session('form_data') != "")
+        // {
+        //     session()->forget('pending_task');
+        //     return '/store_pending_form';
+        // }
     }
+    protected function authenticated(Request $request, $user)
+    {
+        dd('authcated');
+    }
+    
     protected function redirectTo()
     {
-        if(session('pending_task') != "" && session('form_data') != "")
-        {
-            session()->forget('pending_task');
-            return '/store_pending_form';
-        }
-
         if(Auth::user()->role == 'admin')
         {
             return '/admin';

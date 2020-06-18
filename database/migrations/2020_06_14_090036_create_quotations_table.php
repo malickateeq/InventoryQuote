@@ -33,7 +33,7 @@ class CreateQuotationsTable extends Migration
             $table->string('isDGR')->nullable();
 
             $table->string('calculate_by')->comment('units or shipment')->nullable();
-            $table->json('pallets')->nullable();
+            $table->text('pallets')->nullable();
             $table->string('total_weight')->nullable();
             $table->string('quantity')->nullable();
 

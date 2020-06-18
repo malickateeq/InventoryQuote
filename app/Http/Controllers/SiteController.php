@@ -49,10 +49,8 @@ class SiteController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
-        dd(session('form_data'));
-
         // Store all except
-        session()->put('form_data', $request->except('token'));
+        session()->put('form_data', $request->all());
         session()->save();
 
         if(session('origin') == "")
@@ -62,7 +60,14 @@ class SiteController extends Controller
 
         if(Auth::check())
         {
-            return redirect()->route('store_pending_form');
+            if(Auth::user()->role != 'user')
+            {
+                return "You are no allowed to perform this action. Only user can add quotation.";
+            }
+            else
+            {
+                return redirect()->route('store_pending_form');
+            }
         }
         else
         {
@@ -76,6 +81,7 @@ class SiteController extends Controller
 
     public function store_pending_form()
     {
+        dd('store pending form');
         if(!Auth::check())
         {
             session([

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
         $user->company_name = 'Co. United';
         $user->email = 'user@test.com';
         $user->password = Hash::make('123456');
+        $user->email_verified_at = Carbon::now();
         $user->save();
         //
         $user = new User;
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
         $user->email = 'vendor@test.com';
         $user->additional_email = 'vendor2@test.com';
         $user->password = Hash::make('123456');
+        $user->email_verified_at = Carbon::now();
         $user->save();
         //
         $user = new User;
@@ -43,6 +46,7 @@ class UserSeeder extends Seeder
         $user->company_name = 'Co. United';
         $user->email = 'admin@test.com';
         $user->password = Hash::make('123456');
+        $user->email_verified_at = Carbon::now();
         $user->save();
     }
 }

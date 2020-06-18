@@ -41,7 +41,7 @@
                         <div class="request-input large">
                             <p class="name">Pick Up Address</p>
                             <div class="input-wrap  ">
-                                <input type="number" title="Pick Up Address" name="pickup_address"
+                                <input type="text" title="Pick Up Address" name="pickup_address"
                                     placeholder="Pick Up Address" step="any" autocomplete="off" value="" required>
                             </div>
                         </div>
@@ -50,8 +50,9 @@
                         <div class="request-input large">
                             <p class="name">Final destination address</p>
                             <div class="input-wrap  ">
-                                <input type="number" title="Final destination address" name="final_destination_address"
-                                    placeholder="Final destination address" step="any" autocomplete="off" value="" required>
+                                <input type="text" title="Final destination address" name="final_destination_address"
+                                    placeholder="Final destination address" step="any" autocomplete="off" value=""
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -82,7 +83,7 @@
                         <p class="name">Number of containers</p>
                         <div class="input-wrap  ">
                             <input type="number" title="Number of containers" name="no_of_containers"
-                                placeholder="Value of goods (USD)" step="any" autocomplete="off" required="" value="">
+                                placeholder="Number of containers" step="any" autocomplete="off" required="" value="">
                         </div>
                     </div>
                 </div>
@@ -180,22 +181,22 @@
                             <div class="request-input small">
                                 <p class="name">Dimensions</p>
                                 <div class="input-wrap">
-                                    <input type="number" title="Dimensions" name="l[]" class="require"
-                                        placeholder="L" step="any" autocomplete="off" value="">
-                                </div>
-                            </div>
-                            <div class="request-input small">
-                                <p class="name"> </p>
-                                <div class="input-wrap">
-                                    <input type="number" title=" " name="w[]" placeholder="W" class="require"
+                                    <input type="number" title="Dimensions" name="l[]" class="require" placeholder="L"
                                         step="any" autocomplete="off" value="">
                                 </div>
                             </div>
                             <div class="request-input small">
                                 <p class="name"> </p>
                                 <div class="input-wrap">
-                                    <input type="number" title=" " name="h[]" placeholder="H" class="require"
-                                        step="any" autocomplete="off" value="">
+                                    <input type="number" title=" " name="w[]" placeholder="W" class="require" step="any"
+                                        autocomplete="off" value="">
+                                </div>
+                            </div>
+                            <div class="request-input small">
+                                <p class="name"> </p>
+                                <div class="input-wrap">
+                                    <input type="number" title=" " name="h[]" placeholder="H" class="require" step="any"
+                                        autocomplete="off" value="">
                                     <p class="label">CM</p>
                                 </div>
                             </div>
@@ -281,21 +282,21 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () 
-    {
-        $('#exw').hide();   
+    $(document).ready(function () {
+
+        $('#exw').hide();
         $('.dynamic-field').hide();
-        $('#dynamic_buttons').hide();
-        $(".require").prop('required', false);
+        $('#dynamic_buttons')
+            .hide();
+        // $(".require").prop('required', false);
 
         // On calculation radio button clicks
-        $('input:radio').change(function () 
-        {
+        $('input:radio').change(function () {
             var el = $(this).val();
             if (el == 'units') {
                 $('#dynamic_buttons').show();
                 $('.dynamic-field').show();
-                $(".require").prop('required', true);
+                // $(".require").prop('required', true);
 
                 $('#shipment').hide();
                 $("input[name=quantity]").prop('required', false);
@@ -305,32 +306,31 @@
                 $('#dynamic_buttons').hide();
                 $('#shipment').show();
 
-                $(".require").prop('required', false);
+                // $(".require").prop('required', false);
             }
         });
 
-
         // On Incoterms button clicks
-        $('#incoterms').change(function () 
-        {
+        $('#incoterms').change(function () {
             var el = $(this).val();
             console.log(el);
-            if (el == 'EXW') 
-            {
+            if (el == 'EXW') {
                 $('#exw').show();
                 $("input[name=pickup_address]").prop('required', true);
-                $("input[name=final_destination_address]").prop('required', true);
-            } 
-            else 
-            {
+                $("input[name=final_destination_address]").prop('required',
+                    true);
+            } else {
                 $('#exw').hide();
                 $("input[name=pickup_address]").prop('required', false);
-                $("input[name=final_destination_address]").prop('required', false);
+                $("input[name=final_destination_address]").prop('required',
+                    false);
             }
         });
 
         // Live results on calculations
-        $("input[name=quantity_units], input[name=total_weight_units], input[name=total_weight], input[name=quantity], input[name=l], input[name=w], input[name=h]")
+        $(
+                "input[name=quantity_units], input[name=total_weight_units], input[name=total_weight], input[name=quantity], input[name=l], input[name=w], input[name=h]"
+            )
             .keyup(function () {
                 var el = $(this).attr("name");
                 if (el == 'quantity') {

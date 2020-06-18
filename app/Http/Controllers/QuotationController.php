@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Quotation;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class QuotationController extends Controller
 {
@@ -13,7 +14,7 @@ class QuotationController extends Controller
     {
         //Specify required role for this controller here in checkRole:xyz
         // $this->middleware(['auth', 'checkRole:user']); 
-        $this->middleware(['auth']); 
+        $this->middleware(['auth', 'verified']); 
     }
     /**
      * Display a listing of the resource.
@@ -316,5 +317,76 @@ class QuotationController extends Controller
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.search_quotations', $data);
+    }
+
+    public function store_pending_form()
+    {
+        $fileContents = Storage::disk('public')->get('store_pending_form.json');
+        $fileContents = json_decode($fileContents);
+
+        // if(!Auth::check())
+        // {
+        //     Cache::put('pending_task', 'store_pending_form');
+        //     return redirect(route('login'));
+        // }
+        
+        $quotation = new Quotation;
+        $quotation->user_id = Auth::user()->id;
+        $quotation->quotation_id = mt_rand();
+        $quotation->origin = $fileContents->origin;
+        $quotation->destination = $fileContents->destination;
+        $quotation->transportation_type = $fileContents->transportation_type;
+        $quotation->type = $fileContents->type;
+        $quotation->incoterms = $fileContents->incoterms;
+
+        if($fileContents->incoterms == 'EXW')
+        {
+            $quotation->pickup_address = $fileContents->pickup_address;
+            $quotation->final_destination_address = $fileContents->final_destination_address;
+        }
+
+        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $fileContents->ready_to_load_date );
+        $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
+
+        $quotation->value_of_goods = $fileContents->value_of_goods;
+        $quotation->description_of_goods = $fileContents->description_of_goods;
+        $quotation->isStockable = isset($fileContents->isStockable) ? $fileContents->isStockable : 'No';
+        $quotation->isDGR = isset($fileContents->isDGR) ? $fileContents->isDGR : 'No';
+        $quotation->calculate_by = $fileContents->calculate_by;
+        $quotation->remarks = $fileContents->remarks;
+        $quotation->isClearanceReq = isset($fileContents->isClearanceReq) ? $fileContents->isClearanceReq : 'No';
+        
+
+        if($fileContents->transportation_type == 'sea' && $fileContents->type == 'fcl')
+        {
+            $quotation->container_size = $fileContents->container_size;
+            $quotation->no_of_containers = $fileContents->no_of_containers;
+        }
+        if($fileContents->calculate_by == 'units')
+        {
+            $pallets = [];
+            for($i=0; $i<count($fileContents->quantity_units); $i++)
+            {
+                $total_weight = 
+                ( (float)$fileContents->l[$i] * (float)$fileContents->w[$i] * (float)$fileContents->h[$i] ) / 6000 * $fileContents->quantity_units[$i];
+                $pallets[] = [
+                    'length' => $fileContents->l[$i],
+                    'width' => $fileContents->w[$i],
+                    'height' => $fileContents->h[$i],
+                    'total_weight' => $total_weight,
+                    'quantity' => $fileContents->quantity_units[$i],
+                ];
+            }
+            $quotation->pallets = $pallets;
+        }
+        else
+        {
+            $quotation->quantity = $fileContents->quantity;
+            $quotation->total_weight = $fileContents->total_weight;
+        }
+        $quotation->save();
+        $isDelete = Storage::disk('public')->delete('store_pending_form.json');
+
+        return redirect(route('quotation.index'));
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -42,15 +43,24 @@ class LoginController extends Controller
     }
     protected function authenticated(Request $request, $user)
     {
-        if(session('pending_task') != "" && session('origin') != "" && session('form_data') != "")
+        $fileContents = Storage::disk('public')->get('store_pending_form.json');
+        $fileContents = json_decode($fileContents);
+        if($fileContents->incoterms != null)
         {
-            session()->forget('pending_task');
+            echo "authentcted";
             return redirect(route('store_pending_form'));
-        }
+        } 
     }
     
     protected function redirectTo()
     {
+        $fileContents = Storage::disk('public')->get('store_pending_form.json');
+        $fileContents = json_decode($fileContents);
+        if($fileContents->incoterms != null)
+        {
+            echo "redir t0";
+            return redirect(route('store_pending_form'));
+        } 
         if(Auth::user()->role == 'admin')
         {
             return '/admin';

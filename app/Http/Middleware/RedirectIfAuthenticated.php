@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RedirectIfAuthenticated
 {
@@ -21,9 +22,16 @@ class RedirectIfAuthenticated
         // if (Auth::guard($guard)->check()) {
         //     return redirect(RouteServiceProvider::HOME);
         // }
-        
+
         if (Auth::guard($guard)->check()) 
-        {       
+        {
+            $fileContents = Storage::disk('public')->get('store_pending_form.json');
+            $fileContents = json_decode($fileContents);
+            if($fileContents->incoterms != null)
+            {
+                echo "middle  in in";
+                return redirect(route('store_pending_form'));
+            } 
             if(Auth::user()->role == 'admin')
             {
                 return redirect('/admin');

@@ -14,7 +14,7 @@ class ProposalController extends Controller
     {
         //Specify required role for this controller here in checkRole:xyz
         // $this->middleware(['auth', 'checkRole:user']); 
-        $this->middleware(['auth']); 
+        $this->middleware(['auth', 'verified']); 
     }
     /**
      * Display a listing of the resource.

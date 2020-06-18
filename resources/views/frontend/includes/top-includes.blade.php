@@ -6,8 +6,8 @@
     <script type="text/javascript" src="{{ asset('public/frontend/libs/jquery-ui-custom.mine23c.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/libs/bootstrap-datepicker.mine23c.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/libs/select2.min489b.js') }}"></script>
-    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/slick.mine23c.js') }}"></script> -->
-    <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/gsap.min8347.js') }}"></script> bubbles -->
+    <script type="text/javascript" src="{{ asset('public/frontend/libs/slick.mine23c.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/frontend/libs/gsap.min8347.js') }}"></script>
     <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/TweenMax.min8347.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/ScrollMagic.min8347.js') }}"></script> -->
     <!-- <script type="text/javascript" src="{{ asset('public/frontend/libs/animation.gsap.min8347.js') }}"></script> -->

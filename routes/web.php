@@ -31,7 +31,6 @@ Route::post('/get_quote_step1', 'SiteController@get_quote_step1')->name('get_quo
 
 Route::get('/get_quote_step2', 'SiteController@get_quote_step2')->name('get_quote_step2');
 Route::post('/form_quote_step2', 'SiteController@form_quote_step2')->name('form_quote_step2');
-Route::get('/store_pending_form', 'SiteController@store_pending_form')->name('store_pending_form');
 
 Route::get('/mail_view_proposal/{token}', 'SiteController@mail_view_proposal')->name('proposal.mail_view');
 
@@ -57,6 +56,7 @@ Route::get('/all_vendors', 'AdminController@all_vendors')->name('admin.all_vendo
 Route::resource('/quotation', 'QuotationController');
 Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view_all');
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
+Route::get('/store_pending_form', 'QuotationController@store_pending_form')->name('store_pending_form');
 
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
 

@@ -286,17 +286,17 @@
 
         $('#exw').hide();
         $('.dynamic-field').hide();
-        $('#dynamic_buttons')
-            .hide();
-        // $(".require").prop('required', false);
+        $('#dynamic_buttons').hide();
+        $(".require").prop('required', false);
 
         // On calculation radio button clicks
-        $('input:radio').change(function () {
+        $('input:radio').change(function () 
+        {
             var el = $(this).val();
             if (el == 'units') {
                 $('#dynamic_buttons').show();
                 $('.dynamic-field').show();
-                // $(".require").prop('required', true);
+                $(".require").prop('required', true);
 
                 $('#shipment').hide();
                 $("input[name=quantity]").prop('required', false);
@@ -306,7 +306,7 @@
                 $('#dynamic_buttons').hide();
                 $('#shipment').show();
 
-                // $(".require").prop('required', false);
+                $(".require").prop('required', false);
             }
         });
 

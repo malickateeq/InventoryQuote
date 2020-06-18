@@ -39,17 +39,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-
-        print "cntrl lgin cnstrctr.";
-        // if(session('pending_task') != "" && session('origin') != "" && session('form_data') != "")
-        // {
-        //     session()->forget('pending_task');
-        //     return '/store_pending_form';
-        // }
     }
     protected function authenticated(Request $request, $user)
     {
-        dd('authcated');
+        if(session('pending_task') != "" && session('origin') != "" && session('form_data') != "")
+        {
+            session()->forget('pending_task');
+            return redirect(route('store_pending_form'));
+        }
     }
     
     protected function redirectTo()

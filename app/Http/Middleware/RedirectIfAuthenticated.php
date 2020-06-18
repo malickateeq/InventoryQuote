@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
         // if (Auth::guard($guard)->check()) {
         //     return redirect(RouteServiceProvider::HOME);
         // }
-        print "redirect if auth middleware.";
+        
         if (Auth::guard($guard)->check()) 
         {       
             if(Auth::user()->role == 'admin')

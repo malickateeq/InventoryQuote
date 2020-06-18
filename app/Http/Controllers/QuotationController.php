@@ -49,6 +49,7 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'incoterms' => ['required', 'string', 'min:3', 'max:255'],
             'origin_city' => ['required', 'string', 'min:3', 'max:255'],
             'origin_state' => ['required', 'string', 'min:3', 'max:255'],
             'origin_country' => ['required', 'string', 'min:3', 'max:255'],
@@ -62,7 +63,6 @@ class QuotationController extends Controller
             'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
             'value_of_goods' => ['required', 'numeric', 'min:3', 'max:255'],
             'calculate_by' => ['required', 'string', 'min:3', 'max:255'],
-            'remarks' => ['required', 'string', 'min:3', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -77,6 +77,12 @@ class QuotationController extends Controller
         $quotation->type = $request->type;
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
         $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
+        $quotation->incoterms = $request->incoterms;
+        if($request->incoterms == 'EXW')
+        {
+            $quotation->pickup_address = $request->pickup_address;
+            $quotation->final_destination_address = $request->final_destination_address;
+        }
         
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -85,7 +91,6 @@ class QuotationController extends Controller
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
         
-        $quotation->total_weight = $request->total_weight;
 
         if($request->transportation_type == 'sea' && $request->type == 'fcl')
         {
@@ -94,14 +99,25 @@ class QuotationController extends Controller
         }
         if($request->calculate_by == 'units')
         {
-            $quotation->quantity = $request->quantity_units;
-            $quotation->l = $request->l;
-            $quotation->w = $request->w;
-            $quotation->h = $request->h;
+            $pallets = [];
+            for($i=0; $i<count($request->quantity_units); $i++)
+            {
+                $total_weight = 
+                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000 * $request->quantity_units[$i];
+                $pallets[] = [
+                    'length' => $request->l[$i],
+                    'width' => $request->w[$i],
+                    'height' => $request->h[$i],
+                    'total_weight' => $total_weight,
+                    'quantity' => $request->quantity_units[$i],
+                ];
+            }
+            $quotation->pallets = $pallets;
         }
         else
         {
             $quotation->quantity = $request->quantity;
+            $quotation->total_weight = $request->total_weight;
         }
         $quotation->save();
         return redirect(route('quotation.index'));
@@ -168,6 +184,7 @@ class QuotationController extends Controller
         $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
         
         $quotation->value_of_goods = $request->value_of_goods;
+        $quotation->description_of_goods = $request->description_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
         $quotation->isDGR = $request->isDGR ? $request->isDGR : 'No';
         $quotation->calculate_by = $request->calculate_by;

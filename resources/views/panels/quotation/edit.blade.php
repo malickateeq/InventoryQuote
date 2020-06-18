@@ -45,6 +45,49 @@
 
                     <div class="form-row">
                         <div class="col-auto my-1">
+                            <label class="mr-sm-2" for="incoterms">Incoterms</label>
+                            <select class="custom-select mr-sm-2" id="incoterms" name="incoterms">
+                                <option>Choose..</option>
+                                <option value="EXW" <?php echo ($quotation->incoterms == 'EXW') ? 'selected="selected"' : ''; ?> >EXW (Ex Works Place)</option>
+                                <option value="FOB" <?php echo ($quotation->incoterms == 'FOB') ? 'selected="selected"' : ''; ?> >FOB (Free On Board Port)</option>
+                                <option value="CIP/CIF" <?php echo ($quotation->incoterms == 'CIP/CIF') ? 'selected="selected"' : ''; ?> >CIF/CIP (Cost Insurance & Freight / Carriage & Insurance Paid)</option>
+                                <option value="DAP" <?php echo ($quotation->incoterms == 'DAP') ? 'selected="selected"' : ''; ?> >DAP (Delivered At Place)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="exw">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Pick Up Address</label>
+                                <input type="text" class="form-control" name="pickup_address" value="{{ $quotation->pickup_address }}" required />
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Final destination address</label>
+                                <input type="text" class="form-control" name="final_destination_address" value="{{ $quotation->pickup_address }}" value=""
+                                    required />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+
+                            <label for="exampleFormControlTextarea1">Description of goods</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                name="description_of_goods">{{ $quotation->description_of_goods }}</textarea>
+                            @error('description_of_goods')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-auto my-1">
                             <label class="mr-sm-2" for="transportation_type">Transportation Type</label>
                             <select class="custom-select mr-sm-2" id="transportation_type"
                                 name="transportation_type">
@@ -88,9 +131,9 @@
                             <div class="col-md-5 mb-3">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="container_size">
                                     <option>Container size</option>
-                                    <option value="20f" <?php echo ($quotation->transportation_type == '20f') ? 'selected="selected"' : ''; ?> >20ft</option>
-                                    <option value="40f"<?php echo ($quotation->transportation_type == '40f') ? 'selected="selected"' : ''; ?> >40ft</option>
-                                    <option value="40f_hc"<?php echo ($quotation->transportation_type == '40f_hc') ? 'selected="selected"' : ''; ?> >40ft HC</option>
+                                    <option value="20f" <?php echo ($quotation->transportation_type == '20f') ? 'selected="selected"' : ''; ?> >2 x 40'' containers</option>
+                                    <option value="40f"<?php echo ($quotation->transportation_type == '40f') ? 'selected="selected"' : ''; ?> >2 x 20'' containers</option>
+                                    <option value="40f_hc"<?php echo ($quotation->transportation_type == '40f_hc') ? 'selected="selected"' : ''; ?> >1 x 40'' containers</option>
                                 </select>
                             </div>
                         </div>
@@ -160,11 +203,12 @@
                         </div>
                     </div>
 
-                    <div id="units">
+                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
+                        <label for="" style="font-weight: bold;">Pallet#1</label>
                         <div class="form-row">
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                value="{{ $quotation->quantity }}" placeholder="Quantity" name="quantity_units" required>
+                                    id="validationServer03" placeholder="Quantity" name="quantity_units[]" required>
                                 @error('quantity_units')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -174,7 +218,7 @@
                             <div class="col-md-2 mb-3">
                                 <!-- <label for="">Dimensions</label> -->
                                 <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    id="validationServer04" placeholder="length" name="l" value="{{ $quotation->l }}" required>
+                                    id="validationServer04" placeholder="length" name="l[]" required>
                                 @error('l')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -183,7 +227,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    id="validationServer03" placeholder="width" name="w" value="{{ $quotation->w }}" required>
+                                    id="validationServer03" placeholder="width" name="w[]" required>
                                 @error('w')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -192,23 +236,29 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    id="validationServer03" placeholder="height" name="h" value="{{ $quotation->h }}" required>
+                                    id="validationServer03" placeholder="height" name="h[]" required>
                                 @error('h')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
-                                value="{{ $quotation->total_weight }}" name="total_weight_units" disabled>
-                                @error('total_weight_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
+
                         </div>
+                    </div>
+
+
+                    <div class="form-row" id="dynamic_buttons">
+                        <button type="button" class="btn btn-primary btn-sm" id="add-button"
+                            style="padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                            <!-- <span>Add New</span> -->
+                            <i class="fal fa-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" id="remove-button"
+                            style="padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                            <!-- <span>Add New</span> -->
+                            <i class="fal fa-minus"></i>
+                        </button>
                     </div>
 
                     <hr>
@@ -251,27 +301,42 @@
 <script>
     $(document).ready(function() 
     {
+        $('.dynamic-field').hide();
+        $('#dynamic_buttons').hide();
+        $(".require").prop('required', false);
         $('#shipment').hide();
+        $('#exw').hide();
         $('#units').hide();
         $('#for_flc').hide();
 
         var trans_type = {!! json_encode($quotation->transportation_type) !!};
         var calculated_by = {!! json_encode($quotation->calculate_by) !!};
         var type = {!! json_encode($quotation->type) !!};
+        var incoterms = {!! json_encode($quotation->incoterms) !!};
+        if(incoterms == 'EXW')
+        {
+            $('#exw').show();
+        }
         if(calculated_by == 'units')
         {
-            $('#units').show();
-            $("input[name=quantity]").prop('required',false);
-            $("input[name=total_weight]").prop('required',false);
+            var pallets = {!! json_encode($quotation->pallets) !!};
+            console.log(pallets);
+            // pallets.forEach()
+            $('#dynamic_buttons').show();
+            $('.dynamic-field').show();
+            $(".require").prop('required', true);
+
+            $('#shipment').hide();
+            $("input[name=quantity]").prop('required', false);
+            $("input[name=total_weight]").prop('required', false);
         }
         else
         {
+            $('.dynamic-field').hide();
+            $('#dynamic_buttons').hide();
             $('#shipment').show();
-            $("input[name=quantity_units]").prop('required',false);
-            $("input[name=l]").prop('required',false);
-            $("input[name=w]").prop('required',false);
-            $("input[name=h]").prop('required',false);
-            $("input[name=total_weight_units]").prop('required',false);
+
+            $(".require").prop('required', false);
         }
         if(type == 'fcl')
         {
@@ -282,6 +347,10 @@
             $('#type_of_shipment').empty();
             $("#type_of_shipment").append(new Option("LCL", "lcl"));
             $("#type_of_shipment").append(new Option("FCL", "fcl"));
+            if(type == 'fcl')
+            {}
+            else
+            {}
         }
         else
         {
@@ -299,45 +368,32 @@
             }
             else if($(this).find(':selected').val() == 'air')
             {
+                $('#for_flc').hide();
                 $('#type_of_shipment').empty();
                 $("#type_of_shipment").append(new Option("AIR", "air"));
             }
         });
 
-        // FCL options
-        $("#type_of_shipment").change(function()
-        {
-            if($(this).find(':selected').val() == 'fcl')
-            {
-                $('#for_flc').show();
-            }
-        });
-
         // On calculation radio button clicks
-        $('input:radio').change(function()
+        $('input:radio').change(function () 
         {
             var el = $(this).val();
-            if(el == 'units')
-            {
-                $('#units').show();
+            if (el == 'units') {
+                $('#dynamic_buttons').show();
+                $('.dynamic-field').show();
+                $(".require").prop('required', true);
+
                 $('#shipment').hide();
-
-                $("input[name=quantity]").prop('required',false);
-                $("input[name=total_weight]").prop('required',false);
-            }
-            else
-            {
-                $('#units').hide();
+                $("input[name=quantity]").prop('required', false);
+                $("input[name=total_weight]").prop('required', false);
+            } else {
+                $('.dynamic-field').hide();
+                $('#dynamic_buttons').hide();
                 $('#shipment').show();
-                
-                $("input[name=quantity_units]").prop('required',false);
-                $("input[name=l]").prop('required',false);
-                $("input[name=w]").prop('required',false);
-                $("input[name=h]").prop('required',false);
-                $("input[name=total_weight_units]").prop('required',false);
-            }  
-        });
 
+                $(".require").prop('required', false);
+            }
+        });
         
         // Live results on calculations
         $("input[name=quantity_units], input[name=total_weight_units], input[name=l], input[name=w], input[name=h]" ).keyup(function() 
@@ -354,7 +410,34 @@
             // $("#pcs").text(quantity);
         });
 
+        // FCL options
+        $("#type_of_shipment").change(function () {
+            if ($(this).find(':selected').val() == 'fcl') {
+                $('#for_flc').show();
+            } else {
+                $('#for_flc').hide();
+            }
+        });
+
+        // On Incoterms button clicks
+        $('#incoterms').change(function () {
+            var el = $(this).val();
+            console.log(el);
+            if (el == 'EXW') {
+                $('#exw').show();
+                $("input[name=pickup_address]").prop('required', true);
+                $("input[name=final_destination_address]").prop('required',
+                    true);
+            } else {
+                $('#exw').hide();
+                $("input[name=pickup_address]").prop('required', false);
+                $("input[name=final_destination_address]").prop('required',
+                    false);
+            }
+        });
+
     });
+
     $(function () {
         $('input[name="date"]').daterangepicker({
                 singleDatePicker: true,
@@ -364,6 +447,78 @@
                 maxYear: 2050
             }
         );
+    });
+
+</script>
+
+<!-- Add dynamic input fields -->
+<script>
+    $(document).ready(function () {
+        var buttonAdd = $("#add-button");
+        var buttonRemove = $("#remove-button");
+        var className = ".dynamic-field";
+        var count = 0;
+        var field = "";
+        var maxFields = 50;
+
+        function totalFields() {
+            return $(className).length;
+        }
+
+        function addNewField() {
+            count = totalFields() + 1;
+            field = $("#units-1").clone();
+            field.attr("id", "units-" + count);
+            field.children("label").text("Pallet# " + count);
+            field.find("input").val("");
+            $(className + ":last").after($(field));
+        }
+
+        function removeLastField() {
+            if (totalFields() > 1) {
+                $(className + ":last").remove();
+            }
+        }
+
+        function enableButtonRemove() {
+            if (totalFields() === 2) {
+                buttonRemove.removeAttr("disabled");
+                buttonRemove.addClass("shadow-sm");
+            }
+        }
+
+        function disableButtonRemove() {
+            if (totalFields() === 1) {
+                buttonRemove.attr("disabled", "disabled");
+                buttonRemove.removeClass("shadow-sm");
+            }
+        }
+
+        function disableButtonAdd() {
+            if (totalFields() === maxFields) {
+                buttonAdd.attr("disabled", "disabled");
+                buttonAdd.removeClass("shadow-sm");
+            }
+        }
+
+        function enableButtonAdd() {
+            if (totalFields() === (maxFields - 1)) {
+                buttonAdd.removeAttr("disabled");
+                buttonAdd.addClass("shadow-sm");
+            }
+        }
+
+        buttonAdd.click(function () {
+            addNewField();
+            enableButtonRemove();
+            disableButtonAdd();
+        });
+
+        buttonRemove.click(function () {
+            removeLastField();
+            disableButtonRemove();
+            enableButtonAdd();
+        });
     });
 
 </script>

@@ -81,7 +81,6 @@ class SiteController extends Controller
 
     public function store_pending_form()
     {
-        dd('store pending form');
         if(!Auth::check())
         {
             session([
@@ -105,7 +104,7 @@ class SiteController extends Controller
             $quotation->final_destination_address = session('final_destination_address');
         }
 
-        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', session('form_data.ready_to_load_date') );
+        $ready_to_load_date = Carbon::createFromFormat('d-m-Y', session('ready_to_load_date') );
         $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
 
         $quotation->value_of_goods = session('form_data.value_of_goods');

@@ -321,6 +321,13 @@ class QuotationController extends Controller
 
     public function store_pending_form()
     {
+        
+        if(Auth::user()->role != 'user')
+        {
+            $isDelete = Storage::disk('public')->delete('store_pending_form.json');
+            return redirect(route('quotations.view_all'));
+        }
+
         $fileContents = Storage::disk('public')->get('store_pending_form.json');
         $fileContents = json_decode($fileContents);
 

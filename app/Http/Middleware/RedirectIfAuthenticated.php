@@ -25,13 +25,15 @@ class RedirectIfAuthenticated
 
         if (Auth::guard($guard)->check()) 
         {
-            $fileContents = Storage::disk('public')->get('store_pending_form.json');
-            $fileContents = json_decode($fileContents);
-            if($fileContents->incoterms != null)
+            if(Storage::disk('public')->exists('store_pending_form.json'))
             {
-                echo "middle  in in";
-                return redirect(route('store_pending_form'));
-            } 
+                $fileContents = Storage::disk('public')->get('store_pending_form.json');
+                $fileContents = json_decode($fileContents);
+                if($fileContents->incoterms != null)
+                {
+                    return redirect(route('store_pending_form'));
+                } 
+            }
             if(Auth::user()->role == 'admin')
             {
                 return redirect('/admin');

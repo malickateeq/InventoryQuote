@@ -54,6 +54,20 @@
 
                     
                     <div class="form-row">
+                        <div class="col-md-8 mb-3">
+
+                            <label for="exampleFormControlTextarea1">Description of goods</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly
+                                name="description_of_goods">{{ $quotation->description_of_goods }}</textarea>
+                            @error('description_of_goods')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-row">
                         <div class="col-auto my-1">
                             <label class="mr-sm-2" for="incoterms">Incoterms</label>
                             <select class="custom-select mr-sm-2" id="incoterms" name="incoterms" disabled>
@@ -66,6 +80,7 @@
                         </div>
                     </div>
 
+                    @if($quotation->incoterms == 'EXW')
                     <div id="exw">
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
@@ -95,6 +110,7 @@
                             @enderror
                         </div>
                     </div>
+                    @endif
 
                     <div class="form-row">
                         <div class="col-auto my-1">

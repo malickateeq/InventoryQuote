@@ -43,24 +43,19 @@ class LoginController extends Controller
     }
     protected function authenticated(Request $request, $user)
     {
-        $fileContents = Storage::disk('public')->get('store_pending_form.json');
-        $fileContents = json_decode($fileContents);
-        if($fileContents->incoterms != null)
+        if(Storage::disk('public')->exists('store_pending_form.json'))
         {
-            echo "authentcted";
-            return redirect(route('store_pending_form'));
-        } 
+            $fileContents = Storage::disk('public')->get('store_pending_form.json');
+            $fileContents = json_decode($fileContents);
+            if($fileContents->incoterms != null)
+            {
+                return redirect(route('store_pending_form'));
+            } 
+        }
     }
     
     protected function redirectTo()
     {
-        $fileContents = Storage::disk('public')->get('store_pending_form.json');
-        $fileContents = json_decode($fileContents);
-        if($fileContents->incoterms != null)
-        {
-            echo "redir t0";
-            return redirect(route('store_pending_form'));
-        } 
         if(Auth::user()->role == 'admin')
         {
             return '/admin';

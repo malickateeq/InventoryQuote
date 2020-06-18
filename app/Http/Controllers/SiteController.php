@@ -28,9 +28,6 @@ class SiteController extends Controller
         ];
         $isDelete = Storage::disk('public')->delete('store_pending_form.json');
         Storage::disk('public')->put('store_pending_form.json', json_encode($data));
-        // $fileContents = Storage::disk('public')->get('store_pending_form.json');
-        // dd(json_decode($fileContents));
-        // $isStore = Storage::disk('public')->putFileAs('temp/store_pending_form.json', $file, $set_file_name);
 
         return redirect(route('get_quote_step2'));
     }
@@ -77,6 +74,7 @@ class SiteController extends Controller
         {
             if(Auth::user()->role != 'user')
             {
+                $isDelete = Storage::disk('public')->delete('store_pending_form.json');
                 return "You are no allowed to perform this action. Only user can add quotation.";
             }
             else

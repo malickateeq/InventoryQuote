@@ -74,8 +74,8 @@ class AdminController extends Controller
     {
         $data['page_title'] = 'All Vendors | LogistiQuote';
         $data['page_name'] = 'all_vendors';
-        $data['profile'] = User::where('role', 'vendor')->first();
-        return view('panels.admin.user_profile', $data);
+        $data['users'] = User::where('role', 'vendor')->get();
+        return view('panels.admin.users', $data);
     }
     public function view_user($id)
     {

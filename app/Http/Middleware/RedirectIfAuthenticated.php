@@ -24,8 +24,11 @@ class RedirectIfAuthenticated
 
         if (Auth::guard($guard)->check()) 
         {
-            if(session('intended_url') != "" && session('origin') != "" )
-                return redirect('/get_quote_step2');
+            if(session('pending_task') != "" && session('origin') != "" && session('form_data') != "")
+            {
+                session()->forget('pending_task');
+                return '/store_pending_form';
+            }
                 
             if(Auth::user()->role == 'admin')
             {

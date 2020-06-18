@@ -41,10 +41,10 @@ class LoginController extends Controller
     }
     protected function redirectTo()
     {
-        if(session('intended_url') != "" )
+        if(session('pending_task') != "" && session('form_data') != "")
         {
-            session()->forget('intended_url');
-            return '/get_quote_step2';
+            session()->forget('pending_task');
+            return '/store_pending_form';
         }
 
         if(Auth::user()->role == 'admin')

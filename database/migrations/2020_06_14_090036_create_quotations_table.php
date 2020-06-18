@@ -17,6 +17,9 @@ class CreateQuotationsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('quotation_id');
+            $table->string('incoterms')->nullable();
+            $table->string('pickup_address')->nullable();
+            $table->string('destination_address')->nullable();
             $table->string('origin')->nullable();
             $table->string('destination')->nullable();
             $table->string('origin_zip')->nullable();
@@ -25,11 +28,15 @@ class CreateQuotationsTable extends Migration
             $table->string('type')->comment('FCL, LCL, AIR')->nullable();
             $table->timestamp('ready_to_load_date', 0)->nullable();
             $table->string('value_of_goods')->comment('In USD')->nullable();
+            $table->string('description_of_goods')->nullable();
             $table->string('isStockable')->nullable();
             $table->string('isDGR')->nullable();
+
             $table->string('calculate_by')->comment('units or shipment')->nullable();
+            $table->json('pallets')->nullable();
             $table->string('total_weight')->nullable();
             $table->string('quantity')->nullable();
+
             $table->string('remarks')->nullable();
             $table->string('isClearanceReq')->nullable();
             $table->string('status')->default('active')->comment('active,withdrawn,completed');
@@ -39,9 +46,9 @@ class CreateQuotationsTable extends Migration
             $table->string('no_of_containers')->nullable();
             $table->string('container_size')->nullable();
             
-            $table->string('l')->nullable();
-            $table->string('w')->nullable();
-            $table->string('h')->nullable();
+            // $table->string('l')->nullable();
+            // $table->string('w')->nullable();
+            // $table->string('h')->nullable();
             $table->timestamps();
         });
     }

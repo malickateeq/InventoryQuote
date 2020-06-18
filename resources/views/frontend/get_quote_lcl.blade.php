@@ -7,6 +7,13 @@
             @csrf
             <h2>Type of delivery</h2>
             <div class="shipment-type" style="margin: 20px 0px;">
+                @if(session('transportation_type') == 'air')
+                <div class="item active">
+                    <div class="icon"><i class="fad fa-plane-departure"></i></div>
+                    <p>air</p>
+                </div>
+                <input type="hidden" name="type" value="air">
+                @else
                 <div class="item active">
                     <div class="icon"><i class="fad fa-boxes"></i></div>
                     <p>lcl</p>
@@ -15,11 +22,8 @@
                     <div class="icon"><i class="fad fa-container-storage"></i></div>
                     <p>fcl</p>
                 </div>
-                <!-- <div class="item">
-                    <div class="icon"><i class="fad fa-mountains"></i></div>
-                    <p>bulk</p>
-                </div> -->
                 <input type="hidden" name="type" value="lcl">
+                @endif
             </div>
 
             <h2>Description Of Goods</h2>
@@ -31,6 +35,17 @@
                         <div class="input-wrap  ">
                             <input type="number" title="Value of goods" name="value_of_goods"
                                 placeholder="Value of goods (USD)" step="any" autocomplete="off" required="" value="">
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="from-row">
+                    <div class="request-input large">
+                        <p class="name">Description of goods</p>
+                        <div class="input-wrap">
+                            <textarea name="description_of_goods" id="" cols="45" rows="3"
+                                style="border-radius: 5px; border: 1px lite gray;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -153,7 +168,7 @@
                     <div class="request-input large">
                         <p class="name">Remarks</p>
                         <div class="input-wrap  ">
-                            <textarea name="remarks" id="" cols="45" rows="3" style="border-radius: 5px; border: 1px solid gray;" required></textarea>
+                            <textarea name="remarks" id="" cols="45" rows="3" style="border-radius: 5px; border: 1px lite gray;"></textarea>
                         </div>
                     </div>
                 </div>

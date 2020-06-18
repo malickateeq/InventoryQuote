@@ -96,12 +96,12 @@ class SiteController extends Controller
         $quotation->destination = session('destination');
         $quotation->transportation_type = session('transportation_type');
         $quotation->type = session('type');
-        $quotation->incoterms = session('incoterms');
+        $quotation->incoterms = session('form_data.incoterms');
 
         if(session('incoterms') == 'EXW')
         {
-            $quotation->pickup_address = session('pickup_address');
-            $quotation->final_destination_address = session('final_destination_address');
+            $quotation->pickup_address = session('form_data.pickup_address');
+            $quotation->final_destination_address = session('form_data.final_destination_address');
         }
 
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', session('ready_to_load_date') );

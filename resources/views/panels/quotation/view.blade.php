@@ -52,6 +52,50 @@
                         </div>
                     </div>
 
+                    
+                    <div class="form-row">
+                        <div class="col-auto my-1">
+                            <label class="mr-sm-2" for="incoterms">Incoterms</label>
+                            <select class="custom-select mr-sm-2" id="incoterms" name="incoterms" disabled>
+                                <option>Choose..</option>
+                                <option value="EXW" <?php echo ($quotation->incoterms == 'EXW') ? 'selected="selected"' : ''; ?> >EXW (Ex Works Place)</option>
+                                <option value="FOB" <?php echo ($quotation->incoterms == 'FOB') ? 'selected="selected"' : ''; ?> >FOB (Free On Board Port)</option>
+                                <option value="CIP/CIF" <?php echo ($quotation->incoterms == 'CIP/CIF') ? 'selected="selected"' : ''; ?> >CIF/CIP (Cost Insurance & Freight / Carriage & Insurance Paid)</option>
+                                <option value="DAP" <?php echo ($quotation->incoterms == 'DAP') ? 'selected="selected"' : ''; ?> >DAP (Delivered At Place)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="exw">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Pick Up Address</label>
+                                <input type="text" class="form-control" name="pickup_address" value="{{ $quotation->pickup_address }}"  disabled />
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Final destination address</label>
+                                <input type="text" class="form-control" name="final_destination_address" value="{{ $quotation->pickup_address }}" value=""
+                                    disabled />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+
+                            <label for="exampleFormControlTextarea1">Description of goods</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly
+                                name="description_of_goods">{{ $quotation->description_of_goods }}</textarea>
+                            @error('description_of_goods')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="form-row">
                         <div class="col-auto my-1">
                             <label class="mr-sm-2" for="transportation_type">Transportation Type</label>
@@ -76,7 +120,7 @@
                         @if($quotation->type == 'fcl')
                         <div class="row" id="for_flc">
                             <div class="col-md-5 mb-3">
-                                <label class="mr-sm-2">Number of containers</label>
+                                <label class="mr-sm-2">No. of containers</label>
                                 <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
                                     id="validationServer04" value="{{ $quotation->no_of_containers }}" readonly
                                     name="no_of_containers" required>
@@ -153,63 +197,54 @@
                         </div>
                     </div>
                     @elseif($quotation->calculate_by == 'units')
-                    <div>
-                        <div class="form-row">
-                            <div class="col-md-2 mb-3">
-                                <label for="">Quantity</label>
-                                <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                    value="{{ $quotation->quantity }}" readonly name="quantity_units" required>
-                                @error('quantity_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        @foreach($quotation->pallets as $pallet)
+                        <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
+                            <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
+                            <div class="form-row">
+                                <div class="col-md-2 mb-3">
+                                    <label for="">Quantity</label>
+                                    <input type="number" class="form-control @error('quantity_units') is-invalid @enderror" disabled
+                                        id="validationServer03" placeholder="Quantity" name="quantity_units[]" value="{{ $pallet['quantity'] }}" required>
+                                    @error('quantity_units')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="">Lenght (cm)</label>
-                                <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    value="{{ $quotation->l }}" readonly name="l" required>
-                                @error('l')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <label for="">length(cm)</label>
+                                    <input type="number" class="form-control @error('l') is-invalid @enderror" disabled
+                                        id="validationServer04" placeholder="length" name="l[]" value="{{ $pallet['length'] }}" required>
+                                    @error('l')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="">Width (cm)</label>
-                                <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    value="{{ $quotation->w }}" readonly name="w" required>
-                                @error('w')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <label for="">width(cm)</label>
+                                    <input type="number" class="form-control @error('w') is-invalid @enderror" disabled
+                                        id="validationServer03" placeholder="width" name="w[]" value="{{ $pallet['width'] }}" required>
+                                    @error('w')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="">Height (cm)</label>
-                                <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    value="{{ $quotation->h }}" readonly name="h" required>
-                                @error('h')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <label for="">height(cm)</label>
+                                    <input type="number" class="form-control @error('h') is-invalid @enderror" disabled
+                                        id="validationServer03" placeholder="height" name="h[]" value="{{ $pallet['height'] }}" required>
+                                    @error('h')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="">Gross weight (KG)</label>
-                                <input type="number"
-                                    class="form-control @error('total_weight_units') is-invalid @enderror"
-                                    value="{{ $quotation->total_weight }}" readonlyWeight" name="total_weight_units"
-                                    disabled>
-                                @error('total_weight_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
+                        @endforeach
                     @endif
 
                     <hr>

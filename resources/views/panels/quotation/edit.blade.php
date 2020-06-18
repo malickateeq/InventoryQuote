@@ -35,6 +35,7 @@
                             @enderror
                         </div>
                     </div>
+                    
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationServer01">Ready to load date</label>
@@ -131,9 +132,9 @@
                             <div class="col-md-5 mb-3">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="container_size">
                                     <option>Container size</option>
-                                    <option value="20f" <?php echo ($quotation->transportation_type == '20f') ? 'selected="selected"' : ''; ?> >2 x 40'' containers</option>
-                                    <option value="40f"<?php echo ($quotation->transportation_type == '40f') ? 'selected="selected"' : ''; ?> >2 x 20'' containers</option>
-                                    <option value="40f_hc"<?php echo ($quotation->transportation_type == '40f_hc') ? 'selected="selected"' : ''; ?> >1 x 40'' containers</option>
+                                    <option value="20f" <?php echo ($quotation->container_size == '20f') ? 'selected="selected"' : ''; ?> >2 x 40'' containers</option>
+                                    <option value="40f"<?php echo ($quotation->container_size == '40f') ? 'selected="selected"' : ''; ?> >2 x 20'' containers</option>
+                                    <option value="40f_hc"<?php echo ($quotation->container_size == '40f_hc') ? 'selected="selected"' : ''; ?> >1 x 40'' containers</option>
                                 </select>
                             </div>
                         </div>
@@ -203,12 +204,13 @@
                         </div>
                     </div>
 
-                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
-                        <label for="" style="font-weight: bold;">Pallet#1</label>
+                    @foreach($quotation->pallets as $pallet)
+                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
+                        <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
                         <div class="form-row">
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity_units[]" required>
+                                    id="validationServer03" placeholder="Quantity" name="quantity_units[]" value="{{ $pallet['quantity'] }}" required>
                                 @error('quantity_units')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -218,7 +220,7 @@
                             <div class="col-md-2 mb-3">
                                 <!-- <label for="">Dimensions</label> -->
                                 <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    id="validationServer04" placeholder="length" name="l[]" required>
+                                    id="validationServer04" placeholder="length" name="l[]" value="{{ $pallet['length'] }}" required>
                                 @error('l')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -227,7 +229,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    id="validationServer03" placeholder="width" name="w[]" required>
+                                    id="validationServer03" placeholder="width" name="w[]" value="{{ $pallet['width'] }}" required>
                                 @error('w')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -236,7 +238,7 @@
                             </div>
                             <div class="col-md-2 mb-3">
                                 <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    id="validationServer03" placeholder="height" name="h[]" required>
+                                    id="validationServer03" placeholder="height" name="h[]" value="{{ $pallet['height'] }}" required>
                                 @error('h')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -246,6 +248,7 @@
 
                         </div>
                     </div>
+                    @endforeach
 
 
                     <div class="form-row" id="dynamic_buttons">
@@ -319,9 +322,6 @@
         }
         if(calculated_by == 'units')
         {
-            var pallets = {!! json_encode($quotation->pallets) !!};
-            console.log(pallets);
-            // pallets.forEach()
             $('#dynamic_buttons').show();
             $('.dynamic-field').show();
             $(".require").prop('required', true);
@@ -439,14 +439,16 @@
     });
 
     $(function () {
-        $('input[name="date"]').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                minYear: parseInt(moment().format('YYYY'), 10),
-                autoApply: true,
-                maxYear: 2050
+        $('input[name="ready_to_load_date"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: parseInt(moment().format('YYYY'), 10),
+            autoApply: true,
+            maxYear: 2050,
+            locale: {
+                format: 'D-M-YYYY'
             }
-        );
+        });
     });
 
 </script>

@@ -33,7 +33,7 @@
                         <button type="submit" class="sign-form_content-main-btn">Sign in</button>
                     </form>
                     <div class="sign-form_content-reg-part">
-                        <p>Don't have a SeaRates account yet?</p><a href="{{ route('register') }}">Sign Up</a>
+                        <p>Don't have a LogistiQuote account yet?</p><a href="{{ route('register') }}">Sign Up</a>
                     </div>
                     <!-- <div class="sign-form_content-addtnl-sign ">
                         <p class="sign-form_content-addtnl-sign_title ">Or sign in with</p>
@@ -42,14 +42,14 @@
                                 class="sign-form_content-addtnl-sign_social-net-btn">
                                 <div class="sign-form_content-addtnl-sign_social-net-btn-icon-part ">
                                     <img
-                                        src="https://www.searates.com/design/images/apps/login/icon_google.png"
+                                        src="https://www.LogistiQuote.com/design/images/apps/login/icon_google.png"
                                         alt="google logo icon"></div>
                                 <div class="sign-form_content-addtnl-sign_social-net-btn-text-part ">
                                     <p>Google</p>
                                 </div>
                             </a><a class="sign-form_content-addtnl-sign_social-net-btn">
                                 <div class="sign-form_content-addtnl-sign_social-net-btn-icon-part "><img
-                                        src="https://www.searates.com/design/images/apps/login/icon_facebook.png"
+                                        src="https://www.LogistiQuote.com/design/images/apps/login/icon_facebook.png"
                                         alt="facebook logo icon"></div>
                                 <div class="sign-form_content-addtnl-sign_social-net-btn-text-part ">
                                     <p>Facebook</p>

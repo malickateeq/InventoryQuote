@@ -479,7 +479,7 @@
                                         href="blog/post/5-important-tips-for-a-quick-and-hassle-free-shipping-experience-393.html"><span
                                             class="title">5 Important tips for a quick and hassle-free shipping
                                             experience</span></a></li>
-                                <li><a href="blog/post/searates-updates-week-23-2020.html"><span class="title">SeaRates
+                                <li><a href="blog/post/LogistiQuote-updates-week-23-2020.html"><span class="title">LogistiQuote
                                             Updates - Week 23, 2020</span></a></li>
                                 <li><a
                                         href="blog/post/5-tips-for-improving-freight-forwarding-business-efficiency.html"><span

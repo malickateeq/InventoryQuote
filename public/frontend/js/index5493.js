@@ -194,7 +194,7 @@ $(document).ready(function(){
 
 
     setTimeout(function(){
-        $('.about-searates .img-block').css('opacity', 1);
+        $('.about-LogistiQuote .img-block').css('opacity', 1);
     }, 1000);
 
     $('.benefits .learn-more').on('click', function(){
@@ -216,7 +216,7 @@ $(document).ready(function(){
             source: function (request, response) {
                 $.ajax({
                     method: 'POST',
-                    url: 'https://sirius.searates.com/port/etng-search',
+                    url: 'https://sirius.LogistiQuote.com/port/etng-search',
                     data: {search: request.term},
                     dataType: "json",
 

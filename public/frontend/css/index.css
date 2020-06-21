@@ -7348,14 +7348,14 @@ body .main-content {
     border-radius: 3px
 }
 
-.wrapper-home-pages .about-searates .wrapper-container {
+.wrapper-home-pages .about-LogistiQuote .wrapper-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 5.625rem .9375rem 0 .9375rem
 }
 
-.wrapper-home-pages .about-searates .section-block {
+.wrapper-home-pages .about-LogistiQuote .section-block {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -7364,27 +7364,27 @@ body .main-content {
     align-items: center
 }
 
-.wrapper-home-pages .about-searates .section-block .content {
+.wrapper-home-pages .about-LogistiQuote .section-block .content {
     -ms-flex-preferred-size: 40%;
     flex-basis: 40%;
     margin-right: 50px;
     min-width: 40%
 }
 
-.wrapper-home-pages .about-searates .section-block .content h3 {
+.wrapper-home-pages .about-LogistiQuote .section-block .content h3 {
     font-size: 2rem;
     font-weight: 600;
     color: #ffad33;
     text-transform: uppercase
 }
 
-.wrapper-home-pages .about-searates .section-block .content h3 span {
+.wrapper-home-pages .about-LogistiQuote .section-block .content h3 span {
     font-size: 2rem;
     color: #15354e;
     font-weight: 600
 }
 
-.wrapper-home-pages .about-searates .section-block .content .button-block {
+.wrapper-home-pages .about-LogistiQuote .section-block .content .button-block {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -7392,7 +7392,7 @@ body .main-content {
     flex-wrap: wrap
 }
 
-.wrapper-home-pages .about-searates .section-block .content .button-block a {
+.wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a {
     height: 60px;
     font-size: 1rem;
     border-radius: .1875rem;
@@ -7413,7 +7413,7 @@ body .main-content {
     margin-bottom: .875rem
 }
 
-.wrapper-home-pages .about-searates .section-block .content .button-block a.link {
+.wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a.link {
     color: #fff;
     background-color: #ffad33;
     margin-right: .875rem;
@@ -7424,7 +7424,7 @@ body .main-content {
 }
 
 @media (max-width:1099px) {
-    .wrapper-home-pages .about-searates .section-block .content .button-block a.link {
+    .wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a.link {
         width: 100%;
         margin-right: 0;
         max-width: 100%;
@@ -7432,7 +7432,7 @@ body .main-content {
     }
 }
 
-.wrapper-home-pages .about-searates .section-block .content .button-block a.link-transparent {
+.wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a.link-transparent {
     max-width: 300px;
     background-color: rgba(0, 120, 225, .1);
     color: #ffad33;
@@ -7441,31 +7441,31 @@ body .main-content {
 }
 
 @media (max-width:1099px) {
-    .wrapper-home-pages .about-searates .section-block .content .button-block a.link-transparent {
+    .wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a.link-transparent {
         max-width: 100%;
         width: 100%
     }
 }
 
-.wrapper-home-pages .about-searates .section-block .content .button-block a:hover {
+.wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a:hover {
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px)
 }
 
 @media (max-width:1099px) {
-    .wrapper-home-pages .about-searates .section-block .content .button-block a {
+    .wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a {
         max-width: 100%
     }
 }
 
 @media (max-width:1099px) {
-    .wrapper-home-pages .about-searates .section-block .content .button-block {
+    .wrapper-home-pages .about-LogistiQuote .section-block .content .button-block {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap
     }
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -7483,30 +7483,30 @@ body .main-content {
     transition: all .5s ease
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block svg {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block svg {
     isolation: isolate
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .bulk-light {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .bulk-light {
     -webkit-animation: bulkAnimation 1s ease infinite;
     animation: bulkAnimation 1s ease infinite
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .route {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .route {
     position: absolute;
     width: 86%;
     top: 14%;
     left: 3%
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .radar {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .radar {
     -webkit-animation: bulkAnimation 4s ease infinite;
     animation: bulkAnimation 4s ease infinite;
     -webkit-animation-delay: 2s;
     animation-delay: 2s
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .radar:first-child {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .radar:first-child {
     -webkit-animation: bulkAnimation 4s ease infinite;
     animation: bulkAnimation 4s ease infinite;
     -webkit-animation-delay: 1s;
@@ -7561,12 +7561,12 @@ body .main-content {
     }
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .route-bulk {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .route-bulk {
     position: relative;
     opacity: 0
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .route-bulk:before {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .route-bulk:before {
     content: '';
     position: absolute;
     width: 30px;
@@ -7574,7 +7574,7 @@ body .main-content {
     background: #000
 }
 
-.wrapper-home-pages .about-searates .section-block .img-block .map-img {
+.wrapper-home-pages .about-LogistiQuote .section-block .img-block .map-img {
     position: relative;
     left: 30px;
     bottom: 15px;
@@ -7635,20 +7635,20 @@ body .main-content {
 }
 
 @media screen and (max-width:991px) {
-    .wrapper-home-pages .about-searates .section-block {
+    .wrapper-home-pages .about-LogistiQuote .section-block {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column
     }
 
-    .wrapper-home-pages .about-searates .section-block .content {
+    .wrapper-home-pages .about-LogistiQuote .section-block .content {
         margin-right: 0;
         width: 100%;
         margin-bottom: 50px
     }
 
-    .wrapper-home-pages .about-searates .section-block .img-block {
+    .wrapper-home-pages .about-LogistiQuote .section-block .img-block {
         display: none
     }
 
@@ -7677,7 +7677,7 @@ body .main-content {
         margin-left: 0
     }
 
-    .wrapper-home-pages .about-searates .section-block .content h3,
+    .wrapper-home-pages .about-LogistiQuote .section-block .content h3,
     .wrapper-home-pages .wrapper-container-tracking .wrapper-container .section-block-video .content h3,
     .wrapper-home-pages .wrapper-documents-solutions .wrapper-container .section-block-video .content h3,
     .wrapper-home-pages .wrapper-load-calculator .wrapper-container .section-block-video .content h3,
@@ -7720,7 +7720,7 @@ body .main-content {
         margin-bottom: 100px
     }
 
-    .wrapper-home-pages .about-searates .section-block .content .button-block a.link,
+    .wrapper-home-pages .about-LogistiQuote .section-block .content .button-block a.link,
     .wrapper-home-pages .wrapper-benefits-block .benefits-wrapper .benefits-bubbles .benefits .item .content h3,
     .wrapper-home-pages .wrapper-freight-marketplace .wrapper-container .section-block-columns .content .list .item h4,
     .wrapper-home-pages .wrapper-freight-marketplace p,
@@ -7731,8 +7731,8 @@ body .main-content {
         font-size: 16px
     }
 
-    .wrapper-home-pages .about-searates .section-block .content h3,
-    .wrapper-home-pages .about-searates .section-block .content h3 span,
+    .wrapper-home-pages .about-LogistiQuote .section-block .content h3,
+    .wrapper-home-pages .about-LogistiQuote .section-block .content h3 span,
     .wrapper-home-pages .wrapper-benefits-block .benefits-wrapper .benefits-bubbles h2,
     .wrapper-home-pages .wrapper-container-tracking .wrapper-container .section-block-video .content h3,
     .wrapper-home-pages .wrapper-documents-solutions .wrapper-container .section-block-video .content h3,
@@ -7743,7 +7743,7 @@ body .main-content {
         font-size: 22px
     }
 
-    .wrapper-home-pages .about-searates .section-block .content p,
+    .wrapper-home-pages .about-LogistiQuote .section-block .content p,
     .wrapper-home-pages .wrapper-benefits-block .benefits-wrapper .benefits-bubbles .benefits .item .content p,
     .wrapper-home-pages .wrapper-freight-marketplace .wrapper-container .section-block-columns .content .list .item p,
     .wrapper-home-pages .wrapper-vo .wrapper-container .section-block .content p {

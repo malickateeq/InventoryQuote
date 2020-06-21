@@ -308,7 +308,7 @@ footer {
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
-    background-image: url("https://www.searates.com/design/images/apps/login/icon_down.svg");
+    background-image: url("https://www.LogistiQuote.com/design/images/apps/login/icon_down.svg");
     background-repeat: no-repeat;
     background-position-x: calc(100% - 12px);
     background-position-y: calc(100% - 46%);
@@ -329,7 +329,7 @@ footer {
 
 .sign-form_content-input-part .errorInputMsg:before {
     content: "";
-    background-image: url(https://www.searates.com/design/images/apps/login/icon_error.svg);
+    background-image: url(https://www.LogistiQuote.com/design/images/apps/login/icon_error.svg);
     display: inline-block;
     background-repeat: no-repeat;
     position: absolute;
@@ -534,7 +534,7 @@ footer {
 }
 
 .sign-form_content-payment-card {
-    background-image: url("https://www.searates.com/design/images/apps/login/img_btn-pay-by-card.png")
+    background-image: url("https://www.LogistiQuote.com/design/images/apps/login/img_btn-pay-by-card.png")
 }
 
 .sign-form_content-reg-part {

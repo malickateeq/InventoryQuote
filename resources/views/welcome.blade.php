@@ -6,8 +6,8 @@
 <head>
     <meta name="referrer" content="always">
     <meta charset="utf-8">
-    <meta name="Author" content="SeaRates LLC">
-    <meta property="og:site_name" content="SeaRates">
+    <meta name="Author" content="LogistiQuote LLC">
+    <meta property="og:site_name" content="LogistiQuote">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="design/images/favicon/favicon.ico" type="image/x-icon">
@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="design/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="design/images/favicon/favicon-16x16.png') }}">
     <link rel="mask-icon" href="design/images/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
-    <meta name="application-name" content="SeaRates.com" />
+    <meta name="application-name" content="LogistiQuote.com" />
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:image" content="design/images/apple-touch-icon-ipad-retina-152x152.png') }}">
@@ -218,7 +218,7 @@
                                                 <li> <a class="linkContainer" href="freight/index.html"> <i class="fad fa-stream"></i> Online Freight Marketplace </a> <a class="linkContainer" href="shipping/request/index.html"> <i class="fad fa-box-usd"></i> Request a Quote </a> </li>
                                             </ul>
                                             <ul>
-                                                <li> <a class="linkContainer" href="https://www.searates.com/shipping/list/"> <i class="fad fa-poll-h"></i> All Shipping Leads </a> </li>
+                                                <li> <a class="linkContainer" href="https://www.LogistiQuote.com/shipping/list/"> <i class="fad fa-poll-h"></i> All Shipping Leads </a> </li>
                                                 <li> <a class="linkContainer" href="container/tracking/index.html"> <i class="fad fa-map-marker-alt"></i> Track a shipment </a> </li>
                                             </ul>
                                         </div>
@@ -242,7 +242,7 @@
                                     </div> <a class="collapsible" href="#">REFERENCES</a>
                                     <div class="collapse">
                                         <ul class="linkGroup linkList developersGroup">
-                                            <li> <a class="linkContainer" href="https://www.searates.com/maritime/">
+                                            <li> <a class="linkContainer" href="https://www.LogistiQuote.com/maritime/">
                                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-globe"></i> World Sea Ports </h3>
                                                 </a> </li>
                                             <li> <a class="linkContainer" href="container/shippingport/index.html">
@@ -300,7 +300,7 @@
                                                 </a>
                                                 <ul class="blogPosts">
                                                     <li><a href="blog/post/5-important-tips-for-a-quick-and-hassle-free-shipping-experience-393.html"><span class="title">5 Important tips for a quick and hassle-free shipping experience</span></a></li>
-                                                    <li><a href="blog/post/searates-updates-week-23-2020.html"><span class="title">SeaRates Updates - Week 23, 2020</span></a></li>
+                                                    <li><a href="blog/post/LogistiQuote-updates-week-23-2020.html"><span class="title">LogistiQuote Updates - Week 23, 2020</span></a></li>
                                                     <li><a href="blog/post/5-tips-for-improving-freight-forwarding-business-efficiency.html"><span class="title">5 Tips for Improving Freight Forwarding Business Efficiency </span></a></li>
                                                 </ul>
                                             </div>
@@ -510,7 +510,7 @@
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-stream"></i> Online Freight Marketplace </h3> <span class="linkSub">Compare freight quotes and freight services from.</span>
                                 </a> <a class="linkContainer withIcon item-documentation" href="shipping/request/index.html">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-box-usd"></i> Request a Quote </h3>
-                                </a> <a class="linkContainer withIcon item-documentation" href="https://www.searates.com/shipping/list/">
+                                </a> <a class="linkContainer withIcon item-documentation" href="https://www.LogistiQuote.com/shipping/list/">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-poll-h"></i> All Shipping Leads </h3>
                                 </a> <a class="linkContainer withIcon item-documentation" href="container/tracking/index.html">
                                     <h3 class="linkTitle linkIcon"> <i class="fad fa-map-marker-alt"></i> Track a shipment </h3>
@@ -566,7 +566,7 @@
                                 </div>
                             </div>
                             <ul class="linkGroup linkList developersGroup">
-                                <li> <a class="linkContainer item-apiReference" href="https://www.searates.com/maritime/">
+                                <li> <a class="linkContainer item-apiReference" href="https://www.LogistiQuote.com/maritime/">
                                         <h3 class="linkTitle linkIcon"> <i class="fad fa-globe"></i> World Sea Ports </h3>
                                     </a> </li>
                                 <li> <a class="linkContainer item-apiStatus" href="container/shippingport/index.html">
@@ -597,7 +597,7 @@
                                 </a>
                                 <ul class="blogPosts">
                                     <li><a href="blog/post/5-important-tips-for-a-quick-and-hassle-free-shipping-experience-393.html"><span class="title">5 Important tips for a quick and hassle-free shipping experience</span></a></li>
-                                    <li><a href="blog/post/searates-updates-week-23-2020.html"><span class="title">SeaRates Updates - Week 23, 2020</span></a></li>
+                                    <li><a href="blog/post/LogistiQuote-updates-week-23-2020.html"><span class="title">LogistiQuote Updates - Week 23, 2020</span></a></li>
                                     <li><a href="blog/post/5-tips-for-improving-freight-forwarding-business-efficiency.html"><span class="title">5 Tips for Improving Freight Forwarding Business Efficiency </span></a></li>
                                 </ul>
                             </div>
@@ -614,9 +614,9 @@
             {
                 "@context": "http://www.schema.org",
                 "@type": "Corporation",
-                "name": "SeaRates LP",
-                "url": "https://www.searates.com/",
-                "logo": "https://www.searates.com/design/images/logonew.png') }}",
+                "name": "LogistiQuote LP",
+                "url": "https://www.LogistiQuote.com/",
+                "logo": "https://www.LogistiQuote.com/design/images/logonew.png') }}",
                 "description": "Digital Broker & Freight Forwarder",
                 "location": {
                     "@type": "Place",
@@ -630,7 +630,7 @@
                         "addressCountry": "Malta"
                     }
                 },
-                "email": "sales@searates.com",
+                "email": "sales@LogistiQuote.com",
                 "contactPoint": [{
                     "@type": "ContactPoint",
                     "telephone": "+44 207 048 64 38",
@@ -752,7 +752,7 @@
                                     <div class="wrapper-filter-block">
                                         <div class="filter-block">
                                             <div class="wrapper-form">
-                                                <form class="filter-shipping active" method="GET" action="https://www.searates.com/freight/" autocomplete="off"> <input type="hidden" name="weight" value="100" id="weight_cargo">
+                                                <form class="filter-shipping active" method="GET" action="https://www.LogistiQuote.com/freight/" autocomplete="off"> <input type="hidden" name="weight" value="100" id="weight_cargo">
                                                     <div class="wrapper-box-shadow">
                                                         <div class="route-item"> <span class="top-title">TRANSPORTATION BY</span>
                                                             <ul class="route-list">
@@ -794,7 +794,7 @@
                                                 </form>
                                             </div>
                                             <div class="wrapper-form">
-                                                <form class="filter-tracking" method="GET" action="https://www.searates.com/container/tracking/">
+                                                <form class="filter-tracking" method="GET" action="https://www.LogistiQuote.com/container/tracking/">
                                                     <div class="wrapper-box-shadow">
                                                         <div class="container-number"> <span class="top-title">TRACKING NUMBER</span> <input pattern="[A-Za-z0-9\-]{5,}" title="Container number or code" type="text" name="container" placeholder="Container №" autocomplete="off" required> </div>
                                                         <div class="select-wrapper"> <span class="top-title">SELECT SEALINE</span> <select name="sealine" id="select-two" required>
@@ -838,25 +838,25 @@
                                 <div class="row">
                                     <div class="col-md-3 col-sm-6 col-12">
                                         <div class="item"> <a href="reference/load-calc-about/index.html" title="Load Calculator">
-                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/searates-load-calculatorc4ca.svg?1') }}" alt="Load Calculator"> </div>
+                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/LogistiQuote-load-calculatorc4ca.svg?1') }}" alt="Load Calculator"> </div>
                                                 <p>Load Calculator</p>
                                             </a> </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-12">
                                         <div class="item"> <a href="services/logistics-explorer/index.html" title="Logistics Explorer">
-                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/searates-logisticsc4ca.svg?1') }}" alt="Logistics Explorer"> <span class="new-info"> <span class="bg-1"></span> <span class="bg-2"></span> <span class="text">NEW</span> </span> </div>
+                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/LogistiQuote-logisticsc4ca.svg?1') }}" alt="Logistics Explorer"> <span class="new-info"> <span class="bg-1"></span> <span class="bg-2"></span> <span class="text">NEW</span> </span> </div>
                                                 <p>Logistics Explorer</p>
                                             </a> </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-12">
                                         <div class="item"> <a href="services/learn-more/index.html" title="Container Tracking">
-                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/searates-trackingc4ca.svg?1') }}" alt="Container Tracking"> </div>
+                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/LogistiQuote-trackingc4ca.svg?1') }}" alt="Container Tracking"> </div>
                                                 <p>Container Tracking</p>
                                             </a> </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-12">
                                         <div class="item"> <a href="services/schedules/index.html" title="Ship schedules">
-                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/searates-schedulec4ca.svg?1') }}" alt="Ship schedules"> </div>
+                                                <div class="ico"> <img src="{{ asset('public/frontend/images/index/mugs/LogistiQuote-schedulec4ca.svg?1') }}" alt="Ship schedules"> </div>
                                                 <p>Ship schedules</p>
                                             </a> </div>
                                     </div>
@@ -866,12 +866,12 @@
                     </div>
                 </div>
             </section>
-            <section class="about-searates">
+            <section class="about-LogistiQuote">
                 <div class="wrapper-container">
                     <div class="section-block">
                         <div class="content">
-                            <h3>SHIP WITH <span>SEARATES</span></h3>
-                            <p>SeaRates is the largest tariff search engine in the world for international shipping. We compare all available cargo delivery options at your request and arrange their transportation and insurance. We provide transparency and control, the cheapest price and the fastest transit time.</p>
+                            <h3>SHIP WITH <span>LogistiQuote</span></h3>
+                            <p>LogistiQuote is the largest tariff search engine in the world for international shipping. We compare all available cargo delivery options at your request and arrange their transportation and insurance. We provide transparency and control, the cheapest price and the fastest transit time.</p>
                             <div class="button-block"> <a href="shipping/request/index.html" class="link">Request a Quote</a> </div>
                         </div>
                         <div class="img-block"> <img class="map-img" src="design/images/index/mapc4ca.svg?1') }}" alt=""> <svg class="route" xmlns="http://www.w3.org/2000/svg" width="659" height="359" viewBox="0 0 659 159" fill="none">
@@ -1038,7 +1038,7 @@
                                         <div class="requests-box-bottom">
                                             <div class="block__roll">
                                                 <ul class="leadsCycleContainer_exchange">
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/vladivostok_primorsky_krai_russia_ru/rotterdam_netherlands_nl_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/vladivostok_primorsky_krai_russia_ru/rotterdam_netherlands_nl_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>5 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1047,7 +1047,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/mumbai_maharashtra_india_in/dammam_saudi_arabia_sa_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/mumbai_maharashtra_india_in/dammam_saudi_arabia_sa_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>7 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1056,7 +1056,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/mumbai_maharashtra_india_in/jeddah_saudi_arabia_sa_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/mumbai_maharashtra_india_in/jeddah_saudi_arabia_sa_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>8 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1065,7 +1065,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/ningbo_zhejiang_china_cn/mumbai_maharashtra_india_in_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/ningbo_zhejiang_china_cn/mumbai_maharashtra_india_in_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>10 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1074,7 +1074,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/kathmandu_np/tucson_us_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/kathmandu_np/tucson_us_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>12 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1083,7 +1083,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/reykjavk_is/philadelphia_us_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/reykjavk_is/philadelphia_us_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>12 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1092,7 +1092,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/yokohama_kanagawa_prefecture_japan_jp/krong_preah_sihanouk_kh_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/yokohama_kanagawa_prefecture_japan_jp/krong_preah_sihanouk_kh_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>14 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1101,7 +1101,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/athens_gr/beirut_lb_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/athens_gr/beirut_lb_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1110,7 +1110,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/gavardo_bs_it/dania_beach_us_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/gavardo_bs_it/dania_beach_us_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1119,7 +1119,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/sidney_us/sh_khalifa_bin_salman_avenue_bh_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/sidney_us/sh_khalifa_bin_salman_avenue_bh_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1131,7 +1131,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="buttons"> <a href="https://www.searates.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
+                                        <div class="buttons"> <a href="https://www.LogistiQuote.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
                                     </div>
                                     <div class="requests-box">
                                         <div class="requests-box-top">
@@ -1144,7 +1144,7 @@
                                         <div class="requests-box-bottom">
                                             <div class="block__roll">
                                                 <ul class="leadsCycleContainer_exchange">
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/buenos_aires_port_ar/antofagasta_port_cl_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/buenos_aires_port_ar/antofagasta_port_cl_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>2 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1153,7 +1153,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/nhava_sheva_navi_mumbai_maharashtra_400702_india_in/chittagong_bd_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/nhava_sheva_navi_mumbai_maharashtra_400702_india_in/chittagong_bd_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>3 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1162,7 +1162,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/ningbo_port_cn/manzanillo_port_mx_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/ningbo_port_cn/manzanillo_port_mx_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>3 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1171,7 +1171,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/54033_carrara_province_of_massa_and_carrara_italy_it/hamad_international_airport_doha_qatar_qa_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/54033_carrara_province_of_massa_and_carrara_italy_it/hamad_international_airport_doha_qatar_qa_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>3 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1180,7 +1180,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/tallinn_estonia_ee/aqaba_jo_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/tallinn_estonia_ee/aqaba_jo_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>4 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1189,7 +1189,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/davao_port_ph/vancouver_port_ca_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/davao_port_ph/vancouver_port_ca_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>6 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1198,7 +1198,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/mangalore_port_in/beirut_port_lb_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/mangalore_port_in/beirut_port_lb_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>7 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1207,7 +1207,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/mumbai_port_in/beirut_port_lb_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/mumbai_port_in/beirut_port_lb_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>8 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1216,7 +1216,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/babruysk_by/damietta_port_eg_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/babruysk_by/damietta_port_eg_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>8 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1225,7 +1225,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/shanghai_port_cn/felixstowe_port_gb_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/shanghai_port_cn/felixstowe_port_gb_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it"><span class='last2'>8 hours</span></span></div>
                                                                 <div class="media-body">
@@ -1237,7 +1237,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="buttons"> <a href="https://www.searates.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
+                                        <div class="buttons"> <a href="https://www.LogistiQuote.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
                                     </div>
                                     <div class="requests-box">
                                         <div class="requests-box-top">
@@ -1250,7 +1250,7 @@
                                         <div class="requests-box-bottom">
                                             <div class="block__roll">
                                                 <ul class="leadsCycleContainer_exchange">
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/mumbai_maharashtra_india_in/bandar_abbas_hormozgan_province_iran_ir_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/mumbai_maharashtra_india_in/bandar_abbas_hormozgan_province_iran_ir_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1259,7 +1259,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/china_cn/doha_qa_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/china_cn/doha_qa_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1268,7 +1268,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/delhiindia_in/paita_district_peru_pe_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/delhiindia_in/paita_district_peru_pe_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">2 days</span></div>
                                                                 <div class="media-body">
@@ -1277,7 +1277,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/jeddah_saudi_arabia_sa/geneva_ch_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/jeddah_saudi_arabia_sa/geneva_ch_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">3 days</span></div>
                                                                 <div class="media-body">
@@ -1286,7 +1286,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/norway_no/nigeria_ng_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/norway_no/nigeria_ng_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">3 days</span></div>
                                                                 <div class="media-body">
@@ -1295,7 +1295,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/vietnam_vn/philippines_ph_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/vietnam_vn/philippines_ph_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">4 days</span></div>
                                                                 <div class="media-body">
@@ -1304,7 +1304,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/luang_prabang_laos_la/qingdao_cn_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/luang_prabang_laos_la/qingdao_cn_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">5 days</span></div>
                                                                 <div class="media-body">
@@ -1313,7 +1313,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/luang_prabang_laos_la/tianjin_china_cn_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/luang_prabang_laos_la/tianjin_china_cn_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">5 days</span></div>
                                                                 <div class="media-body">
@@ -1322,7 +1322,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/cape_town_za/miami_fl_usa_us_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/cape_town_za/miami_fl_usa_us_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">5 days</span></div>
                                                                 <div class="media-body">
@@ -1331,7 +1331,7 @@
                                                                 </div>
                                                             </div>
                                                         </a></li>
-                                                    <li><a class="msidebar" target="_blank" href="https://www.searates.com/shipping/list/guaymas_mx/valencia_es_1">
+                                                    <li><a class="msidebar" target="_blank" href="https://www.LogistiQuote.com/shipping/list/guaymas_mx/valencia_es_1">
                                                             <div class="media">
                                                                 <div class="media-left media-middle"><span class="date-it">5 days</span></div>
                                                                 <div class="media-body">
@@ -1343,7 +1343,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="buttons"> <a href="https://www.searates.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
+                                        <div class="buttons"> <a href="https://www.LogistiQuote.com/shipping/list/" class="btn">All shipping leads <i class="fal fa-angle-right"></i></a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -1472,20 +1472,20 @@
             <section class="wrapper-benefits-block">
                 <div class="benefits-wrapper">
                     <div class="benefits-bubbles">
-                        <h2>Why <span>SeaRates</span></h2>
+                        <h2>Why <span>LogistiQuote</span></h2>
                         <div class="benefits">
                             <div class="item">
                                 <div class="ico"> <img src="{{ asset('public/frontend/images/index/icons/ben-ico1.svg') }}" alt=""> </div>
                                 <div class="content">
                                     <h3>The greatest portfolio of shipping services</h3>
-                                    <p>Would you like to ship cargo by ship? FCL or LCL? Bulk or Break Bulk? There is everything you need for shipping on SeaRates.com. We have gathered the shipping services and put them all in one place to facilitate your search. Instantly compare ocean and trucking freight quotes from the most popular logistics providers. Book everything on one site!</p>
+                                    <p>Would you like to ship cargo by ship? FCL or LCL? Bulk or Break Bulk? There is everything you need for shipping on LogistiQuote.com. We have gathered the shipping services and put them all in one place to facilitate your search. Instantly compare ocean and trucking freight quotes from the most popular logistics providers. Book everything on one site!</p>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="ico"> <img src="{{ asset('public/frontend/images/index/icons/ben-ico3.svg') }}" alt=""> </div>
                                 <div class="content">
                                     <h3>We help you find the cheapest rate</h3>
-                                    <p>Affordable pricing of shipping services is what we constantly strive for. At SeaRates.com you will find cheap rates to any country, from world's top Freight Forwarders, allowing you to save your time and money. Why do you need to spend a lot of resources and energy on negotiations to get the best shipping rate? Find and book them online! It is much more convenient and advantageous.</p>
+                                    <p>Affordable pricing of shipping services is what we constantly strive for. At LogistiQuote.com you will find cheap rates to any country, from world's top Freight Forwarders, allowing you to save your time and money. Why do you need to spend a lot of resources and energy on negotiations to get the best shipping rate? Find and book them online! It is much more convenient and advantageous.</p>
                                 </div>
                             </div>
                             <div class="item">
@@ -1535,7 +1535,7 @@
                                 <li> <a href="tos/index.html">Terms of service</a> </li>
                                 <li> <a href="blog/index.html">Blog</a> </li>
                                 <li> <a href="contact/careers/index.html">Careers</a> </li>
-                                <li> <a href="about/searates-copyright/index.html">Copyright</a> </li>
+                                <li> <a href="about/LogistiQuote-copyright/index.html">Copyright</a> </li>
                             </ul>
                         </div>
                         <div class="footer-nav-list">
@@ -1558,15 +1558,15 @@
                         <div class="footer-nav-list">
                             <ul class="list-unstyled footer-nav">
                                 <li><b>Contact</b></li>
-                                <li> <a href="mailto:sales@searates.com">sales@searates.com</a> </li>
+                                <li> <a href="mailto:sales@LogistiQuote.com">sales@LogistiQuote.com</a> </li>
                                 <li> <a style="letter-spacing: 1px;" href="tel:+18886600703">+1 888 66 00 703</a> </li>
                                 <li class="socia-left">
                                     <ul class="social-icon-left">
-                                        <li><a href="https://www.facebook.com/searates/" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="https://twitter.com/wwwSEARATEScom" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://www.facebook.com/LogistiQuote/" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/wwwLogistiQuotecom" target="_blank"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="https://www.youtube.com/channel/UC-riN9Wesr6jbxi1DUTjFJQ" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="https://www.instagram.com/searatesltd/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="https://t.me/searatesfeed" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                        <li><a href="https://www.instagram.com/LogistiQuoteltd/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="https://t.me/LogistiQuotefeed" target="_blank"><i class="fab fa-telegram"></i></a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1574,15 +1574,15 @@
                     </div>
                 </div>
                 <div class="col-md-12 footer-text" style="margin-top: 20px;">
-                    <p>2020 © SeaRates LLC</p>
-                    <p>Founded in August of 2005, SeaRates is a trusted community marketplace for people to send goods around the world. SeaRates.com helps to arrange the international cargo delivery from 1m³ or 50 kg till shiploads. Thanks to world-class customer service and a growing community of cargo agents, SeaRates.com is the easiest way for people to ship their goods overseas, or to offer free space in the container, truck or vessel to millions of consignors.</p>
+                    <p>2020 © LogistiQuote LLC</p>
+                    <p>Founded in August of 2005, LogistiQuote is a trusted community marketplace for people to send goods around the world. LogistiQuote.com helps to arrange the international cargo delivery from 1m³ or 50 kg till shiploads. Thanks to world-class customer service and a growing community of cargo agents, LogistiQuote.com is the easiest way for people to ship their goods overseas, or to offer free space in the container, truck or vessel to millions of consignors.</p>
                 </div>
             </div>
         </div>
     </footer>
     <div class="modal" id="langModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="wrapper-lang-modal">
-            <div class="header-lang-modal"> <img src="{{ asset('public/frontend/images/searates-logo8f14.svg?7" alt="logo SeaRates"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true"><i class="far fa-times"></i></span> </button> </div>
+            <div class="header-lang-modal"> <img src="{{ asset('public/frontend/images/LogistiQuote-logo8f14.svg?7" alt="logo LogistiQuote"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true"><i class="far fa-times"></i></span> </button> </div>
             <div class="content-lang-modal">
                 <h4 class="title-lang-modal">Choose language:</h4>
                 <div class="body-lang-modal">
@@ -1625,7 +1625,7 @@
                     var input = $(this.element).val();
                     $.ajax({
                         type: 'POST',
-                        url: 'https://www.searates.com/search/google-autocomplete',
+                        url: 'https://www.LogistiQuote.com/search/google-autocomplete',
                         dataType: 'json',
                         data: {
                             input: input
@@ -1648,7 +1648,7 @@
                     var oldThis = this;
                     $.ajax({
                         type: 'POST',
-                        url: 'https://www.searates.com/search/google-geocode',
+                        url: 'https://www.LogistiQuote.com/search/google-geocode',
                         dataType: 'json',
                         data: {
                             input: ui.item.place_id,
@@ -1918,6 +1918,6 @@
         }); /*]]>*/
     </script>
 </body>
-<!-- Mirrored from www.searates.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Jun 2020 18:31:56 GMT -->
+<!-- Mirrored from www.LogistiQuote.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Jun 2020 18:31:56 GMT -->
 
 </html>

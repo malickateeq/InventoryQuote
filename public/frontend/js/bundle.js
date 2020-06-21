@@ -25839,7 +25839,7 @@
                 return function (n, t) {
                     if (!(n instanceof t)) throw new TypeError("Cannot call a class as a function")
                 }(this, i), bl(pl(t = r.call(this, n)), "checkDomain", (function (n) {
-                    n.includes("searates") ? t.setState({
+                    n.includes("LogistiQuote") ? t.setState({
                         shipmentList: [{
                             icon: "fad fa-boxes",
                             type: "lcl",
@@ -26097,7 +26097,7 @@
                 ! function (n) {
                     if (null == n) throw new TypeError("Cannot destructure undefined")
                 }(n);
-                var t = wl(Object(r.useState)("https://www.searates.com/design/images/incoterms/new-incoterms/truck_standard_a.svg"), 2),
+                var t = wl(Object(r.useState)("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/truck_standard_a.svg"), 2),
                     e = t[0],
                     a = t[1],
                     i = function (n) {
@@ -26110,7 +26110,7 @@
                 }, o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/truck_standard_a.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/truck_standard_a.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26119,7 +26119,7 @@
                 }), o.a.createElement("span", null), "Pick up from location (A) and deliver to Port"), o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/truck_standard_b.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/truck_standard_b.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26127,7 +26127,7 @@
                 }), o.a.createElement("span", null), "Pick up from Port and deliver to Destination (B)"), o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/local_fees.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/local_fees.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26135,7 +26135,7 @@
                 }), o.a.createElement("span", null), "Port fee and charges"), o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/door_to_port.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/door_to_port.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26143,7 +26143,7 @@
                 }), o.a.createElement("span", null), "Door to Port (Destination)"), o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/port_to_door.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/port_to_door.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26151,7 +26151,7 @@
                 }), o.a.createElement("span", null), "Port (Origin) to Door"), o.a.createElement("label", {
                     className: "custom-radio",
                     onClick: function () {
-                        return i("https://www.searates.com/design/images/incoterms/new-incoterms/port_to_port.svg")
+                        return i("https://www.LogistiQuote.com/design/images/incoterms/new-incoterms/port_to_port.svg")
                     }
                 }, o.a.createElement("input", {
                     type: "radio",
@@ -26169,7 +26169,7 @@
                 }, o.a.createElement("div", {
                     className: "icon"
                 }, o.a.createElement("img", {
-                    src: "https://www.searates.com/design/images/apps/request_a_quote/request_success.svg",
+                    src: "https://www.LogistiQuote.com/design/images/apps/request_a_quote/request_success.svg",
                     alt: ""
                 })), o.a.createElement("p", {
                     className: "title"
@@ -27372,7 +27372,7 @@
                             Object.keys(o).map((function (n, t) {
                                 var e = o[n];
                                 i.append(n, e)
-                            })), void 0 !== Ul && Ul(), _l.a.post("https://www.searates.com/search/google-autocomplete", i, {
+                            })), void 0 !== Ul && Ul(), _l.a.post("https://www.LogistiQuote.com/search/google-autocomplete", i, {
                                 cancelToken: new Bl((function (n) {
                                     Ul = n
                                 }))
@@ -27415,7 +27415,7 @@
                         Object.keys(l).map((function (n, t) {
                             var e = l[n];
                             s.append(n, e)
-                        })), _l.a.post("https://www.searates.com/search/google-geocode", s).then((function (a) {
+                        })), _l.a.post("https://www.LogistiQuote.com/search/google-geocode", s).then((function (a) {
                             if ("a" === e) {
                                 var r = {
                                     numcity1: o,
@@ -27769,7 +27769,7 @@
             },
             rs = o.a.createContext(ts),
             os = new be({
-                uri: "https://www.searates.com/graphql_products/"
+                uri: "https://www.LogistiQuote.com/graphql_products/"
             }),
             is = function (n) {
                 ! function (n, t) {
@@ -27812,7 +27812,7 @@
                     key: "componentDidMount",
                     value: function () {
                         var n = this;
-                        this.props.dispatch(En(2)), _l.a.get("https://www.searates.com/shipping/get-sealines").then((function (t) {
+                        this.props.dispatch(En(2)), _l.a.get("https://www.LogistiQuote.com/shipping/get-sealines").then((function (t) {
                             var e;
                             n.props.dispatch((e = t.data, function (n) {
                                 n({

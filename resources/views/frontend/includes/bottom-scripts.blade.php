@@ -13,7 +13,7 @@
                     var input = $(this.element).val();
                     $.ajax({
                         type: 'POST',
-                        url: 'https://www.searates2.com/search/google-autocomplete',
+                        url: 'https://www.LogistiQuote2.com/search/google-autocomplete',
                         dataType: 'json',
                         data: {
                             input: input
@@ -36,7 +36,7 @@
                     var oldThis = this;
                     $.ajax({
                         type: 'POST',
-                        url: 'https://www.searates2.com/search/google-geocode',
+                        url: 'https://www.LogistiQuote2.com/search/google-geocode',
                         dataType: 'json',
                         data: {
                             input: ui.item.place_id,

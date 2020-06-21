@@ -153,6 +153,10 @@ class QuotationController extends Controller
     {
         //
         $data['quotation'] = Quotation::where('id', $id)->first();
+        if($data['quotation']->user_id != Auth::user()->id)
+        {
+            return redirect(route('quotation.index'));
+        }
         $data['page_name'] = 'edit_quotation';
         $data['page_title'] = 'Edit quotation | LogistiQuote';
         return view('panels.quotation.edit', $data);
@@ -167,7 +171,6 @@ class QuotationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $validatedData = $request->validate([
             'incoterms' => ['required', 'string', 'min:3', 'max:255'],
             'origin' => ['required', 'string', 'min:3', 'max:255'],
@@ -186,7 +189,6 @@ class QuotationController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $quotation = Quotation::findorFail($id);
         $quotation->origin = $request->origin;
         $quotation->destination = $request->destination;
         $quotation->transportation_type = $request->transportation_type;

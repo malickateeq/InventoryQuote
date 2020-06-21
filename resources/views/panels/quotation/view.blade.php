@@ -218,16 +218,6 @@
                             <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
                             <div class="form-row">
                                 <div class="col-md-2 mb-3">
-                                    <label for="">Quantity</label>
-                                    <input type="number" class="form-control @error('quantity_units') is-invalid @enderror" disabled
-                                        id="validationServer03" placeholder="Quantity" name="quantity_units[]" value="{{ $pallet['quantity'] }}" required>
-                                    @error('quantity_units')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-2 mb-3">
                                     <label for="">length(cm)</label>
                                     <input type="number" class="form-control @error('l') is-invalid @enderror" disabled
                                         id="validationServer04" placeholder="length" name="l[]" value="{{ $pallet['length'] }}" required>
@@ -252,6 +242,16 @@
                                     <input type="number" class="form-control @error('h') is-invalid @enderror" disabled
                                         id="validationServer03" placeholder="height" name="h[]" value="{{ $pallet['height'] }}" required>
                                     @error('h')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-3 mb-3 ml-3">
+                                    <label for="">Weight (kg)</label>
+                                    <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
+                                        id="validationServer03" placeholder="Weight" value="{{ $pallet['volumetric_weight'] }}" disabled>
+                                    @error('total_weight_units')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

@@ -29,7 +29,7 @@ class RedirectIfAuthenticated
             {
                 $fileContents = Storage::disk('public')->get('store_pending_form.json');
                 $fileContents = json_decode($fileContents);
-                if($fileContents->incoterms != null)
+                if(isset($fileContents->incoterms) != null)
                 {
                     return redirect(route('store_pending_form'));
                 } 

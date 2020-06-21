@@ -29,6 +29,11 @@ class SiteController extends Controller
         $isDelete = Storage::disk('public')->delete('store_pending_form.json');
         Storage::disk('public')->put('store_pending_form.json', json_encode($data));
 
+        session([
+            'transportation_type' => $request->transportation_type
+        ]);
+        session()->save();
+        
         return redirect(route('get_quote_step2'));
     }
     public function get_quote_step2()

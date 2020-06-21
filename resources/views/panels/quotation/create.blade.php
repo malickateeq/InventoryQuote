@@ -189,9 +189,18 @@
                             <div class="col-md-5 mb-3">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="container_size">
                                     <option selected="">Container size</option>
-                                    <option value="20f">2 x 40'' containers</option>
-                                    <option value="40f">2 x 20'' containers</option>
-                                    <option value="40f_hc">1 x 40'' containers</option>
+                                    <option value="20f-dc">20' Dry Cargo</option>
+                                    <option value="40f-dc">40' Dry Cargo</option>
+                                    <option value="40f-hdc">40' add-high Dry Cargo</option>
+                                    <option value="45f-hdc">45' add-high Dry Cargo</option>
+                                    <option value="20f-ot">20' Open Top</option>
+                                    <option value="40f-ot">40' Open Top</option>
+                                    <option value="20f-col">20' Collapsible</option>
+                                    <option value="40f-col">40' Collapsible</option>
+                                    <option value="20f-os">20' Open Side</option>
+                                    <option value="20f-dv">20' D.V for Side Floor</option>
+                                    <option value="20f-ven">20' Ventilated</option>
+                                    <option value="20f-gar">40' Garmentainer</option>
                                 </select>
                             </div>
                         </div>
@@ -225,14 +234,16 @@
                     <div class="form-row">
                         <div class="col-md-8 mb-3">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="calculate_by" value="shipment"
-                                    class="custom-control-input" selected="selected">
-                                <label class="custom-control-label" for="customRadioInline1">Calculate by total
-                                    shipment</label>
+                                <div id="if_not_air">
+                                    <input type="radio" id="customRadioInline1" name="calculate_by" value="shipment"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">Calculate by total
+                                        shipment</label>
+                                </div>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline2" name="calculate_by" value="units"
-                                    class="custom-control-input">
+                                    class="custom-control-input" checked>
                                 <label class="custom-control-label" for="customRadioInline2">Calculate by units</label>
                             </div>
                         </div>
@@ -261,50 +272,53 @@
                         </div>
                     </div>
 
-                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
-                        <label for="" style="font-weight: bold;">Pallet#1</label>
-                        <div class="form-row">
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity_units[]" required>
-                                @error('quantity_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                    
+                    <div id="dynamic_fields">
+                        <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
+                            <label for="" style="font-weight: bold;">Pallet#1</label>
+                            <!-- <label for="">Dimensions (cm)</label> -->
+                            <div class="form-row">
+                                <div class="col-md-2 mb-3">
+                                    <!-- <label for="">Dimensions</label> -->
+                                    <input type="number" class="form-control @error('l') is-invalid @enderror"
+                                        id="validationServer04" placeholder="length" name="l[]" required>
+                                    @error('l')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <!-- <label for="">Dimensions</label> -->
-                                <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    id="validationServer04" placeholder="length" name="l[]" required>
-                                @error('l')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <input type="number" class="form-control @error('w') is-invalid @enderror"
+                                        id="validationServer03" placeholder="width" name="w[]" required>
+                                    @error('w')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    id="validationServer03" placeholder="width" name="w[]" required>
-                                @error('w')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <input type="number" class="form-control @error('h') is-invalid @enderror"
+                                        id="validationServer03" placeholder="height" name="h[]" required>
+                                    @error('h')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    id="validationServer03" placeholder="height" name="h[]" required>
-                                @error('h')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-3 mb-3 ml-3">
+                                    <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
+                                        id="validationServer03" placeholder="Weight" name="total_weight_units[]" disabled>
+                                    @error('total_weight_units')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-
 
                     <div class="form-row" id="dynamic_buttons">
                         <button type="button" class="btn btn-primary btn-sm" id="add-button"
@@ -359,11 +373,34 @@
 
 @section('bottom_scripts')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () 
+    {
+        
+        // Dynamic changes
+        $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function() 
+        {
+            $el = $(this);
+            $unit_num = $el.parent().parent().parent();
+            console.log($unit_num);
+            if($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val()
+            && $unit_num.find("input[name^='h']").val())
+            {   
+                var l = $unit_num.find("input[name^='l']").val();
+                var w = $unit_num.find("input[name^='w']").val();
+                var h = $unit_num.find("input[name^='h']").val();
+                var total_weight = (l * w * h) / 6000;
+                $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
+            }
+        });
+
         $('#exw').hide();
-        $('.dynamic-field').hide();
-        $('#dynamic_buttons').hide();
-        $(".require").prop('required', false);
+        $('#dynamic_buttons').show();
+        $('.dynamic-field').show();
+        $(".require").prop('required', true);
+
+        $('#shipment').hide();
+        $("input[name=quantity]").prop('required', false);
+        $("input[name=total_weight]").prop('required', false);
         $('#for_flc').hide();
 
         // On load
@@ -382,11 +419,13 @@
 
         $("#transportation_type").change(function () {
             if ($(this).find(':selected').val() == 'ocean') {
+                $('#if_not_air').show();
                 $('#type_of_shipment').empty();
                 $("#type_of_shipment").append(new Option("LCL", "lcl"));
                 $("#type_of_shipment").append(new Option("FCL", "fcl"));
             } else if ($(this).find(':selected').val() == 'air') {
                 $('#type_of_shipment').empty();
+                $('#if_not_air').hide();
                 $("#type_of_shipment").append(new Option("AIR", "air"));
                 $('#for_flc').hide();
             }

@@ -61,13 +61,12 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Pick Up Address</label>
-                                <input type="text" class="form-control" name="pickup_address" value="{{ $quotation->pickup_address }}" required />
+                                <input type="text" class="form-control" name="pickup_address" value="{{ $quotation->pickup_address }}" />
 
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Final destination address</label>
-                                <input type="text" class="form-control" name="final_destination_address" value="{{ $quotation->pickup_address }}" value=""
-                                    required />
+                                <input type="text" class="form-control" name="final_destination_address" value="{{ $quotation->pickup_address }}" value=""/>
 
                             </div>
                         </div>
@@ -132,9 +131,18 @@
                             <div class="col-md-5 mb-3">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="container_size">
                                     <option>Container size</option>
-                                    <option value="20f" <?php echo ($quotation->container_size == '20f') ? 'selected="selected"' : ''; ?> >2 x 40'' containers</option>
-                                    <option value="40f"<?php echo ($quotation->container_size == '40f') ? 'selected="selected"' : ''; ?> >2 x 20'' containers</option>
-                                    <option value="40f_hc"<?php echo ($quotation->container_size == '40f_hc') ? 'selected="selected"' : ''; ?> >1 x 40'' containers</option>
+                                    <option value="20f-dc <?php echo ($quotation->container_size == '20f-dc') ? 'selected="selected"' : ''; ?> ">20' Dry Cargo</option>
+                                    <option value="40f-dc <?php echo ($quotation->container_size == '40f-dc') ? 'selected="selected"' : ''; ?> ">40' Dry Cargo</option>
+                                    <option value="40f-hdc <?php echo ($quotation->container_size == '40f-hdc') ? 'selected="selected"' : ''; ?> ">40' add-high Dry Cargo</option>
+                                    <option value="45f-hdc <?php echo ($quotation->container_size == '45f-hdc') ? 'selected="selected"' : ''; ?> ">45' add-high Dry Cargo</option>
+                                    <option value="20f-ot <?php echo ($quotation->container_size == '20f-ot') ? 'selected="selected"' : ''; ?> ">20' Open Top</option>
+                                    <option value="40f-ot <?php echo ($quotation->container_size == '40f-ot') ? 'selected="selected"' : ''; ?> ">40' Open Top</option>
+                                    <option value="20f-col <?php echo ($quotation->container_size == '20f-col') ? 'selected="selected"' : ''; ?> ">20' Collapsible</option>
+                                    <option value="40f-col <?php echo ($quotation->container_size == '40f-col') ? 'selected="selected"' : ''; ?> ">40' Collapsible</option>
+                                    <option value="20f-os <?php echo ($quotation->container_size == '20f-os') ? 'selected="selected"' : ''; ?> ">20' Open Side</option>
+                                    <option value="20f-dv <?php echo ($quotation->container_size == '20f-dv') ? 'selected="selected"' : ''; ?> ">20' D.V for Side Floor</option>
+                                    <option value="20f-ven <?php echo ($quotation->container_size == '20f-ven') ? 'selected="selected"' : ''; ?> ">20' Ventilated</option>
+                                    <option value="20f-gar <?php echo ($quotation->container_size == '20f-gar') ? 'selected="selected"' : ''; ?> ">40' Garmentainer</option>
                                 </select>
                             </div>
                         </div>
@@ -167,11 +175,13 @@
                     <h5 class="mt-4"> <b> Shipment Calculations </b> </h5>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <div class="custom-control custom-radio custom-control-inline">
+                            <div id="if_not_air">
+                                <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" name="calculate_by" value="shipment"
                                     class="custom-control-input" <?php if($quotation->calculate_by == 'shipment') echo 'checked="checked"'; ?>>
                                 <label class="custom-control-label" for="customRadioInline1">Calculate by total
                                     shipment</label>
+                                </div>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline2" name="calculate_by" value="units"
@@ -204,19 +214,11 @@
                         </div>
                     </div>
 
+                    <div id="dynamic_fields">
                     @foreach($quotation->pallets as $pallet)
                     <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
                         <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
                         <div class="form-row">
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('quantity_units') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity_units[]" value="{{ $pallet['quantity'] }}" required>
-                                @error('quantity_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
                             <div class="col-md-2 mb-3">
                                 <!-- <label for="">Dimensions</label> -->
                                 <input type="number" class="form-control @error('l') is-invalid @enderror"
@@ -245,10 +247,20 @@
                                 </div>
                                 @enderror
                             </div>
+                            <div class="col-md-3 mb-3 ml-3">
+                                <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"  value="{{ $pallet['volumetric_weight'] }}"
+                                    id="validationServer03" placeholder="Weight" name="total_weight_units[]" disabled>
+                                @error('total_weight_units')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
 
                         </div>
                     </div>
                     @endforeach
+                    </div>
 
 
                     <div class="form-row" id="dynamic_buttons">
@@ -304,6 +316,24 @@
 <script>
     $(document).ready(function() 
     {
+        
+        // Dynamic changes
+        $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function() 
+        {
+            $el = $(this);
+            $unit_num = $el.parent().parent().parent();
+            console.log($unit_num);
+            if($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val()
+            && $unit_num.find("input[name^='h']").val())
+            {   
+                var l = $unit_num.find("input[name^='l']").val();
+                var w = $unit_num.find("input[name^='w']").val();
+                var h = $unit_num.find("input[name^='h']").val();
+                var total_weight = (l * w * h) / 6000;
+                $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
+            }
+        });
+        
         $('.dynamic-field').hide();
         $('#dynamic_buttons').hide();
         $(".require").prop('required', false);
@@ -362,12 +392,14 @@
         {
             if($(this).find(':selected').val() == 'ocean')
             {
+                $('#if_not_air').show();
                 $('#type_of_shipment').empty();
                 $("#type_of_shipment").append(new Option("LCL", "lcl"));
                 $("#type_of_shipment").append(new Option("FCL", "fcl"));
             }
             else if($(this).find(':selected').val() == 'air')
             {
+                $('#if_not_air').hide();
                 $('#for_flc').hide();
                 $('#type_of_shipment').empty();
                 $("#type_of_shipment").append(new Option("AIR", "air"));

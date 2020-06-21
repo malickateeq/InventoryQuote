@@ -82,7 +82,7 @@ class QuotationController extends Controller
         if($request->incoterms == 'EXW')
         {
             $quotation->pickup_address = $request->pickup_address;
-            $quotation->final_destination_address = $request->final_destination_address;
+            $quotation->destination_address = $request->final_destination_address;
         }
         
         $quotation->value_of_goods = $request->value_of_goods;
@@ -102,19 +102,23 @@ class QuotationController extends Controller
         if($request->calculate_by == 'units')
         {
             $pallets = [];
-            for($i=0; $i<count($request->quantity_units); $i++)
+            $quantity = count($request->l);
+            $total_weight = 0;
+            for($i=0; $i<count($request->l); $i++)
             {
-                $total_weight = 
-                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000 * $request->quantity_units[$i];
+                $volumetric_weight = 
+                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000;
                 $pallets[] = [
                     'length' => $request->l[$i],
                     'width' => $request->w[$i],
                     'height' => $request->h[$i],
-                    'total_weight' => $total_weight,
-                    'quantity' => $request->quantity_units[$i],
+                    'volumetric_weight' => $volumetric_weight,
                 ];
+                $total_weight += $volumetric_weight;
             }
             $quotation->pallets = $pallets;
+            $quotation->quantity = $quantity;
+            $quotation->total_weight = number_format($total_weight, 2);
         }
         else
         {
@@ -166,14 +170,14 @@ class QuotationController extends Controller
         // dd($request->all());
         $validatedData = $request->validate([
             'incoterms' => ['required', 'string', 'min:3', 'max:255'],
-            'origin_city' => ['required', 'string', 'min:3', 'max:255'],
-            'origin_state' => ['required', 'string', 'min:3', 'max:255'],
-            'origin_country' => ['required', 'string', 'min:3', 'max:255'],
-            'origin_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
-            'destination_city' => ['required', 'string', 'min:3', 'max:255'],
-            'destination_state' => ['required', 'string', 'min:3', 'max:255'],
-            'destination_country' => ['required', 'string', 'min:3', 'max:255'],
-            'destination_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
+            'origin' => ['required', 'string', 'min:3', 'max:255'],
+            // 'origin_state' => ['required', 'string', 'min:3', 'max:255'],
+            // 'origin_country' => ['required', 'string', 'min:3', 'max:255'],
+            // 'origin_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
+            'destination' => ['required', 'string', 'min:3', 'max:255'],
+            // 'destination_state' => ['required', 'string', 'min:3', 'max:255'],
+            // 'destination_country' => ['required', 'string', 'min:3', 'max:255'],
+            // 'destination_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'transportation_type' => ['required', 'string', 'min:3', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
             'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
@@ -193,7 +197,7 @@ class QuotationController extends Controller
         if($request->incoterms == 'EXW')
         {
             $quotation->pickup_address = $request->pickup_address;
-            $quotation->final_destination_address = $request->final_destination_address;
+            $quotation->destination_address = $request->final_destination_address;
         }
 
         $quotation->value_of_goods = $request->value_of_goods;
@@ -214,19 +218,23 @@ class QuotationController extends Controller
         if($request->calculate_by == 'units')
         {
             $pallets = [];
-            for($i=0; $i<count($request->quantity_units); $i++)
+            $quantity = count($request->l);
+            $total_weight = 0;
+            for($i=0; $i<count($request->l); $i++)
             {
-                $total_weight = 
-                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000 * $request->quantity_units[$i];
+                $volumetric_weight = 
+                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000;
                 $pallets[] = [
                     'length' => $request->l[$i],
                     'width' => $request->w[$i],
                     'height' => $request->h[$i],
-                    'total_weight' => $total_weight,
-                    'quantity' => $request->quantity_units[$i],
+                    'volumetric_weight' => $volumetric_weight,
                 ];
+                $total_weight += $volumetric_weight;
             }
             $quotation->pallets = $pallets;
+            $quotation->quantity = $quantity;
+            $quotation->total_weight = number_format($total_weight, 2);
         }
         else
         {
@@ -349,7 +357,7 @@ class QuotationController extends Controller
         if($fileContents->incoterms == 'EXW')
         {
             $quotation->pickup_address = $fileContents->pickup_address;
-            $quotation->final_destination_address = $fileContents->final_destination_address;
+            $quotation->destination_address = $fileContents->final_destination_address;
         }
 
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $fileContents->ready_to_load_date );
@@ -372,19 +380,23 @@ class QuotationController extends Controller
         if($fileContents->calculate_by == 'units')
         {
             $pallets = [];
-            for($i=0; $i<count($fileContents->quantity_units); $i++)
+            $quantity = count($fileContents->l);
+            $total_weight = 0;
+            for($i=0; $i<count($fileContents->l); $i++)
             {
-                $total_weight = 
-                ( (float)$fileContents->l[$i] * (float)$fileContents->w[$i] * (float)$fileContents->h[$i] ) / 6000 * $fileContents->quantity_units[$i];
+                $volumetric_weight = 
+                ( (float)$fileContents->l[$i] * (float)$fileContents->w[$i] * (float)$fileContents->h[$i] ) / 6000 ;
                 $pallets[] = [
                     'length' => $fileContents->l[$i],
                     'width' => $fileContents->w[$i],
                     'height' => $fileContents->h[$i],
-                    'total_weight' => $total_weight,
-                    'quantity' => $fileContents->quantity_units[$i],
+                    'volumetric_weight' => $volumetric_weight,
                 ];
+                $total_weight += $volumetric_weight;
             }
             $quotation->pallets = $pallets;
+            $quotation->quantity = $quantity;
+            $quotation->total_weight = number_format($total_weight, 2);
         }
         else
         {

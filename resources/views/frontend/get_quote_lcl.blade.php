@@ -126,13 +126,15 @@
                 <div class="type-form">
 
                     <div class="request-radio-group">
+                        @if(session('transportation_type') != 'air')
                         <label class="request-radio blue calculation-toggle">
-                            <input type="radio" name="calculate_by" value="shipment" checked="">
+                            <input type="radio" name="calculate_by" value="shipment">
                             <span></span>
                             <p>Calculate by total shipment</p>
                         </label>
+                        @endif
                         <label class="request-radio blue calculation-toggle">
-                            <input type="radio" name="calculate_by" value="units"><span></span>
+                            <input type="radio" name="calculate_by" value="units" checked="checked"><span></span>
                             <p>Calculate by units</p>
                         </label>
                     </div>
@@ -142,60 +144,56 @@
                             <p class="name">Number of Pieces (Quantity)</p>
                             <div class="input-wrap  ">
                                 <input type="number" title="Quantity" name="quantity"
-                                    placeholder="0" step="any" autocomplete="off" required="" value="">
+                                    placeholder="0" step="any" value="">
                                 <p class="label">PCS</p>
                             </div>
                         </div>
                         <div class="request-input small">
                             <p class="name">Gross Weight</p>
                             <div class="input-wrap  "><input type="number" title="Gross Weight" name="total_weight"
-                                    placeholder="0" step="any" autocomplete="off" required="" value="">
+                                    placeholder="0" step="any" value="">
                                 <p class="label">KG</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
-                        <label for="" style="margin: 30px 10px 0px 0px; font-weight: bold;">Pallet#1</label>
-                        <div class="request-input small">
-                            <p class="name">Quantity</p>
-                            <div class="input-wrap">
-                                <input type="number" title="Quantity" name="quantity_units[]" class="require"
-                                    placeholder="Q" step="any" autocomplete="off" value="">
+                    <div id="dynamic_fields">
+                        <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-1">
+                            <label for="" style="margin: 30px 10px 0px 0px; font-weight: bold;">Pallet#1</label>
+                            <div class="dimensions">
+                                <div class="request-input small">
+                                    <p class="name">Dimensions</p>
+                                    <div class="input-wrap">
+                                        <input type="number" title="Dimensions" name="l[]" class="require dimension" placeholder="L"
+                                            step="any" 
+                                            id="length_1" autocomplete="off" value="">
+                                    </div>
+                                </div>
+                                <div class="request-input small">
+                                    <p class="name"> </p>
+                                    <div class="input-wrap">
+                                        <input type="number" title=" " name="w[]" placeholder="W" class="require dimension" step="any"
+                                            id="width_1" autocomplete="off" value="">
+                                    </div>
+                                </div>
+                                <div class="request-input small">
+                                    <p class="name"> </p>
+                                    <div class="input-wrap">
+                                        <input type="number" title=" " name="h[]" placeholder="H" class="require dimension" step="any"
+                                            id="height_1" autocomplete="off" value="">
+                                        <p class="label">CM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="request-input small">
+                                <p class="name">Volumetric Weight</p>
+                                <div class="input-wrap">
+                                    <input type="number" title="Gross Weight" name="total_weight_units[]" style="width: 120px;"
+                                        id="total_weight_units_1" step="any" autocomplete="off" disabled="" value="">
+                                    <p class="label">KG</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="dimensions">
-                            <div class="request-input small">
-                                <p class="name">Dimensions</p>
-                                <div class="input-wrap">
-                                    <input type="number" title="Dimensions" name="l[]" class="require" placeholder="L"
-                                        step="any" autocomplete="off" value="">
-                                </div>
-                            </div>
-                            <div class="request-input small">
-                                <p class="name"> </p>
-                                <div class="input-wrap">
-                                    <input type="number" title=" " name="w[]" placeholder="W" class="require" step="any"
-                                        autocomplete="off" value="">
-                                </div>
-                            </div>
-                            <div class="request-input small">
-                                <p class="name"> </p>
-                                <div class="input-wrap">
-                                    <input type="number" title=" " name="h[]" placeholder="H" class="require" step="any"
-                                        autocomplete="off" value="">
-                                    <p class="label">CM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="request-input small">
-                            <p class="name">Gross Weight</p>
-                            <div class="input-wrap">
-                                <input type="number" title="Gross Weight" name="total_weight_units[]" placeholder=""
-                                    step="any" autocomplete="off" disabled="" value="">
-                                <p class="label">KG</p>
-                            </div>
-                        </div> -->
                     </div>
                     
                     <div class="form-row" id="dynamic_buttons">
@@ -268,12 +266,28 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () 
+    {
+        // Dynamic changes
+        $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function() 
+        {
+            $el = $(this);
+            $unit_num = $el.parent().parent().parent().parent();
+            if($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val()
+            && $unit_num.find("input[name^='h']").val())
+            {   
+                var l = $unit_num.find("input[name^='l']").val();
+                var w = $unit_num.find("input[name^='w']").val();
+                var h = $unit_num.find("input[name^='h']").val();
+                var total_weight = (l * w * h) / 6000;
+                $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
+            }
+        });
 
         $('#exw').hide();
-        $('.dynamic-field').hide();
-        $('#dynamic_buttons')
-            .hide();
+        $('#dynamic_buttons').show();
+        $('.dynamic-field').show();
+        $('#shipment').hide();
         // $(".require").prop('required', false);
 
         // On calculation radio button clicks
@@ -372,6 +386,10 @@
             field.attr("id", "units-" + count);
             field.children("label").text("Pallet# " + count);
             field.find("input").val("");
+            field.find("#length_1").attr("id", "length_"+count);
+            field.find("#width_1").attr("id", "width_"+count);
+            field.find("#height_1").attr("id", "height_"+count);
+            field.find("#total_weight_units_1").attr("id", "total_weight_units_"+count);
             $(className + ":last").after($(field));
         }
 

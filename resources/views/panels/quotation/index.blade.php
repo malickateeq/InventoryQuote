@@ -72,11 +72,21 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('quotation.show', $quotation->id) }}">View</a>
                                     <a class="dropdown-item" href="{{ route('quotation.edit', $quotation->id) }}">Edit</a>
-                                    <form action="{{ route('quotation.destroy', $quotation->id ) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="dropdown-item">Delete</button>
-                                    </form>
+                                    
+                                    @if( $quotation->status != 'withdrawn')
+                                        <form action="{{ route('quotation.destroy', $quotation->id ) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#publish">
+                                                Withdraw
+                                            </button>
+                                        </form>
+                                    @else
+                                        <!-- Button trigger modal -->
+                                        <!-- <button type="button" class="dropdown-item" data-toggle="modal" data-target="#publish">
+                                            Publish
+                                        </button> -->
+                                    @endif
                                 </div>
                             </div>
 
@@ -91,6 +101,8 @@
 
 </div>
 <!-- /.container-fluid -->
+
+
 @endsection
 
 @section('bottom_scripts')

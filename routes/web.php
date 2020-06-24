@@ -4,6 +4,8 @@ use App\Proposal;
 use Illuminate\Support\Facades\Route;
 
 Route::get('test', function () {
+    $partners_emais = App\User::where('role', 'vendor')->select('email')->get()->toArray();
+    dd($partners_emais);
     $prop = Proposal::first();
     $url = URL::route('proposal.mail_view', $prop->url);
     print '<a href="'.$url.'">View</a>';
@@ -59,6 +61,7 @@ Route::post('/quotations', 'QuotationController@search')->name('quotations.searc
 Route::get('/store_pending_form', 'QuotationController@store_pending_form')->name('store_pending_form');
 
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
+Route::get('/mail_view_quotation/{token}', 'SiteController@mail_view_quotation')->name('quotation.mail_view');
 
 
 Route::resource('/proposal', 'ProposalController');

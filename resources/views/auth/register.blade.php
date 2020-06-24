@@ -13,7 +13,7 @@
                 <div class="sign-form_content">
                     <form action="{{ route('register') }}" method="POST" class="sign-form_content-input-part">
                         @csrf
-                        <legend class="sign-form_content-title">Create an account on <span>LogictiQuote</span> </legend>
+                        <legend class="sign-form_content-title">Create an account on <span>LogistiQuote</span> </legend>
 
                         <div class="sign-form_content-input-part-dual-input">
                             <div class="input-wrapper @error('f_name') error @enderror">

@@ -134,3 +134,36 @@ function send_notify_user_mail($user_id, $partner_id, $quotation_id)
         );
     });
 }
+
+function notify_vendor_for_new_quotation($user_id, $quotation_id)
+{
+    $user = User::findOrFail($user_id)->toArray();
+
+    $partners = User::where('role', 'vendor')->get()->toArray();
+    $quotation = Quotation::findOrFail($quotation_id)->toArray();
+
+    foreach($partners as $partner)
+    {
+        $to_name = $partner['name'];
+        $to_email = $partner['email'];
+        
+        $data = array(
+                    "quotation" => $quotation,
+                // "company_name" => "LogistiQuote", 
+                // "email"=> "test@sdf.com", 
+                // "additional_email" => "asd@ad.com", 
+                // "phone" => "12345678", 
+                // "body" => "Blah blah blah!"
+            );
+    
+        Mail::send('emails.quote_requested', $data, function($message) use ($to_name, $to_email, $quotation) 
+        {
+            $message->to($to_email, $to_name)
+            ->subject('A user has just posted a quote.');
+            $message->from(
+                env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+                'New quote requested by LogistiQuote user | LogistiQuote'   // Title, Subject
+            );
+        });
+    }
+}

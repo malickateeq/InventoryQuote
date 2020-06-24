@@ -58,7 +58,7 @@ class SiteController extends Controller
         }
         else
         {
-            return "An error occurred!";
+            return redirect()->back();
         }
     }
     public function form_quote_step2(Request $request)
@@ -97,5 +97,11 @@ class SiteController extends Controller
     {
         $proposal = Proposal::where('url', $token)->first();
         return redirect(route('proposal.show', $proposal->id));
+    }
+
+    public function mail_view_quotation($token)
+    {
+        $quotation = Quotation::where('quotation_id', $token)->first();
+        return redirect(route('quotation.show', $quotation->id));
     }
 }

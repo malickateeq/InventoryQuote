@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <input type="text" class="form-control @error('origin_state') is-invalid @enderror"
-                                id="validationServer04" placeholder="State" name="origin_state" required>
+                                id="validationServer04" placeholder="State" name="origin_state" value="{{ old('origin_state') }}">
                             @error('origin_state')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <input type="text" class="form-control @error('origin_country') is-invalid @enderror"
-                                id="validationServer03" placeholder="Country" name="origin_country" required>
+                                id="validationServer03" placeholder="Country" name="origin_country" value="{{ old('origin_country') }}" required>
                             @error('origin_country')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <input type="text" class="form-control @error('origin_zip') is-invalid @enderror"
-                                id="validationServer05" placeholder="Zip" name="origin_zip" required>
+                                id="validationServer05" placeholder="Zip" name="origin_zip" value="{{ old('origin_zip') }}" required>
                             @error('origin_zip')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -55,7 +55,7 @@
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <input type="text" class="form-control @error('destination_city') is-invalid @enderror"
-                                id="validationServer03" placeholder="City" name="destination_city" required>
+                                id="validationServer03" placeholder="City" name="destination_city" value="{{ old('destination_city') }}" required>
                             @error('destination_city')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <input type="text" class="form-control @error('destination_state') is-invalid @enderror"
-                                id="validationServer04" placeholder="State" name="destination_state" required>
+                                id="validationServer04" placeholder="State" name="destination_state" value="{{ old('destination_state') }}">
                             @error('destination_state')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <input type="text" class="form-control @error('destination_country') is-invalid @enderror"
-                                id="validationServer03" placeholder="Country" name="destination_country" required>
+                                id="validationServer03" placeholder="Country" name="destination_country" value="{{ old('destination_country') }}" required>
                             @error('destination_country')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <input type="text" class="form-control @error('destination_zip') is-invalid @enderror"
-                                id="validationServer05" placeholder="Zip" name="destination_zip" required>
+                                id="validationServer05" placeholder="Zip" name="destination_zip" value="{{ old('destination_zip') }}" required>
                             @error('destination_zip')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -95,7 +95,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="validationServer01">Ready to load date</label>
-                            <input type="text" class="form-control" name="ready_to_load_date" value="" required />
+                            <input type="text" class="form-control" name="ready_to_load_date" value="{{ old('ready_to_load_date') }}" required />
 
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="form-row">
                         <div class="col-auto my-1">
                             <label class="mr-sm-2" for="incoterms">Incoterms</label>
-                            <select class="custom-select mr-sm-2" id="incoterms" name="incoterms">
+                            <select class="custom-select mr-sm-2" id="incoterms" name="incoterms" value="{{ old('incoterms') }}">
                                 <option>Choose..</option>
                                 <option value="EXW">EXW (Ex Works Place)</option>
                                 <option value="FOB">FOB (Free On Board Port)</option>
@@ -118,12 +118,12 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Pick Up Address</label>
-                                <input type="text" class="form-control" name="pickup_address" value="" required />
+                                <input type="text" class="form-control" name="pickup_address" value="{{ old('pickup_address') }}" required />
 
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Final destination address</label>
-                                <input type="text" class="form-control" name="final_destination_address" value=""
+                                <input type="text" class="form-control" name="final_destination_address" value="{{ old('final_destination_address') }}"
                                     required />
 
                             </div>
@@ -131,11 +131,11 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
 
                             <label for="exampleFormControlTextarea1">Description of goods</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                name="description_of_goods"></textarea>
+                                name="description_of_goods">{{ old('description_of_goods') }}</textarea>
                             @error('description_of_goods')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -167,7 +167,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <input type="number" class="form-control @error('value_of_goods') is-invalid @enderror"
-                                id="validationServer03" placeholder="Value of Goods (USD)" name="value_of_goods"
+                                id="validationServer03" placeholder="Value of Goods (USD)" name="value_of_goods" value="{{ old('value_of_goods') }}"
                                 required>
                             @error('value_of_goods')
                             <div class="invalid-feedback">
@@ -179,7 +179,7 @@
                         <div class="row" id="for_flc">
                             <div class="col-md-5 mb-3">
                                 <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
-                                    id="validationServer04" placeholder="No of containers" name="no_of_containers">
+                                    id="validationServer04" placeholder="No of containers" name="no_of_containers" value="{{ old('no_of_containers') }}">
                                 @error('no_of_containers')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -253,7 +253,7 @@
                         <div class="form-row">
                             <div class="col-md-3 mb-3">
                                 <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                    id="validationServer03" placeholder="Quantity" name="quantity" required>
+                                    id="validationServer03" placeholder="Quantity" name="quantity" value="{{ old('quantity') }}">
                                 @error('quantity')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -262,7 +262,7 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <input type="number" class="form-control @error('total_weight') is-invalid @enderror"
-                                    id="validationServer04" placeholder="Gross Weight" name="total_weight">
+                                    id="validationServer04" placeholder="Gross Weight" name="total_weight" value="{{ old('total_weight') }}">
                                 @error('total_weight')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -279,7 +279,7 @@
                             <!-- <label for="">Dimensions (cm)</label> -->
                             <div class="form-row">
                                 <div class="col-md-2 mb-3">
-                                    <!-- <label for="">Dimensions</label> -->
+                                    <label for="">Length (cm)</label>
                                     <input type="number" class="form-control @error('l') is-invalid @enderror"
                                         id="validationServer04" placeholder="length" name="l[]" required>
                                     @error('l')
@@ -289,6 +289,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-2 mb-3">
+                                    <label for="">Width (cm)</label>
                                     <input type="number" class="form-control @error('w') is-invalid @enderror"
                                         id="validationServer03" placeholder="width" name="w[]" required>
                                     @error('w')
@@ -298,6 +299,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-2 mb-3">
+                                    <label for="">Height (cm)</label>
                                     <input type="number" class="form-control @error('h') is-invalid @enderror"
                                         id="validationServer03" placeholder="height" name="h[]" required>
                                     @error('h')
@@ -307,6 +309,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-3 mb-3 ml-3">
+                                    <label for="">Vol Weight (KG)</label>
                                     <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
                                         id="validationServer03" placeholder="Weight" name="total_weight_units[]" disabled>
                                     @error('total_weight_units')
@@ -336,11 +339,11 @@
                     <hr>
                     <h5 class="mt-4"> <b> Other Info </b> </h5>
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
 
                             <label for="exampleFormControlTextarea1">Remarks</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                name="remarks"></textarea>
+                                name="remarks">{{ old('remarks') }}</textarea>
                             @error('remarks')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -349,7 +352,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="col-auto my-1">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing3"
@@ -511,7 +514,6 @@
     });
 
 </script>
-
 
 <!-- Add dynamic input fields -->
 <script>

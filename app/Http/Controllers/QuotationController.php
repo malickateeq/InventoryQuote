@@ -52,17 +52,17 @@ class QuotationController extends Controller
         $validatedData = $request->validate([
             'incoterms' => ['required', 'string', 'min:3', 'max:255'],
             'origin_city' => ['required', 'string', 'min:3', 'max:255'],
-            'origin_state' => ['required', 'string', 'min:3', 'max:255'],
+            // 'origin_state' => ['required', 'string', 'min:3', 'max:255'],
             'origin_country' => ['required', 'string', 'min:3', 'max:255'],
             'origin_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'destination_city' => ['required', 'string', 'min:3', 'max:255'],
-            'destination_state' => ['required', 'string', 'min:3', 'max:255'],
+            // 'destination_state' => ['required', 'string', 'min:3', 'max:255'],
             'destination_country' => ['required', 'string', 'min:3', 'max:255'],
             'destination_zip' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'transportation_type' => ['required', 'string', 'min:3', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
             'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
-            'value_of_goods' => ['required', 'numeric', 'min:3', 'max:255'],
+            'value_of_goods' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'calculate_by' => ['required', 'string', 'min:3', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -126,6 +126,10 @@ class QuotationController extends Controller
             $quotation->total_weight = $request->total_weight;
         }
         $quotation->save();
+
+        // Send quotation to vendors
+        notify_vendor_for_new_quotation($quotation->user_id, $quotation->id);
+
         return redirect(route('quotation.index'));
     }
 
@@ -184,11 +188,12 @@ class QuotationController extends Controller
             'transportation_type' => ['required', 'string', 'min:3', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
             'ready_to_load_date' => ['required', 'string', 'min:3', 'max:255'],
-            'value_of_goods' => ['required', 'numeric', 'min:3', 'max:255'],
+            'value_of_goods' => ['required', 'numeric', 'min:3', 'max:9999999'],
             'calculate_by' => ['required', 'string', 'min:3', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
+        
+        $quotation = Quotation::findOrFail($request->id);
         $quotation->origin = $request->origin;
         $quotation->destination = $request->destination;
         $quotation->transportation_type = $request->transportation_type;
@@ -407,6 +412,10 @@ class QuotationController extends Controller
         }
         $quotation->save();
         $isDelete = Storage::disk('public')->delete('store_pending_form.json');
+
+        
+        // Send quotation to vendors
+        notify_vendor_for_new_quotation($quotation->user_id, $quotation->id);
 
         return redirect(route('quotation.index'));
     }

@@ -96,20 +96,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-
-                            <label for="exampleFormControlTextarea1">Description of goods</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly
-                                name="description_of_goods">{{ $quotation->description_of_goods }}</textarea>
-                            @error('description_of_goods')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
                     @endif
 
                     <div class="form-row">
@@ -250,7 +236,7 @@
                                 <div class="col-md-3 mb-3 ml-3">
                                     <label for="">Weight (kg)</label>
                                     <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
-                                        id="validationServer03" placeholder="Weight" value="{{ $pallet['volumetric_weight'] }}" disabled>
+                                        id="validationServer03" placeholder="Weight" value="{{ number_format((float)$pallet['volumetric_weight'], 2, '.', '') }}" disabled>
                                     @error('total_weight_units')
                                     <div class="invalid-feedback">
                                         {{ $message }}

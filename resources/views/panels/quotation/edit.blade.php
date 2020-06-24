@@ -11,6 +11,7 @@
                 <form action="{{ route('quotation.update', $quotation->id) }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="id" value="{{ $quotation->id }}">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <h5> <b> Origin </b> </h5>
@@ -73,7 +74,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-8 mb-3">
 
                             <label for="exampleFormControlTextarea1">Description of goods</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
@@ -191,6 +192,7 @@
                         </div>
                     </div>
 
+                    @if($quotation->calculate_by == 'shipment')
                     <div id="shipment">
                         <div class="form-row">
                             <div class="col-md-3 mb-3">
@@ -214,53 +216,55 @@
                         </div>
                     </div>
 
+                    @elseif($quotation->calculate_by == 'units')
                     <div id="dynamic_fields">
-                    @foreach($quotation->pallets as $pallet)
-                    <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
-                        <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
-                        <div class="form-row">
-                            <div class="col-md-2 mb-3">
-                                <!-- <label for="">Dimensions</label> -->
-                                <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                    id="validationServer04" placeholder="length" name="l[]" value="{{ $pallet['length'] }}" required>
-                                @error('l')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        @foreach($quotation->pallets as $pallet)
+                        <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
+                            <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
+                            <div class="form-row">
+                                <div class="col-md-2 mb-3">
+                                    <!-- <label for="">Dimensions</label> -->
+                                    <input type="number" class="form-control @error('l') is-invalid @enderror"
+                                        id="validationServer04" placeholder="length" name="l[]" value="{{ $pallet['length'] }}" required>
+                                    @error('l')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                    id="validationServer03" placeholder="width" name="w[]" value="{{ $pallet['width'] }}" required>
-                                @error('w')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <input type="number" class="form-control @error('w') is-invalid @enderror"
+                                        id="validationServer03" placeholder="width" name="w[]" value="{{ $pallet['width'] }}" required>
+                                    @error('w')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                    id="validationServer03" placeholder="height" name="h[]" value="{{ $pallet['height'] }}" required>
-                                @error('h')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-2 mb-3">
+                                    <input type="number" class="form-control @error('h') is-invalid @enderror"
+                                        id="validationServer03" placeholder="height" name="h[]" value="{{ $pallet['height'] }}" required>
+                                    @error('h')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3 ml-3">
-                                <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"  value="{{ $pallet['volumetric_weight'] }}"
-                                    id="validationServer03" placeholder="Weight" name="total_weight_units[]" disabled>
-                                @error('total_weight_units')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                <div class="col-md-3 mb-3 ml-3">
+                                    <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"  value="{{ $pallet['volumetric_weight'] }}"
+                                        id="validationServer03" placeholder="Weight" name="total_weight_units[]" disabled>
+                                    @error('total_weight_units')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
 
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                    </div>
+                    @endif
 
 
                     <div class="form-row" id="dynamic_buttons">
@@ -279,7 +283,7 @@
                     <hr>
                     <h5 class="mt-4"> <b> Other Info </b> </h5>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-8 mb-3">
                             
                             <label for="exampleFormControlTextarea1">Remarks</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks">{{ $quotation->remarks }}</textarea>

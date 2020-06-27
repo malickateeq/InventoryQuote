@@ -23,7 +23,10 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $data['quotations'] = Quotation::where('user_id', Auth::user()->id)->get();
+        $data['quotations'] = Quotation::where('user_id', Auth::user()->id)
+        ->latest()
+        ->get();
+        
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.index', $data);
@@ -274,7 +277,7 @@ class QuotationController extends Controller
      */
     public function view_all()
     {
-        $data['quotations'] = Quotation::get();
+        $data['quotations'] = Quotation::latest()->get();
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.search_quotations', $data);
@@ -327,7 +330,8 @@ class QuotationController extends Controller
                 $q->where('isClearanceReq', 'LIKE', "%{$isClearanceReq}%" );
             }
         })
-        ->orderBy('created_at')->get();
+        ->latest()
+        ->get();
 
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';

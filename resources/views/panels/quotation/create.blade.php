@@ -281,7 +281,7 @@
                                 <div class="col-md-2 mb-3">
                                     <label for="">Length (cm)</label>
                                     <input type="number" class="form-control @error('l') is-invalid @enderror"
-                                        id="validationServer04" placeholder="length" name="l[]" required>
+                                        id="validationServer04" placeholder="length" name="l[]">
                                     @error('l')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -291,7 +291,7 @@
                                 <div class="col-md-2 mb-3">
                                     <label for="">Width (cm)</label>
                                     <input type="number" class="form-control @error('w') is-invalid @enderror"
-                                        id="validationServer03" placeholder="width" name="w[]" required>
+                                        id="validationServer03" placeholder="width" name="w[]">
                                     @error('w')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -301,7 +301,7 @@
                                 <div class="col-md-2 mb-3">
                                     <label for="">Height (cm)</label>
                                     <input type="number" class="form-control @error('h') is-invalid @enderror"
-                                        id="validationServer03" placeholder="height" name="h[]" required>
+                                        id="validationServer03" placeholder="height" name="h[]">
                                     @error('h')
                                     <div class="invalid-feedback">
                                         {{ $message }}

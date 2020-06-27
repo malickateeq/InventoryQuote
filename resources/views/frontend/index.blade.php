@@ -121,16 +121,18 @@
                                         
                                         <div class="wrapper-form">
                                             <form class="filter-tracking" method="GET"
-                                                action="#">
+                                                action="https://touch.track-trace.com/container" target="_blank">
                                                 <div class="wrapper-box-shadow">
-                                                    <div class="container-number"> <span class="top-title">TRACKING
-                                                            NUMBER</span> <input pattern="[A-Za-z0-9\-]{5,}"
+                                                    <div class="container-number"> 
+                                                        <span class="top-title">TRACKING
+                                                            NUMBER</span> 
+                                                            <input pattern="[A-Za-z0-9\-]{5,}"
                                                             title="Container number or code" type="text"
                                                             name="container" placeholder="Container Number/Code"
-                                                            autocomplete="off" required> </div>
+                                                            autocomplete="off"> </div>
                                                     <div class="select-wrapper"> <span class="top-title">SELECT
                                                             SEALINE</span> <select name="sealine" id="select-two"
-                                                            required>
+                                                            >
                                                             <option value="0">Auto Detect</option>
                                                             <option value="14">APL</option>
                                                             <option value="2">ARKAS</option>

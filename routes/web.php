@@ -22,6 +22,9 @@ Route::get('clear', function () {
     print "Cache has been cleared successfully!";
 });
 
+// CronJob Controller
+Route::get('/cron', 'CronJobController@index')->name('cronjob');
+
 Route::get('/', 'SiteController@index')->name('index');
 
 Auth::routes(['verify' => true]);

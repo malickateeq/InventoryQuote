@@ -22,4 +22,8 @@ class Quotation extends Model
     protected $casts = [
         'pallets' => 'array'
     ];
+
+    public function proposals() {
+        return $this->hasMany(Proposal::class);
+    }
 }

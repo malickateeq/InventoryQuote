@@ -16,10 +16,10 @@ class Proposal extends Model
     ];
     public function quotation()
     {
-        return $this->belongsTo('App\Quotation','quotation_id');
+        return $this->belongsTo(Quotation::class,'quotation_id');
     }
     public function vendor()
     {
-        return $this->belongsTo('App\User','partner_id');
+        return $this->belongsTo(User::class,'partner_id');
     }
 }

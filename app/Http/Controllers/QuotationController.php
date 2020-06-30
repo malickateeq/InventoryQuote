@@ -96,12 +96,30 @@ class QuotationController extends Controller
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
         
-
-        if($request->transportation_type == 'sea' && $request->type == 'fcl')
+        // Store file
+        if($request->file('attachment'))
         {
-            $quotation->container_size = $request->container_size;
-            $quotation->no_of_containers = $request->no_of_containers;
+            $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
+            $request->merge(['attachment_file' => $file_name]);
+            $isStore = Storage::disk('public')->putFileAs('files/', $request->file('attachment'), $file_name);
+            $quotation->attachment = $file_name;
         }
+
+        if($request->transportation_type == 'ocean' && $request->type == 'fcl')
+        {
+            $total_containers = 0;
+            foreach($request->container_size as $container)
+            {
+                $container_size[] = [
+                    'container_no' => $total_containers+1,
+                    'size' => $container,
+                ];
+                $total_containers++;
+            }
+            $quotation->containers = $container_size;
+            $quotation->total_containers = $total_containers;
+        }
+
         if($request->calculate_by == 'units')
         {
             $pallets = [];
@@ -145,8 +163,10 @@ class QuotationController extends Controller
     public function show($id)
     {
         $data['quotation'] = Quotation::where('id', $id)->first();
+        $data['attachment_url'] = asset( 'public/storage/files/'.$data['quotation']->attachment);
         $data['page_name'] = 'view_quotation';
         $data['page_title'] = 'View quotation | LogistiQuote';
+
         return view('panels.quotation.view', $data);
     }
 
@@ -210,6 +230,18 @@ class QuotationController extends Controller
             $quotation->destination_address = $request->final_destination_address;
         }
 
+        
+        // Delete existing 
+
+        // Store file
+        if($request->file('attachment'))
+        {
+            $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
+            $request->merge(['attachment_file' => $file_name]);
+            $isStore = Storage::disk('public')->putFileAs('files/', $request->file('attachment'), $file_name);
+            $quotation->attachment = $file_name;
+        }
+        
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->description_of_goods = $request->description_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -222,8 +254,17 @@ class QuotationController extends Controller
 
         if($request->transportation_type == 'sea' && $request->type == 'fcl')
         {
-            $quotation->container_size = $request->container_size;
-            $quotation->no_of_containers = $request->no_of_containers;
+            $total_containers = 0;
+            foreach($request->container_size as $container)
+            {
+                $container_size[] = [
+                    'container_no' => $total_containers+1,
+                    'size' => $container,
+                ];
+                $total_containers++;
+            }
+            $quotation->containers = $container_size;
+            $quotation->total_containers = $total_containers;
         }
         if($request->calculate_by == 'units')
         {
@@ -340,7 +381,6 @@ class QuotationController extends Controller
 
     public function store_pending_form()
     {
-        
         if(Auth::user()->role != 'user')
         {
             $isDelete = Storage::disk('public')->delete('store_pending_form.json');
@@ -365,6 +405,14 @@ class QuotationController extends Controller
         $quotation->type = $fileContents->type;
         $quotation->incoterms = $fileContents->incoterms;
 
+        // Store file
+        if(isset($fileContents->attachment_file))
+        {
+            $move = Storage::disk('public')->move( 'temp/'.$fileContents->attachment_file, 'files/'.$fileContents->attachment_file );
+
+            $quotation->attachment = $fileContents->attachment_file;
+        }
+
         if($fileContents->incoterms == 'EXW')
         {
             $quotation->pickup_address = $fileContents->pickup_address;
@@ -385,8 +433,17 @@ class QuotationController extends Controller
 
         if($fileContents->transportation_type == 'sea' && $fileContents->type == 'fcl')
         {
-            $quotation->container_size = $fileContents->container_size;
-            $quotation->no_of_containers = $fileContents->no_of_containers;
+            $total_containers = 0;
+            foreach($fileContents->container_size as $container)
+            {
+                $container_size[] = [
+                    'container_no' => $total_containers+1,
+                    'size' => $container,
+                ];
+                $total_containers++;
+            }
+            $quotation->containers = $container_size;
+            $quotation->total_containers = $total_containers;
         }
         if($fileContents->calculate_by == 'units')
         {

@@ -3,7 +3,7 @@
 
 <div class="app-wrapper container">
     <div class="shipping-form" style="display: inline-block;">
-        <form action="{{ route('form_quote_step2') }}" method="POST">
+        <form action="{{ route('form_quote_step2') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h2>Type of delivery</h2>
             <div class="shipment-type" style="margin: 20px 0px;">
@@ -79,35 +79,53 @@
                 </div>
 
                 <div class="from-row">
-                    <div class="request-input large">
-                        <p class="name">Number of containers</p>
-                        <div class="input-wrap  ">
-                            <input type="number" title="Number of containers" name="no_of_containers"
-                                placeholder="Number of containers" step="any" autocomplete="off" required="" value="">
+
+                <h5> Add Container </h5>
+
+                    <div id="container_fields">
+                        <div class="form-row container-field" style="margin: 20px 0px 10px 0px;" id="container-1">
+                            <label for="" style="margin: 30px 10px 0px 0px; font-weight: bold;">Container#1</label>
+                            <div class="containers">
+                                <div class="request-input small">
+                                    <p class="name">Size of container</p>
+                                    
+                                    <div class="request-select large">
+                                        <div class="select-wrap  blue">
+                                            <select name="container_size[]" required="">
+                                                <option>choose..</option>
+                                                <option value="20f-dc">20' Dry Cargo</option>
+                                                <option value="40f-dc">40' Dry Cargo</option>
+                                                <option value="40f-hdc">40' add-high Dry Cargo</option>
+                                                <option value="45f-hdc">45' add-high Dry Cargo</option>
+                                                <option value="20f-ot">20' Open Top</option>
+                                                <option value="40f-ot">40' Open Top</option>
+                                                <option value="20f-col">20' Collapsible</option>
+                                                <option value="40f-col">40' Collapsible</option>
+                                                <option value="20f-os">20' Open Side</option>
+                                                <option value="20f-dv">20' D.V for Side Floor</option>
+                                                <option value="20f-ven">20' Ventilated</option>
+                                                <option value="20f-gar">40' Garmentainer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                            
+                            <div class="form-row" id="add_remove_containers">
+                                <button type="button" class="request-btn btn-sm" id="add_container"
+                                    style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                                    <i class="fal fa-plus"></i>
+                                </button>
+                                <button type="button" class="request-btn btn-sm" id="add_container"
+                                    style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                                    <i class="fal fa-minus"></i>
+                                </button>
+                            </div>
                     </div>
                 </div>
 
-                <div class="request-select large">
-                    <p class="label">Size of containers</p>
-                    <div class="select-wrap  blue">
-                        <select name="container_size" required="">
-                            <option>choose..</option>
-                            <option value="20f-dc">20' Dry Cargo</option>
-                            <option value="40f-dc">40' Dry Cargo</option>
-                            <option value="40f-hdc">40' add-high Dry Cargo</option>
-                            <option value="45f-hdc">45' add-high Dry Cargo</option>
-                            <option value="20f-ot">20' Open Top</option>
-                            <option value="40f-ot">40' Open Top</option>
-                            <option value="20f-col">20' Collapsible</option>
-                            <option value="40f-col">40' Collapsible</option>
-                            <option value="20f-os">20' Open Side</option>
-                            <option value="20f-dv">20' D.V for Side Floor</option>
-                            <option value="20f-ven">20' Ventilated</option>
-                            <option value="20f-gar">40' Garmentainer</option>
-                        </select>
-                    </div>
-                </div>
 
                 <div class="form-row">
 
@@ -240,6 +258,15 @@
 
             <h2>Other Info</h2>
             <div class="shipment-form">
+
+                <div class="from-row">
+                    <div class="request-input large">
+                        <p class="name">Attach a file</p>
+                        <div class="input-wrap  ">
+                            <input type="file" style="border: 1px solid grey;" name="attachment">    
+                        </div>
+                    </div>
+                </div>
 
                 <div class="from-row">
                     <div class="request-input large">
@@ -460,7 +487,77 @@
             enableButtonAdd();
         });
     });
+</script>
 
+<!-- Add dynamic containers fields -->
+<script>
+    $(document).ready(function () {
+        var buttonAdd = $("#add_container");
+        var buttonRemove = $("#remove_container");
+        var className = ".container-field";
+        var count = 0;
+        var field = "";
+        var maxFields = 50;
+
+        function totalFields() {
+            return $(className).length;
+        }
+
+        function addNewField() {
+            count = totalFields() + 1;
+            field = $("#container-1").clone();
+            field.attr("id", "container-" + count);
+            field.children("label").text("Container# " + count);
+            field.find("input").val("");
+            $(className + ":last").after($(field));
+        }
+
+        function removeLastField() {
+            if (totalFields() > 1) {
+                $(className + ":last").remove();
+            }
+        }
+
+        function enableButtonRemove() {
+            if (totalFields() === 2) {
+                buttonRemove.removeAttr("disabled");
+                buttonRemove.addClass("shadow-sm");
+            }
+        }
+
+        function disableButtonRemove() {
+            if (totalFields() === 1) {
+                buttonRemove.attr("disabled", "disabled");
+                buttonRemove.removeClass("shadow-sm");
+            }
+        }
+
+        function disableButtonAdd() {
+            if (totalFields() === maxFields) {
+                buttonAdd.attr("disabled", "disabled");
+                buttonAdd.removeClass("shadow-sm");
+            }
+        }
+
+        function enableButtonAdd() {
+            if (totalFields() === (maxFields - 1)) {
+                buttonAdd.removeAttr("disabled");
+                buttonAdd.addClass("shadow-sm");
+            }
+        }
+
+        buttonAdd.click(function () {
+            addNewField();
+            enableButtonRemove();
+            disableButtonAdd();
+        });
+
+        buttonRemove.click(function () {
+            removeLastField();
+            disableButtonRemove();
+            enableButtonAdd();
+        });
+    });
 </script>
 
 @endsection

@@ -63,6 +63,13 @@ class SiteController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
+        if($request->file('attachment'))
+        {
+            $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
+            $request->merge(['attachment_file' => $file_name]);
+            $isStore = Storage::disk('public')->putFileAs('temp/', $request->file('attachment'), $file_name);
+        }
+        
         $fileContents = Storage::disk('public')->get('store_pending_form.json');
         $fileContents = json_decode($fileContents, true);
         $merge = array_merge($fileContents, $request->all());

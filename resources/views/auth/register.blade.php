@@ -346,6 +346,14 @@
                                 <p class="errorInputMsg">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        <div class="input-wrapper">
+                            
+                            <p>
+                            <input type="checkbox" style="margin: 10px;">
+                                Agree with our 
+                                <a target="_blank" href="/tos">Terms &amp; conditions?</a></p>
+                        </div>
                             
                         <button type="submit" class="sign-form_content-main-btn">Create Account</button>
                     

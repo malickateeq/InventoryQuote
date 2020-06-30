@@ -3,7 +3,7 @@
 
 <div class="app-wrapper container">
     <div class="shipping-form" style="display: inline-block;">
-        <form action="{{ route('form_quote_step2') }}" method="POST">
+        <form action="{{ route('form_quote_step2') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h2>Type of delivery</h2>
             <div class="shipment-type" style="margin: 20px 0px;">
@@ -219,6 +219,15 @@
 
             <h2>Other Info</h2>
             <div class="shipment-form">
+
+                <div class="from-row">
+                    <div class="request-input large">
+                        <p class="name">Attach a file</p>
+                        <div class="input-wrap  ">
+                            <input type="file" style="border: 1px solid grey;" name="attachment">    
+                        </div>
+                    </div>
+                </div>
 
                 <div class="from-row">
                     <div class="request-input large">

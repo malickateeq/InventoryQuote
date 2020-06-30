@@ -42,9 +42,11 @@ class CreateQuotationsTable extends Migration
             $table->string('status')->default('active')->comment('active,withdrawn,completed');
             $table->integer('proposals_received')->default(0);
             
+            $table->string('attachment')->nullable();
+            
             // For Sea+FCL
-            $table->string('no_of_containers')->nullable();
-            $table->string('container_size')->nullable();
+            $table->text('containers')->nullable();
+            $table->text('total_containers')->nullable();
             
             // $table->string('l')->nullable();
             // $table->string('w')->nullable();

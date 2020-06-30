@@ -27,6 +27,9 @@ class CreateProposalsTable extends Migration
             $table->string('status')->default('active')->comment('active,withdrawn,completed');
             $table->timestamp('valid_till', 0)->nullable();
             $table->string('remarks')->nullable();
+            
+            $table->string('attachment')->nullable();
+            
             $table->timestamps();
         });
     }

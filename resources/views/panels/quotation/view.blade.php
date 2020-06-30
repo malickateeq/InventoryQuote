@@ -110,6 +110,40 @@
                         </div>
                     </div>
 
+                    <div class="row">                        
+                        @if($quotation->type == 'fcl')
+                            @foreach($quotation->containers as $container)
+                            <div class="col-md-4" style="margin: 0px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
+                                <label for="" style="font-weight: bold; margin: 35px 10px 0px 0px;">Container#{{ $loop->iteration }}</label>
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="">Container size</label>
+                                        
+                                        {{ $container['size'] }}
+                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                            name="container_size[]" disabled>
+                                            <option value="20f-dc" <?php echo ($container['size']=='20f-dc') ? 'selected' : '' ?> >20' Dry Cargo</option>
+                                            <option value="40f-dc" <?php echo ($container['size']=='40f-dc') ? 'selected' : '' ?> >40' Dry Cargo</option>
+                                            <option value="40f-hdc" <?php echo ($container['size']=='40f-hdc') ? 'selected' : '' ?> >40' add-high Dry Cargo</option>
+                                            <option value="45f-hdc" <?php echo ($container['size']=='45f-hdc') ? 'selected' : '' ?> >45' add-high Dry Cargo</option>
+                                            <option value="20f-ot" <?php echo ($container['size']=='20f-ot') ? 'selected' : '' ?> >20' Open Top</option>
+                                            <option value="40f-ot" <?php echo ($container['size']=='40f-ot') ? 'selected' : '' ?> >40' Open Top</option>
+                                            <option value="20f-col" <?php echo ($container['size']=='20f-col') ? 'selected' : '' ?> >20' Collapsible</option>
+                                            <option value="40f-col" <?php echo ($container['size']=='40f-col') ? 'selected' : '' ?> >40' Collapsible</option>
+                                            <option value="20f-os" <?php echo ($container['size']=='20f-os') ? 'selected' : '' ?> >20' Open Side</option>
+                                            <option value="20f-dv" <?php echo ($container['size']=='20f-dv') ? 'selected' : '' ?> >20' D.V for Side Floor</option>
+                                            <option value="20f-ven" <?php echo ($container['size']=='20f-ven') ? 'selected' : '' ?> >20' Ventilated</option>
+                                            <option value="40f-gar" <?php echo ($container['size']=='40f-gar') ? 'selected' : '' ?> >40' Garmentainer</option>
+                                        </select>
+                                        <!-- <input type="text" class="form-control" disabled
+                                            id="validationServer04" name="l[]" value="{{ $container['size'] }}"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+
                     <hr>
                     <h5 class="mt-4"> <b> Description of Goods </b> </h5>
                     <div class="form-row">
@@ -119,22 +153,6 @@
                                 id="validationServer03" value="{{ $quotation->value_of_goods }}" readonly
                                 name="value_of_goods" required>
                         </div>
-                        @if($quotation->type == 'fcl')
-                        <div class="row" id="for_flc">
-                            <div class="col-md-5 mb-3">
-                                <label class="mr-sm-2">No. of containers</label>
-                                <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
-                                    id="validationServer04" value="{{ $quotation->no_of_containers }}" readonly
-                                    name="no_of_containers" required>
-                            </div>
-                            <div class="col-md-5 mb-3">
-                                <label class="mr-sm-2">Container size</label>
-                                <input type="text" class="form-control @error('no_of_containers') is-invalid @enderror"
-                                    id="validationServer04" value="{{ $quotation->container_size }}" readonly
-                                    name="no_of_containers" required>
-                            </div>
-                        </div>
-                        @endif
                     </div>
 
                     <div class="form-row">
@@ -264,6 +282,14 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a target="_blank" href="{{ $attachment_url }}" class="btn btn-success m-4">
+                               <i class="fad fa-arrow-circle-down mr-2"></i>
+                                View Attached File
+                            </a>
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="col-md-8 mb-3">
                             <div class="col-auto my-1">
@@ -290,6 +316,8 @@
                         <p class="text-danger"> <b> You've withdrawn this quotation!</b> </p>
                     @elseif($quotation->status == 'completed')
                         <p class="text-success"> <b> This quotation has an accepeted proposal!</b> </p>
+                    @elseif($quotation->status == 'done')
+                        <p class="text-warning"> <b> This quotation's 24 hours of active status has been completed!</b> </p>
                     @endif
                 @elseif(Auth::user()->role == 'vendor')
                     @if(is_offer_made(Auth::user()->id, $quotation->id))
@@ -300,6 +328,8 @@
                         <p class="text-danger"> <b> The user has withdrawn this quotation!</b> </p>   
                     @elseif($quotation->status == 'completed')
                         <p class="text-success"> <b> This quotation has already been accepted!</b> </p>
+                    @elseif($quotation->status == 'done')
+                        <p class="text-warning"> <b> This quotation's 24 hours of active status has been completed!</b> </p>
                     @endif        
                 @endif
             </div>

@@ -282,6 +282,7 @@
                             @enderror
                         </div>
                     </div>
+                    @if(isset($attachment_url))
                     <div class="row">
                         <div class="col-md-12">
                             <a target="_blank" href="{{ $attachment_url }}" class="btn btn-success m-4">
@@ -290,6 +291,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
                     <div class="form-row">
                         <div class="col-md-8 mb-3">
                             <div class="col-auto my-1">

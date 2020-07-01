@@ -163,7 +163,10 @@ class QuotationController extends Controller
     public function show($id)
     {
         $data['quotation'] = Quotation::where('id', $id)->first();
-        $data['attachment_url'] = asset( 'public/storage/files/'.$data['quotation']->attachment);
+        if($data['quotation']->attachment != null)
+        {
+            $data['attachment_url'] = asset( 'public/storage/files/'.$data['quotation']->attachment);
+        }
         $data['page_name'] = 'view_quotation';
         $data['page_title'] = 'View quotation | LogistiQuote';
 

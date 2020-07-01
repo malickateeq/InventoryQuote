@@ -50,6 +50,8 @@
                                     <span class="badge badge-danger">{{ $quotation->status }}</span>
                                 @elseif($quotation->status == 'completed')
                                     <span class="badge badge-primary">{{ $quotation->status }}</span>
+                                @elseif($quotation->status == 'done')
+                                    <span class="badge badge-warning">{{ $quotation->status }}</span>
                                 @endif
                             </td>
                             <td>

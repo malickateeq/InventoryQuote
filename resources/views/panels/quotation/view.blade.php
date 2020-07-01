@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="row">                        
-                        @if($quotation->type == 'fcl')
+                        @if($quotation->type == 'fcl' && isset($quotation->containers))
                             @foreach($quotation->containers as $container)
                             <div class="col-md-4" style="margin: 0px 0px 10px 0px;" id="units-{{ $loop->iteration }}">
                                 <label for="" style="font-weight: bold; margin: 35px 10px 0px 0px;">Container#{{ $loop->iteration }}</label>

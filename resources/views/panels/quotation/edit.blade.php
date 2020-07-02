@@ -559,7 +559,7 @@
                                     <div class="col-auto my-1">
                                         <label class="mr-sm-2" for="transportation_type">Transportation Type</label>
                                         <select class="custom-select mr-sm-2 @error('transportation_type') is-invalid @enderror" id="transportation_type"
-                                            name="transportation_type">
+                                            name="transportation_type" disabled>
                                             <option value="" selected>Choose...</option>
                                             <option value="ocean" <?php echo ($quotation->transportation_type == 'ocean') ? 'selected' : ''; ?> >Ocean Freight</option>
                                             <option value="air" <?php echo ($quotation->transportation_type == 'air') ? 'selected' : ''; ?>>Air Freight</option>
@@ -572,7 +572,7 @@
                                     </div>
                                     <div class="col-auto my-1">
                                         <label class="mr-sm-2" for="inlineFormCustomSelect">Type of Shipment</label>
-                                        <select class="custom-select mr-sm-2 @error('type') is-invalid @enderror" id="type_of_shipment" name="type">
+                                        <select class="custom-select mr-sm-2 @error('type') is-invalid @enderror" id="type_of_shipment" name="type" disabled>
                                             <option value="" selected>Choose...</option>
                                         </select>
                                         @error('type')
@@ -583,19 +583,20 @@
                                     </div>
                                 </div>
 
+                                @if($quotation->type == 'fcl')
                                 <!-- Dynamic Containers -->
-                                <div id="for_flc" style="display: <?php echo ($quotation->type == 'fcl')? 'show;' : 'hidden;' ?>">
+                                <div id="for_flc2">
                                     <div class="row" id="dynamic_containers">
 
                                         <div class="col-md-12">
                                             <label class="mt-3">Containers Specification</label>
                                         </div>
-
+                                        @if($quotation->type == 'fcl')
                                             @foreach($quotation->containers as $container)
-                                            <div class="dynamic-container row" style="margin: 20px 0px 10px 0px;"
+                                            <div class="dynamic-container row" style="margin: 20px 0px 5px 0px;"
                                                 id="container-{{ $loop->iteration }}">
                                                 <label for="" style="font-weight: bold;">Container#{{ $loop->iteration }}</label>
-                                                <div class="col-md-6 mb-3">
+                                                <div class="col-md-5 mb-3">
                                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
                                                         name="container_size[]">
                                                         <option value="">Container size</option>
@@ -619,12 +620,12 @@
                                                     @enderror
                                                 </div>
                                                 
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <input type="number"
-                                                        class="form-control @error('gross_weight') is-invalid @enderror"
+                                                        class="form-control @error('container_weight') is-invalid @enderror"
                                                         id="validationServer03" placeholder="Weight (kg)"
-                                                        name="gross_weight[]" value="{{ $container['weight'] }}">
-                                                    @error('gross_weight[]')
+                                                        name="container_weight[]" value="{{ $container['weight'] }}">
+                                                    @error('container_weight[]')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -632,6 +633,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
+                                        @endif
                                     </div>
 
                                     <div class="row" id="dynamic_btn">
@@ -649,6 +651,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
 
                                 <div class="form-row my-3">
                                     <div class="col-md-3 mb-3">
@@ -689,9 +692,9 @@
                                     <div class="col-md-4 mb-3">
                                         <div class="custom-control custom-radio custom-control-inline">
                                             <div id="if_not_air">
-                                                <input type="radio" id="customRadioInline1" name="calculate_by" <?php if($quotation->calculate_by == 'shipment') echo 'checked="checked"'; ?>
-                                                    value="shipment" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadioInline1">Calculate
+                                                <input type="radio" id="by_total_shipment" name="calculate_by" <?php if($quotation->calculate_by == 'shipment') echo 'checked="checked"'; ?>
+                                                    value="shipment" class="custom-control-input" disabled>
+                                                <label class="custom-control-label" for="by_total_shipment">Calculate
                                                     by total
                                                     shipment</label>
                                             </div>
@@ -699,16 +702,16 @@
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="customRadioInline2" name="calculate_by" <?php if($quotation->calculate_by == 'units') echo 'checked="checked"'; ?>
-                                                value="units" class="custom-control-input" checked>
-                                            <label class="custom-control-label" for="customRadioInline2">Calculate
+                                            <input type="radio" id="by_units" name="calculate_by" <?php if($quotation->calculate_by == 'units') echo 'checked="checked"'; ?>
+                                                value="units" class="custom-control-input" disabled>
+                                            <label class="custom-control-label" for="by_units">Calculate
                                                 by units</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 @if($quotation->calculate_by == 'shipment')
-                                <div id="shipment">
+                                <div id="shipment2">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
                                             <label for="">Quantity</label>
@@ -739,9 +742,9 @@
 
                                 @elseif($quotation->calculate_by == 'units')
                                 <div class="row">
-                                    <div id="dynamic_fields">
+                                    <div id="dynamic_fields2">
                                         @foreach($quotation->pallets as $pallet)
-                                        <div class="form-row dynamic-field" style="margin: 20px 0px 10px 0px;"
+                                        <div class="form-row dynamic-field2" style="margin: 20px 0px 10px 0px;"
                                             id="units-{{ $loop->iteration }}">
                                             <label for="" style="font-weight: bold;">Pallet#{{ $loop->iteration }}</label>
                                             <!-- <label for="">Dimensions (cm)</label> -->
@@ -855,49 +858,20 @@
                                                 <input type="checkbox" class="custom-control-input" <?php if($quotation->isClearanceReq == 'Yes') echo 'checked="checked"'; ?>
                                                     id="customControlAutosizing3" name="isClearanceReq" value="Yes">
                                                 <label class="custom-control-label" for="customControlAutosizing3">
-                                                    Customs
-                                                    Clearance?</label>
+                                                    Customs Clearance?</label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="attachment" value="{{ $quotation->attachment }}">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlFile1">Attach a file</label>
+                                                <input type="file" style="border: 1px solid grey; border-radius: 5px; padding: 10px;" class="form-control-file" name="attachment" id="exampleFormControlFile1">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- <div class="list-content">
-                                        <a href="#listthree" data-toggle="collapse" aria-expanded="false"
-                                            aria-controls="listthree">Collapse 3 <i class="fa fa-chevron-down"></i></a>
-                                        <div class="collapse" id="listthree">
-                                            <div class="list-box">
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Name *</label>
-                                                            <input class="form-control" type="text" name="name"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Number *</label>
-                                                            <input class="form-control" type="text" name="name"
-                                                                placeholder="">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
 
                                 <ul class="list-inline pull-right">
@@ -934,16 +908,14 @@
         }
         if(calculated_by == 'units')
         {
-            $('#dynamic_buttons').show();
-            $('.dynamic-field').show();
-            $('#shipment').hide();
+
+            $("#by_units").prop('checked', true);
         }
         else
         {
-            $('.dynamic-field').hide();
-            $('#dynamic_buttons').hide();
-            $('#shipment').show();
+            $("#by_total_shipment").prop('checked', true);
         }
+
         if(type == 'fcl')
         {
             $('#for_flc').show();
@@ -983,31 +955,9 @@
         });
 
         $('#exw').hide();
-        $('#dynamic_buttons').show();
-        $('.dynamic-field').show();
-        $(".require").prop('', true);
+        
 
-        $('#shipment').hide();
-        $("input[name=quantity]").prop('', false);
-        $("input[name=total_weight]").prop('', false);
-        $('#for_flc').hide();
-
-        // On load
-        if ($("#transportation_type").find(':selected').val() == 'ocean') {
-            $('#type_of_shipment').empty();
-            $("#type_of_shipment").append(new Option("LCL", "lcl"));
-            $("#type_of_shipment").append(new Option("FCL", "fcl"));
-        } else if ($("#transportation_type").find(':selected').val() == 'air') {
-            $('#type_of_shipment').empty();
-            $("#type_of_shipment").append(new Option("AIR", "air"));
-        }
-
-        if ($("#type_of_shipment").find(':selected').val() == 'fcl') {
-            
-            $("#type_of_shipment option[value='fcl']").prop('selected', true);
-            $('#for_flc').show();
-        }
-
+    
         $("#transportation_type").change(function () {
             if ($(this).find(':selected').val() == 'ocean') {
                 $('#if_not_air').show();
@@ -1020,7 +970,7 @@
                 $("#type_of_shipment").append(new Option("AIR", "air"));
                 $('#for_flc').hide();
             }
-        });
+        }); 
 
         // FCL options
         $("#type_of_shipment").change(function () {

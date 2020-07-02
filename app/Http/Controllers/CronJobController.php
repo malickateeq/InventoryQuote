@@ -29,19 +29,19 @@ class CronJobController extends Controller
 
             if($quotation->created_at->dayOfWeek == 4)
             {
-                $expire = $quotation->created_at->addDays(5);
+                $expire = $quotation->created_at->addDays(4);
             }
             else if($quotation->created_at->dayOfWeek == 5)
             {
-                $expire = $quotation->created_at->addDays(4);
+                $expire = $quotation->created_at->addDays(3)->endOfDay();
             }
             else if($quotation->created_at->dayOfWeek == 6)
             {
-                $expire = $quotation->created_at->addDays(3);
+                $expire = $quotation->created_at->addDays(2)->endOfDay();
             }
             else if($quotation->created_at->dayOfWeek == 0)
             {
-                $expire = $quotation->created_at->addDays(2);
+                $expire = $quotation->created_at->addDays(1)->endOfDay();
             }
             else
             {
@@ -60,9 +60,7 @@ class CronJobController extends Controller
                     $prop->status = 'done';
                     $prop->save();
                 }
-                
             }
-            
         }
     }
 }

@@ -689,9 +689,9 @@
 
                                             <div class="col-md-4">
                                                 <input type="number"
-                                                    class="form-control @error('gross_weight') is-invalid @enderror"
+                                                    class="form-control @error('container_weight') is-invalid @enderror"
                                                     id="validationServer03" placeholder="Weight (kg)"
-                                                    name="gross_weight[]" value="{{ old('gross_weight') }}">
+                                                    name="container_weight[]" value="{{ old('container_weight') }}">
                                                 @error('gross_weight')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -932,9 +932,9 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="attachment">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlFile1">Attach a file</label>
+                                                <input type="file" style="border: 1px solid grey; border-radius: 5px; padding: 10px;" class="form-control-file" name="attachment" id="exampleFormControlFile1">
                                             </div>
                                         </div>
                                     </div>

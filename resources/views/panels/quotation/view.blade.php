@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-8 col-md-8 mb-4 offset-md-2">
+    <div class="col-xl-10 col-md-12 mb-4 offset-md-1">
         <div class="card card shadow">
             <h5 class="card-header">
                 Quotation
@@ -135,9 +135,7 @@
                                             <option value="20f-ven" <?php echo ($container['size']=='20f-ven') ? 'selected' : '' ?> >20' Ventilated</option>
                                             <option value="40f-gar" <?php echo ($container['size']=='40f-gar') ? 'selected' : '' ?> >40' Garmentainer</option>
                                         </select>
-                                        <label for="">Weight</label>
-                                        <input type="text" class="form-control" disabled
-                                            id="validationServer04" name="" value="{{ $container['weight'] }}">
+                                        <label class="badge badge-info badge-2x" for="">Weight: {{ $container['weight'] }} Kg </label>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,9 @@ use App\Quotation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
+use App\Mail\ContactUs;
+use Illuminate\Support\Facades\Mail;
+
 class SiteController extends Controller
 {
     public function index()
@@ -17,6 +20,32 @@ class SiteController extends Controller
         $data['page_name'] = 'homepage';
         return view('frontend.index', $data);
     }
+
+    public function contact_us()
+    {
+        $data['page_title'] = 'Contact Us | LogistiQuote';
+        $data['page_name'] = 'contact_us';
+        return view('frontend.contact_us', $data);
+    }
+
+    public function contact(Request $request)
+    {
+        // dd( (string) $request->message);
+        $data = [];
+        $data = array(
+            // 'to'      => array('cs@logistiquote.com'),
+            'to'      => array('malickateeq@gmail.com'),
+            'subject' => $request->subject,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'msg' => (string)$request->message,
+        );
+        Mail::to($data['to'])->send(new ContactUs($data));
+
+        return redirect()->back();
+    }
+
     public function get_quote_step1(Request $request)
     {
         $data = [

@@ -26,6 +26,8 @@ Route::get('clear', function () {
 Route::get('/cron', 'CronJobController@index')->name('cronjob');
 
 Route::get('/', 'SiteController@index')->name('index');
+Route::get('/contact-us', 'SiteController@contact_us')->name('contact_us');
+Route::post('/contact', 'SiteController@contact')->name('contact');
 
 Auth::routes(['verify' => true]);
 

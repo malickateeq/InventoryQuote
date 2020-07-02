@@ -21,6 +21,9 @@
         <!-- Request quote includes -->
         <link href="{{ asset('public/frontend/css/bundle.css') }}" media="screen" rel="stylesheet" type="text/css" />
         @endif
+        @if($page_name == 'contact_us')    
+        <link href="{{ asset('public/frontend/css/contact_us.css') }}" media="screen" rel="stylesheet" type="text/css" />
+        @endif
     @endif
     
     @if( ! isset($page_name) )
@@ -31,4 +34,3 @@
     <!-- Font awesome includes -->
     <link rel="stylesheet" href="{{ asset('public/fontawesome/css/all.css') }}">
     <!-- <script type="text/javascript" src="{{ asset('public/fontawesome/js/all.js') }}"></script> -->
-

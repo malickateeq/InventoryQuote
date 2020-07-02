@@ -193,6 +193,13 @@
                                     <p class="label">KG</p>
                                 </div>
                             </div>
+                            <div class="request-input medium">
+                                <p class="name">Gross Weight (Kg)</p>
+                                <div class="input-wrap  "><input type="number" title="Weight" name="gross_weight[]"
+                                        placeholder="0" step="any" autocomplete="off" value="">
+                                    <p class="label">KG</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -244,6 +251,21 @@
                             <p class="label">Reqires customs clearance?</p>
                             <div class="toggle-wrap">
                                 <input type="checkbox" name="isClearanceReq" value="yes">
+                                <div class="toggle-content">
+                                    <span class="toggler" style="background: rgb(243, 156, 1);"></span>
+                                    <div class="values">
+                                        <p>No</p>
+                                        <p>Yes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="request-cascader">
+                        <label class="request-toggle">
+                            <p class="label">Goods Insurance</p>
+                            <div class="toggle-wrap">
+                                <input type="checkbox" name="insurance" value="yes">
                                 <div class="toggle-content">
                                     <span class="toggler" style="background: rgb(243, 156, 1);"></span>
                                     <div class="values">

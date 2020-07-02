@@ -95,6 +95,7 @@ class QuotationController extends Controller
         $quotation->calculate_by = $request->calculate_by;
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
+        $quotation->insurance = $request->insurance ? $request->insurance : 'No';
         
         // Store file
         if($request->file('attachment'))
@@ -106,15 +107,15 @@ class QuotationController extends Controller
         }
 
         if($request->transportation_type == 'ocean' && $request->type == 'fcl')
-        {
-            $total_containers = 0;
-            foreach($request->container_size as $container)
+        {   
+            $total_containers = count($request->container_size);
+            for($c=0 ;$c<count($request->container_size); $c++)
             {
                 $container_size[] = [
-                    'container_no' => $total_containers+1,
-                    'size' => $container,
+                    'container_no' => $c+1,
+                    'size' => $request->container_size[$c],
+                    'weight' => $request->container_weight[$c],
                 ];
-                $total_containers++;
             }
             $quotation->containers = $container_size;
             $quotation->total_containers = $total_containers;
@@ -134,6 +135,7 @@ class QuotationController extends Controller
                     'width' => $request->w[$i],
                     'height' => $request->h[$i],
                     'volumetric_weight' => $volumetric_weight,
+                    'gross_weight' => $request->gross_weight[$i],
                 ];
                 $total_weight += $volumetric_weight;
             }
@@ -252,19 +254,20 @@ class QuotationController extends Controller
         $quotation->calculate_by = $request->calculate_by;
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
+        $quotation->insurance = $request->insurance ? $request->insurance : 'No';
         
         $quotation->total_weight = $request->total_weight;
 
         if($request->transportation_type == 'sea' && $request->type == 'fcl')
         {
-            $total_containers = 0;
-            foreach($request->container_size as $container)
+            $total_containers = count($request->container_size);
+            for($c=0 ;$c<count($request->container_size); $c++)
             {
                 $container_size[] = [
-                    'container_no' => $total_containers+1,
-                    'size' => $container,
+                    'container_no' => $c+1,
+                    'size' => $request->container_size[$c],
+                    'weight' => $request->container_weight[$c],
                 ];
-                $total_containers++;
             }
             $quotation->containers = $container_size;
             $quotation->total_containers = $total_containers;
@@ -283,6 +286,7 @@ class QuotationController extends Controller
                     'width' => $request->w[$i],
                     'height' => $request->h[$i],
                     'volumetric_weight' => $volumetric_weight,
+                    'gross_weight' => $request->gross_weight[$i],
                 ];
                 $total_weight += $volumetric_weight;
             }
@@ -432,18 +436,19 @@ class QuotationController extends Controller
         $quotation->calculate_by = $fileContents->calculate_by;
         $quotation->remarks = $fileContents->remarks;
         $quotation->isClearanceReq = isset($fileContents->isClearanceReq) ? $fileContents->isClearanceReq : 'No';
+        $quotation->insurance = isset($fileContents->insurance) ? $fileContents->insurance : 'No';
         
 
         if($fileContents->transportation_type == 'sea' && $fileContents->type == 'fcl')
         {
-            $total_containers = 0;
-            foreach($fileContents->container_size as $container)
+            $total_containers = count($fileContents->container_size);
+            for($c=0 ;$c<count($fileContents->container_size); $c++)
             {
                 $container_size[] = [
-                    'container_no' => $total_containers+1,
-                    'size' => $container,
+                    'container_no' => $c+1,
+                    'size' => $fileContents->container_size[$c],
+                    'weight' => $fileContents->container_weight[$c],
                 ];
-                $total_containers++;
             }
             $quotation->containers = $container_size;
             $quotation->total_containers = $total_containers;
@@ -462,6 +467,7 @@ class QuotationController extends Controller
                     'width' => $fileContents->w[$i],
                     'height' => $fileContents->h[$i],
                     'volumetric_weight' => $volumetric_weight,
+                    'gross_weight' => $fileContents->gross_weight[$i],
                 ];
                 $total_weight += $volumetric_weight;
             }

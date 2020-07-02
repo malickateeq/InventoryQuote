@@ -92,6 +92,7 @@ class SiteController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
+        dd( $request->all() );
         if($request->file('attachment'))
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();

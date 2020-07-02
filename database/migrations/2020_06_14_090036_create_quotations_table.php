@@ -39,6 +39,7 @@ class CreateQuotationsTable extends Migration
 
             $table->string('remarks')->nullable();
             $table->string('isClearanceReq')->nullable();
+            $table->string('insurance')->nullable();
             $table->string('status')->default('active')->comment('active,withdrawn,completed');
             $table->integer('proposals_received')->default(0);
             

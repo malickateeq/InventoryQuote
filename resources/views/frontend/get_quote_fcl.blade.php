@@ -80,49 +80,59 @@
 
                 <div class="from-row">
 
-                <h5> Add Container </h5>
+                    <h5> Add Container </h5>
 
                     <div id="container_fields">
                         <div class="form-row container-field" style="margin: 20px 0px 10px 0px;" id="container-1">
                             <label for="" style="margin: 30px 10px 0px 0px; font-weight: bold;">Container#1</label>
                             <div class="containers">
-                                <div class="request-input small">
-                                    <p class="name">Size of container</p>
-                                    
-                                    <div class="request-select large">
-                                        <div class="select-wrap  blue">
-                                            <select name="container_size[]" required="">
-                                                <option>choose..</option>
-                                                <option value="20f-dc">20' Dry Cargo</option>
-                                                <option value="40f-dc">40' Dry Cargo</option>
-                                                <option value="40f-hdc">40' add-high Dry Cargo</option>
-                                                <option value="45f-hdc">45' add-high Dry Cargo</option>
-                                                <option value="20f-ot">20' Open Top</option>
-                                                <option value="40f-ot">40' Open Top</option>
-                                                <option value="20f-col">20' Collapsible</option>
-                                                <option value="40f-col">40' Collapsible</option>
-                                                <option value="20f-os">20' Open Side</option>
-                                                <option value="20f-dv">20' D.V for Side Floor</option>
-                                                <option value="20f-ven">20' Ventilated</option>
-                                                <option value="20f-gar">40' Garmentainer</option>
-                                            </select>
+
+                                <div class="form-row">
+                                    <div class="request-input small">
+                                        <p class="name">Size of container</p>
+
+                                        <div class="request-select medium">
+                                            <div class="select-wrap  blue">
+                                                <select name="container_size[]" required="">
+                                                    <option>choose..</option>
+                                                    <option value="20f-dc">20' Dry Cargo</option>
+                                                    <option value="40f-dc">40' Dry Cargo</option>
+                                                    <option value="40f-hdc">40' add-high Dry Cargo</option>
+                                                    <option value="45f-hdc">45' add-high Dry Cargo</option>
+                                                    <option value="20f-ot">20' Open Top</option>
+                                                    <option value="40f-ot">40' Open Top</option>
+                                                    <option value="20f-col">20' Collapsible</option>
+                                                    <option value="40f-col">40' Collapsible</option>
+                                                    <option value="20f-os">20' Open Side</option>
+                                                    <option value="20f-dv">20' D.V for Side Floor</option>
+                                                    <option value="20f-ven">20' Ventilated</option>
+                                                    <option value="20f-gar">40' Garmentainer</option>
+                                                </select>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <div class="request-input medium">
+                                        <p class="name">Weight (Kg)</p>
+                                        <div class="input-wrap  "><input type="number" title="Weight" name="container_weight[]"
+                                                placeholder="0" step="any" autocomplete="off" required="" value="">
+                                            <p class="label">KG</p>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                            
-                            <div class="form-row" id="add_remove_containers">
-                                <button type="button" class="request-btn btn-sm" id="add_container"
-                                    style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
-                                    <i class="fal fa-plus"></i>
-                                </button>
-                                <button type="button" class="request-btn btn-sm" id="add_container"
-                                    style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
-                                    <i class="fal fa-minus"></i>
-                                </button>
-                            </div>
+
+                        <div class="form-row" id="add_remove_containers">
+                            <button type="button" class="request-btn btn-sm" id="add_container"
+                                style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <button type="button" class="request-btn btn-sm" id="remove_container"
+                                style="background: #F39C12; padding: 0px 15px; height: 40px; margin: 0px 0px 20px 20px; font-size: 12px; border-radius: 10px;">
+                                <i class="fal fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -182,14 +192,14 @@
                             <p class="name">Number of Pieces (Quantity)</p>
                             <div class="input-wrap  ">
                                 <input type="number" title="Quantity" name="quantity" placeholder="0" step="any"
-                                    autocomplete="off" required="" value="">
+                                    autocomplete="off" value="">
                                 <p class="label">PCS</p>
                             </div>
                         </div>
                         <div class="request-input small">
                             <p class="name">Gross Weight</p>
                             <div class="input-wrap  "><input type="number" title="Gross Weight" name="total_weight"
-                                    placeholder="0" step="any" autocomplete="off" required="" value="">
+                                    placeholder="0" step="any" autocomplete="off" value="">
                                 <p class="label">KG</p>
                             </div>
                         </div>
@@ -202,23 +212,24 @@
                                 <div class="request-input small">
                                     <p class="name">Dimensions</p>
                                     <div class="input-wrap">
-                                        <input type="number" title="Dimensions" name="l[]" class="require dimension" placeholder="L"
-                                            step="any" 
-                                            id="length_1" autocomplete="off" value="">
+                                        <input type="number" title="Dimensions" name="l[]" class="require dimension"
+                                            placeholder="L" step="any" id="length_1" autocomplete="off" value="">
                                     </div>
                                 </div>
                                 <div class="request-input small">
                                     <p class="name"> </p>
                                     <div class="input-wrap">
-                                        <input type="number" title=" " name="w[]" placeholder="W" class="require dimension" step="any"
-                                            id="width_1" autocomplete="off" value="">
+                                        <input type="number" title=" " name="w[]" placeholder="W"
+                                            class="require dimension" step="any" id="width_1" autocomplete="off"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="request-input small">
                                     <p class="name"> </p>
                                     <div class="input-wrap">
-                                        <input type="number" title=" " name="h[]" placeholder="H" class="require dimension" step="any"
-                                            id="height_1" autocomplete="off" value="">
+                                        <input type="number" title=" " name="h[]" placeholder="H"
+                                            class="require dimension" step="any" id="height_1" autocomplete="off"
+                                            value="">
                                         <p class="label">CM</p>
                                     </div>
                                 </div>
@@ -226,8 +237,16 @@
                             <div class="request-input small">
                                 <p class="name">Volumetric Weight</p>
                                 <div class="input-wrap">
-                                    <input type="number" title="Gross Weight" name="total_weight_units[]" style="width: 120px;"
-                                        id="total_weight_units_1" step="any" autocomplete="off" disabled="" value="">
+                                    <input type="number" title="Gross Weight" name="total_weight_units[]"
+                                        style="width: 120px;" id="total_weight_units_1" step="any" autocomplete="off"
+                                        disabled="" value="">
+                                    <p class="label">KG</p>
+                                </div>
+                            </div>
+                            <div class="request-input medium">
+                                <p class="name">Gross Weight (Kg)</p>
+                                <div class="input-wrap  "><input type="number" title="Weight" name="gross_weight[]"
+                                        placeholder="0" step="any" autocomplete="off" value="">
                                     <p class="label">KG</p>
                                 </div>
                             </div>
@@ -263,7 +282,7 @@
                     <div class="request-input large">
                         <p class="name">Attach a file</p>
                         <div class="input-wrap  ">
-                            <input type="file" style="border: 1px solid grey;" name="attachment">    
+                            <input type="file" style="border: 1px solid grey;" name="attachment">
                         </div>
                     </div>
                 </div>
@@ -294,6 +313,21 @@
                             </div>
                         </label>
                     </div>
+                    <div class="request-cascader">
+                        <label class="request-toggle">
+                            <p class="label">Goods Insurance</p>
+                            <div class="toggle-wrap">
+                                <input type="checkbox" name="insurance" value="yes">
+                                <div class="toggle-content">
+                                    <span class="toggler" style="background: rgb(243, 156, 1);"></span>
+                                    <div class="values">
+                                        <p>No</p>
+                                        <p>Yes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -314,16 +348,13 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () 
-    {
+    $(document).ready(function () {
         // Dynamic changes
-        $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function() 
-        {
+        $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function () {
             $el = $(this);
             $unit_num = $el.parent().parent().parent().parent();
-            if($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val()
-            && $unit_num.find("input[name^='h']").val())
-            {   
+            if ($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val() &&
+                $unit_num.find("input[name^='h']").val()) {
                 var l = $unit_num.find("input[name^='l']").val();
                 var w = $unit_num.find("input[name^='w']").val();
                 var h = $unit_num.find("input[name^='h']").val();
@@ -338,8 +369,7 @@
         $(".require").prop('required', false);
 
         // On calculation radio button clicks
-        $('input:radio').change(function () 
-        {
+        $('input:radio').change(function () {
             var el = $(this).val();
             if (el == 'units') {
                 $('#dynamic_buttons').show();
@@ -434,10 +464,10 @@
             field.attr("id", "units-" + count);
             field.children("label").text("Pallet# " + count);
             field.find("input").val("");
-            field.find("#length_1").attr("id", "length_"+count);
-            field.find("#width_1").attr("id", "width_"+count);
-            field.find("#height_1").attr("id", "height_"+count);
-            field.find("#total_weight_units_1").attr("id", "total_weight_units_"+count);
+            field.find("#length_1").attr("id", "length_" + count);
+            field.find("#width_1").attr("id", "width_" + count);
+            field.find("#height_1").attr("id", "height_" + count);
+            field.find("#total_weight_units_1").attr("id", "total_weight_units_" + count);
             $(className + ":last").after($(field));
         }
 
@@ -487,6 +517,7 @@
             enableButtonAdd();
         });
     });
+
 </script>
 
 <!-- Add dynamic containers fields -->
@@ -558,6 +589,7 @@
             enableButtonAdd();
         });
     });
+
 </script>
 
 @endsection

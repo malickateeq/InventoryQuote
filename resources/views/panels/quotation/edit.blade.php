@@ -591,12 +591,11 @@
                                             <label class="mt-3">Containers Specification</label>
                                         </div>
 
-                                        <div class="col-md-12">
                                             @foreach($quotation->containers as $container)
-                                            <div class="dynamic-container" style="margin: 20px 0px 10px 0px;"
+                                            <div class="dynamic-container row" style="margin: 20px 0px 10px 0px;"
                                                 id="container-{{ $loop->iteration }}">
                                                 <label for="" style="font-weight: bold;">Container#{{ $loop->iteration }}</label>
-                                                <div class="col-md-4 mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
                                                         name="container_size[]">
                                                         <option value="">Container size</option>
@@ -619,9 +618,20 @@
                                                     </div>
                                                     @enderror
                                                 </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <input type="number"
+                                                        class="form-control @error('gross_weight') is-invalid @enderror"
+                                                        id="validationServer03" placeholder="Weight (kg)"
+                                                        name="gross_weight[]" value="{{ $container['weight'] }}">
+                                                    @error('gross_weight[]')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             @endforeach
-                                        </div>
                                     </div>
 
                                     <div class="row" id="dynamic_btn">
@@ -769,7 +779,19 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-md-3 mb-3 ml-3">
+                                                <div class="col-md-2 mb-3 ml-3">
+                                                    <label for="">Gross Weight (kg)</label>
+                                                    <input type="number" value="{{ $pallet['gross_weight'] }}"
+                                                        class="form-control @error('gross_weight') is-invalid @enderror"
+                                                        id="validationServer03" placeholder="weight"
+                                                        name="gross_weight[]">
+                                                    @error('gross_weight')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-2 mb-3 ml-3">
                                                     <label for="">Vol Weight (KG)</label>
                                                     <input type="number"
                                                         class="form-control @error('total_weight_units') is-invalid @enderror" value="{{ $pallet['volumetric_weight'] }}"

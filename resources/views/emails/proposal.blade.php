@@ -24,7 +24,7 @@
     <p>Please see below rates for your quotation:</p>
     <table>
         <tr>
-            <th>Partner Number (USD)</th>
+            <th>Vendor Name</th>
             <th>Origin local charges (USD)</th>
             <th>Freight Charges (USD)</th>
             <th>Destination local charges (USD)</th>
@@ -34,7 +34,7 @@
         </tr>
         @foreach($proposals as $proposal)
         <tr>
-            <td>{{ $proposal['partner_id'] }}</td>
+            <td></td>
             <td>{{ $proposal['local_charges'] }}</td>
             <td>{{ $proposal['freight_charges'] }}</td>
             <td>{{ $proposal['destination_local_charges'] }}</td>

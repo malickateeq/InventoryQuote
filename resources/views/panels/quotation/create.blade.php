@@ -535,13 +535,14 @@
 
                                     <div class="col-md-4 mb-3">
                                         <label for="validationServer01">Ready to load date</label>
-                                        <input type="text" class="form-control @error('ready_to_load_date') is-invalid @enderror" name="ready_to_load_date"
-                                            value="{{ old('ready_to_load_date') }}" />
-                                            @error('ready_to_load_date')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
+                                        <input type="text"
+                                            class="form-control @error('ready_to_load_date') is-invalid @enderror"
+                                            name="ready_to_load_date" value="{{ old('ready_to_load_date') }}" />
+                                        @error('ready_to_load_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-9 mb-3">
@@ -571,8 +572,8 @@
 
                                     <div class="col-md-6">
                                         <label class="mr-sm-2" for="incoterms">Incoterms</label>
-                                        <select class="custom-select mr-sm-2 @error('incoterms') is-invalid @enderror" id="incoterms" name="incoterms"
-                                            value="{{ old('incoterms') }}">
+                                        <select class="custom-select mr-sm-2 @error('incoterms') is-invalid @enderror"
+                                            id="incoterms" name="incoterms" value="{{ old('incoterms') }}">
                                             <option value="" selected>Choose..</option>
                                             <option value="EXW">EXW (Ex Works Place)</option>
                                             <option value="FOB">FOB (Free On Board Port)</option>
@@ -623,8 +624,9 @@
                                 <div class="row">
                                     <div class="col-auto my-1">
                                         <label class="mr-sm-2" for="transportation_type">Transportation Type</label>
-                                        <select class="custom-select mr-sm-2 @error('transportation_type') is-invalid @enderror" id="transportation_type"
-                                            name="transportation_type">
+                                        <select
+                                            class="custom-select mr-sm-2 @error('transportation_type') is-invalid @enderror"
+                                            id="transportation_type" name="transportation_type">
                                             <option value="" selected>Choose...</option>
                                             <option value="ocean">Ocean Freight</option>
                                             <option value="air">Air Freight</option>
@@ -637,7 +639,8 @@
                                     </div>
                                     <div class="col-auto my-1">
                                         <label class="mr-sm-2" for="inlineFormCustomSelect">Type of Shipment</label>
-                                        <select class="custom-select mr-sm-2 @error('type') is-invalid @enderror" id="type_of_shipment" name="type">
+                                        <select class="custom-select mr-sm-2 @error('type') is-invalid @enderror"
+                                            id="type_of_shipment" name="type">
                                             <option value="" selected>Choose...</option>
                                         </select>
                                         @error('type')
@@ -657,33 +660,43 @@
                                             <label class="mt-3">Containers Specification</label>
                                         </div>
 
-                                        <div class="col-md-12">
-                                            <div class="dynamic-container" style="margin: 20px 0px 10px 0px;"
-                                                id="container-1">
-                                                <label for="" style="font-weight: bold;">Container#1</label>
-                                                <div class="col-md-4 mb-3">
-                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-                                                        name="container_size[]">
-                                                        <option selected="">Container size</option>
-                                                        <option value="20f-dc">20' Dry Cargo</option>
-                                                        <option value="40f-dc">40' Dry Cargo</option>
-                                                        <option value="40f-hdc">40' add-high Dry Cargo</option>
-                                                        <option value="45f-hdc">45' add-high Dry Cargo</option>
-                                                        <option value="20f-ot">20' Open Top</option>
-                                                        <option value="40f-ot">40' Open Top</option>
-                                                        <option value="20f-col">20' Collapsible</option>
-                                                        <option value="40f-col">40' Collapsible</option>
-                                                        <option value="20f-os">20' Open Side</option>
-                                                        <option value="20f-dv">20' D.V for Side Floor</option>
-                                                        <option value="20f-ven">20' Ventilated</option>
-                                                        <option value="40f-gar">40' Garmentainer</option>
-                                                    </select>
-                                                    @error('container_size')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
+                                        <div class="dynamic-container row" style="margin: 20px 0px 10px 0px;"
+                                            id="container-1">
+                                            <label for="" style="font-weight: bold;">Container#1</label>
+                                            <div class="col-md-5 mb-3">
+                                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                                    name="container_size[]">
+                                                    <option selected="">Container size</option>
+                                                    <option value="20f-dc">20' Dry Cargo</option>
+                                                    <option value="40f-dc">40' Dry Cargo</option>
+                                                    <option value="40f-hdc">40' add-high Dry Cargo</option>
+                                                    <option value="45f-hdc">45' add-high Dry Cargo</option>
+                                                    <option value="20f-ot">20' Open Top</option>
+                                                    <option value="40f-ot">40' Open Top</option>
+                                                    <option value="20f-col">20' Collapsible</option>
+                                                    <option value="40f-col">40' Collapsible</option>
+                                                    <option value="20f-os">20' Open Side</option>
+                                                    <option value="20f-dv">20' D.V for Side Floor</option>
+                                                    <option value="20f-ven">20' Ventilated</option>
+                                                    <option value="40f-gar">40' Garmentainer</option>
+                                                </select>
+                                                @error('container_size')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
                                                 </div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="number"
+                                                    class="form-control @error('gross_weight') is-invalid @enderror"
+                                                    id="validationServer03" placeholder="Weight (kg)"
+                                                    name="gross_weight[]" value="{{ old('gross_weight') }}">
+                                                @error('gross_weight')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -830,11 +843,23 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-md-3 mb-3 ml-3">
-                                                    <label for="">Vol Weight (KG)</label>
+                                                <div class="col-md-2 mb-3 ml-3">
+                                                    <label for="">Gross Weight (kg)</label>
+                                                    <input type="number"
+                                                        class="form-control @error('gross_weight') is-invalid @enderror"
+                                                        id="validationServer03" placeholder="weight"
+                                                        name="gross_weight[]">
+                                                    @error('gross_weight')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-2 mb-3 ml-3">
+                                                    <label for="">Vol Weight (kg)</label>
                                                     <input type="number"
                                                         class="form-control @error('total_weight_units') is-invalid @enderror"
-                                                        id="validationServer03" placeholder="Weight"
+                                                        id="validationServer03" placeholder="weight"
                                                         name="total_weight_units[]" disabled>
                                                     @error('total_weight_units')
                                                     <div class="invalid-feedback">
@@ -887,13 +912,20 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-4 mb-3">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input"
                                                     id="customControlAutosizing3" name="isClearanceReq" value="Yes">
                                                 <label class="custom-control-label" for="customControlAutosizing3">
-                                                    Customs
-                                                    Clearance?</label>
+                                                    Customs Clearance?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="customControlAutosizing4" name="insurance" value="Yes">
+                                                <label class="custom-control-label" for="customControlAutosizing4">
+                                                    Goods Isurance</label>
                                             </div>
                                         </div>
                                     </div>
@@ -979,7 +1011,6 @@
         $('#exw').hide();
         $('#dynamic_buttons').show();
         $('.dynamic-field').show();
-        $(".require").prop('', true);
 
         $('#shipment').hide();
         $("input[name=quantity]").prop('', false);

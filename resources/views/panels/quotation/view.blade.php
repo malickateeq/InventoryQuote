@@ -135,8 +135,9 @@
                                             <option value="20f-ven" <?php echo ($container['size']=='20f-ven') ? 'selected' : '' ?> >20' Ventilated</option>
                                             <option value="40f-gar" <?php echo ($container['size']=='40f-gar') ? 'selected' : '' ?> >40' Garmentainer</option>
                                         </select>
-                                        <!-- <input type="text" class="form-control" disabled
-                                            id="validationServer04" name="l[]" value="{{ $container['size'] }}"> -->
+                                        <label for="">Weight</label>
+                                        <input type="text" class="form-control" disabled
+                                            id="validationServer04" name="" value="{{ $container['weight'] }}">
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +252,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="col-md-3 mb-3 ml-3">
+                                <div class="col-md-2 mb-3 ml-3">
                                     <label for="">Weight (kg)</label>
                                     <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
                                         id="validationServer03" placeholder="Weight" value="{{ number_format((float)$pallet['volumetric_weight'], 2, '.', '') }}" disabled>
@@ -260,6 +261,11 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
+                                </div>
+                                <div class="col-md-2 mb-3 ml-3">
+                                    <label for="">Gross Weight (kg)</label>
+                                    <input type="number" class="form-control @error('total_weight_units') is-invalid @enderror"
+                                        id="validationServer03" placeholder="Weight" value="{{ number_format((float)$pallet['gross_weight'], 2, '.', '') }}" disabled>
                                 </div>
 
                             </div>

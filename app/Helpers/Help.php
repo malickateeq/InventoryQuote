@@ -3,6 +3,7 @@ use App\Quotation;
 use App\Proposal;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -50,18 +51,14 @@ function send_proposal_mail($user_id, $quotation_id)
     // $to_email = 'malickateeq@gmail.com';
     $proposals = Proposal::where('user_id', $user_id)
     ->where('status', 'active')
-    ->where('quotation_id', $quotation_id)->get()->toArray();
+    ->where('quotation_id', $quotation_id)->with('vendor')->get()->toArray();
+     
     $quotation = Quotation::findOrFail($quotation_id);
 
     // dd($proposals);
     
     $data = array(
-                "proposals" => $proposals,
-            // "company_name" => "LogistiQuote", 
-            // "email"=> "test@sdf.com", 
-            // "additional_email" => "asd@ad.com", 
-            // "phone" => "12345678", 
-            // "body" => "Blah blah blah!"
+            "proposals" => $proposals,
         );
 
     Mail::send('emails.proposal', $data, function($message) use ($to_name, $to_email, $quotation) 
@@ -159,7 +156,7 @@ function notify_vendor_for_new_quotation($user_id, $quotation_id)
         Mail::send('emails.quote_requested', $data, function($message) use ($to_name, $to_email, $quotation) 
         {
             $message->to($to_email, $to_name)
-            ->subject('A user has just posted a quote.');
+            ->subject( $quotation['quotation_id'].': a user has just posted a quote.');
             $message->from(
                 env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
                 'New quote requested by LogistiQuote user | LogistiQuote'   // Title, Subject

@@ -124,6 +124,7 @@
                     @endif
 
                 @elseif(Auth::user()->role == 'vendor')
+                        <a class="btn btn-primary mx-3" href="{{ route('proposal.edit', $proposal->id) }}">Change Terms</a>
                     @if($proposal->status == 'active')
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#withdrawproposal">

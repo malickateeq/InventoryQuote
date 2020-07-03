@@ -146,7 +146,11 @@ class ProposalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['proposal'] = Proposal::findOrFail($id);
+        $data['quotation'] = Quotation::findOrFail($data['proposal']->quotation_id);
+        $data['page_name'] = 'edit_proposal';
+        $data['page_title'] = 'Edit Proposal | LogistiQuote';
+        return view('panels.proposal.edit', $data);
     }
 
     /**
@@ -157,8 +161,48 @@ class ProposalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'quotation_id' => ['required'],
+            'local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
+            'freight_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
+            'destination_local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
+            'customs_clearance_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
+            'local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
+            'valid_till' => ['required', 'string', 'min:3', 'max:255'],
+            'remarks' => ['required', 'string', 'min:3', 'max:255'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        $proposal = Proposal::findOrFail($request->proposal_id);
+        $proposal->quotation_id = $request->quotation_id;
+        $proposal->partner_id = Auth::user()->id;
+        // $proposal->url = mt_rand();
+        $proposal->local_charges = $request->local_charges;
+        $proposal->freight_charges = $request->freight_charges;
+        $proposal->destination_local_charges = $request->destination_local_charges;
+        $proposal->customs_clearance_charges = $request->customs_clearance_charges;
+        $proposal->total = (float)$request->customs_clearance_charges+(float)$request->destination_local_charges+(float)$request->freight_charges+(float)$request->local_charges;
+
+        // Range or Carbon
+        // range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.
+        $proposal->valid_till = Carbon::createFromFormat('d-m-Y', $request->valid_till );
+
+        $proposal->remarks = $request->remarks;
+
+
+        // $quotation = Quotation::findOrFail($request->quotation_id);
+        // $quotation->proposals_received += 1;
+
+        // $proposal->user_id = $quotation->user_id;
+
+        $proposal->save();
+        // $quotation->save();
+
+        // Send proposal email to user
+        send_proposal_mail($proposal->user_id, $request->quotation_id);
+        
+        return redirect(route('proposal.index'));
     }
 
     /**

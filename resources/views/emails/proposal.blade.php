@@ -34,7 +34,7 @@
         </tr>
         @foreach($proposals as $proposal)
         <tr>
-            <td></td>
+            <td>{{ $proposal['vendor']['name'] }}</td>
             <td>{{ $proposal['local_charges'] }}</td>
             <td>{{ $proposal['freight_charges'] }}</td>
             <td>{{ $proposal['destination_local_charges'] }}</td>

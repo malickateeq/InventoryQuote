@@ -3,14 +3,17 @@
 use App\Proposal;
 use Illuminate\Support\Facades\Route;
 
-Route::get('test', function () {
-    $partners_emais = App\User::where('role', 'vendor')->select('email')->get()->toArray();
-    dd($partners_emais);
-    $prop = Proposal::first();
-    $url = URL::route('proposal.mail_view', $prop->url);
-    print '<a href="'.$url.'">View</a>';
-    return;
-    // send_proposal_mail(1, 1);
+Route::get('test', function () 
+{
+
+    
+    $proposals = Proposal::where('user_id', 4)
+    ->where('status', 'active')
+    ->where('quotation_id', 7)->with('vendor')->get()->toArray();
+
+    dd($proposals[0]['vendor']['name']);
+
+
 });
 
 Route::get('clear', function () {
@@ -35,11 +38,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Shipment Controller
 Route::post('/get_quote_step1', 'SiteController@get_quote_step1')->name('get_quote_step1');
-
 Route::get('/get_quote_step2', 'SiteController@get_quote_step2')->name('get_quote_step2');
 Route::post('/form_quote_step2', 'SiteController@form_quote_step2')->name('form_quote_step2');
-
-Route::get('/mail_view_proposal/{token}', 'SiteController@mail_view_proposal')->name('proposal.mail_view');
 
 // User Routes
 Route::get('/user', 'UserController@index')->name('user');
@@ -59,7 +59,7 @@ Route::get('/view_user/{id}', 'AdminController@view_user')->name('admin.view_use
 Route::get('/all_users', 'AdminController@all_users')->name('admin.all_users');
 Route::get('/all_vendors', 'AdminController@all_vendors')->name('admin.all_vendors');
 
-
+// Quotation Routes
 Route::resource('/quotation', 'QuotationController');
 Route::get('/quotations', 'QuotationController@view_all')->name('quotations.view_all');
 Route::post('/quotations', 'QuotationController@search')->name('quotations.search');
@@ -69,11 +69,13 @@ Route::post('/quotations', 'QuotationController@search')->name('quotations.searc
 Route::get('/mail_view_quotation/{token}', 'SiteController@mail_view_quotation')->name('quotation.mail_view');
 
 
+// Proposal Routes
 Route::resource('/proposal', 'ProposalController');
 Route::get('/proposals', 'ProposalController@view_all')->name('proposals.view_all');
 Route::get('/make_proposal/{id}', 'ProposalController@make_proposal')->name('proposal.make');
 Route::get('proposals_received/', 'ProposalController@proposals_received')->name('proposals.received');
 Route::get('/accept_proposal/{id}', 'ProposalController@accept_proposal')->name('proposal.accept');
+Route::get('/mail_view_proposal/{token}', 'SiteController@mail_view_proposal')->name('proposal.mail_view');
 
 // Merging translated file scripts
 Route::get('merge_them', function () {

@@ -34,7 +34,7 @@ class SiteController extends Controller
         $data = [];
         $data = array(
             // 'to'      => array('cs@logistiquote.com'),
-            'to'      => array('malickateeq@gmail.com'),
+            'to'      => array('support@logistiquote.com'),
             'subject' => $request->subject,
             'name' => $request->name,
             'phone' => $request->phone,

@@ -32,7 +32,8 @@ Route::get('/', 'SiteController@index')->name('index');
 Route::get('/contact-us', 'SiteController@contact_us')->name('contact_us');
 Route::post('/contact', 'SiteController@contact')->name('contact');
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

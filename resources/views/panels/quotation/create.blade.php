@@ -691,7 +691,7 @@
                                                 <input type="number"
                                                     class="form-control @error('container_weight') is-invalid @enderror"
                                                     id="validationServer03" placeholder="Weight (kg)"
-                                                    name="container_weight[]" value="{{ old('container_weight') }}">
+                                                    name="container_weight[]" value="">
                                                 @error('gross_weight')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

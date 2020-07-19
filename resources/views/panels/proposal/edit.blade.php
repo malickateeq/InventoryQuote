@@ -4,6 +4,16 @@
 
 <div class="row">
     <div class="col-xl-8 col-md-8 mb-4 offset-md-2">
+        <div class="show-errors mb-5">
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error#{{$loop->iteration}}: </strong> {{ $error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endforeach
+        </div>
         <div class="card card shadow">
             <h5 class="card-header">Make Proposal for <b class="text-warning">quotation#{{ $quotation->quotation_id }} </b> </h5>
             <div class="card-body">

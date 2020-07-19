@@ -90,9 +90,14 @@ class ProposalController extends Controller
             'customs_clearance_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'valid_till' => ['required', 'string', 'min:3', 'max:255'],
-            'remarks' => ['required', 'string', 'min:3', 'max:255'],
+            // 'remarks' => ['required', 'string', 'min:2', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        if(explode('-' ,$request->valid_till)[2] > 2037)
+        {
+            return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
+        }
+        
         $proposal = new Proposal;
         $proposal->quotation_id = $request->quotation_id;
         $proposal->partner_id = Auth::user()->id;
@@ -171,9 +176,13 @@ class ProposalController extends Controller
             'customs_clearance_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'local_charges' => ['required', 'numeric', 'min:1', 'max:1000000000'],
             'valid_till' => ['required', 'string', 'min:3', 'max:255'],
-            'remarks' => ['required', 'string', 'min:3', 'max:255'],
+            // 'remarks' => ['required', 'string', 'min:3', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        if(explode('-' ,$request->valid_till)[2] > 2037)
+        {
+            return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
+        }
         $proposal = Proposal::findOrFail($request->proposal_id);
         $proposal->quotation_id = $request->quotation_id;
         $proposal->partner_id = Auth::user()->id;

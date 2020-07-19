@@ -70,6 +70,10 @@ class QuotationController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
+        if(explode('-' ,$request->valid_till)[2] > 2037)
+        {
+            return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
+        }
         $quotation = new Quotation;
         $quotation->user_id = Auth::user()->id;
         $quotation->quotation_id = mt_rand();
@@ -222,6 +226,10 @@ class QuotationController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         
+        if(explode('-' ,$request->valid_till)[2] > 2037)
+        {
+            return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
+        }
         $quotation = Quotation::findOrFail($request->id);
         $quotation->origin = $request->origin;
         $quotation->destination = $request->destination;

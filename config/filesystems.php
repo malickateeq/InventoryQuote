@@ -65,6 +65,11 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'attachments' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/attachments',
+        ],
+
     ],
 
     /*

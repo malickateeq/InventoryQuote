@@ -96,7 +96,7 @@ class SiteController extends Controller
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
             $request->merge(['attachment_file' => $file_name]);
-            $isStore = Storage::disk('public')->putFileAs('temp/', $request->file('attachment'), $file_name);
+            $isStore = Storage::disk('attachments')->putFileAs('temp/', $request->file('attachment'), $file_name);
         }
         
         $fileContents = Storage::disk('public')->get('store_pending_form.json');

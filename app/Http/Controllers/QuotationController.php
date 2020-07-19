@@ -102,7 +102,8 @@ class QuotationController extends Controller
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
             $request->merge(['attachment_file' => $file_name]);
-            $isStore = Storage::disk('public')->putFileAs('files/', $request->file('attachment'), $file_name);
+            
+            $isStore = Storage::disk('attachments')->putFileAs('files/', $request->file('attachment'), $file_name);
             $quotation->attachment = $file_name;
         }
 
@@ -167,7 +168,7 @@ class QuotationController extends Controller
         $data['quotation'] = Quotation::where('id', $id)->first();
         if($data['quotation']->attachment != null)
         {
-            $data['attachment_url'] = asset( 'public/storage/files/'.$data['quotation']->attachment);
+            $data['attachment_url'] = asset( 'public/attachments/files/'.$data['quotation']->attachment);
         }
         $data['page_name'] = 'view_quotation';
         $data['page_title'] = 'View quotation | LogistiQuote';
@@ -243,7 +244,7 @@ class QuotationController extends Controller
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
             $request->merge(['attachment_file' => $file_name]);
-            $isStore = Storage::disk('public')->putFileAs('files/', $request->file('attachment'), $file_name);
+            $isStore = Storage::disk('attachments')->putFileAs('files/', $request->file('attachment'), $file_name);
             $quotation->attachment = $file_name;
         }
         
@@ -416,7 +417,7 @@ class QuotationController extends Controller
         // Store file
         if(isset($fileContents->attachment_file))
         {
-            $move = Storage::disk('public')->move( 'temp/'.$fileContents->attachment_file, 'files/'.$fileContents->attachment_file );
+            $move = Storage::disk('attachments')->move( 'temp/'.$fileContents->attachment_file, 'files/'.$fileContents->attachment_file );
 
             $quotation->attachment = $fileContents->attachment_file;
         }

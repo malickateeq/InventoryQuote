@@ -325,7 +325,7 @@ class QuotationController extends Controller
      */
     public function view_all()
     {
-        $data['quotations'] = Quotation::latest()->get();
+        $data['quotations'] = Quotation::where('status', '!=', 'done')->latest()->get();
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.search_quotations', $data);
@@ -378,6 +378,7 @@ class QuotationController extends Controller
                 $q->where('isClearanceReq', 'LIKE', "%{$isClearanceReq}%" );
             }
         })
+        ->where('status', '!=', 'done')
         ->latest()
         ->get();
 

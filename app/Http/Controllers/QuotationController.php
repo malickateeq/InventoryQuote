@@ -70,7 +70,7 @@ class QuotationController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        if(explode('-' ,$request->valid_till)[2] > 2037)
+        if(explode('-' ,$request->ready_to_load_date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
         }
@@ -226,7 +226,7 @@ class QuotationController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         
-        if(explode('-' ,$request->valid_till)[2] > 2037)
+        if(explode('-' ,$request->ready_to_load_date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
         }

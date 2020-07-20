@@ -48,7 +48,7 @@ class SiteController extends Controller
 
     public function get_quote_step1(Request $request)
     {
-        if(explode('-' ,$request->valid_till)[2] > 2037)
+        if(explode('-' ,$request->date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
         }

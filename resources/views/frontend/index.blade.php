@@ -5,6 +5,8 @@
 <div class="main-content">
 
     <div class="wrapper-home-pages">
+
+        <!-- Header Making Quote -->
         <section class="wrapper-header-block">
             <div class="header-block">
                 <div class="header-block-top">
@@ -121,7 +123,7 @@
                                         
                                         <div class="wrapper-form">
                                             <form class="filter-tracking" method="GET"
-                                                action="https://touch.track-trace.com/container" target="_blank">
+                                                action="https://www.track-trace.com" target="_blank">
                                                 <div class="wrapper-box-shadow">
                                                     <div class="container-number"> 
                                                         <span class="top-title">TRACKING
@@ -170,7 +172,7 @@
         </section>
         
         
-        <section class="wrapper-vo">
+        <!-- <section class="wrapper-vo">
             <div class="wrapper-container">
                 <h2>Section I</h2>
                 <div class="section-block">
@@ -214,7 +216,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+
 
         <section class="wrapper-benefits-block">
             <div class="benefits-wrapper">
@@ -223,36 +226,84 @@
                     <div class="benefits">
                         <div class="item">
                             <div class="ico"> 
-                                <i class="fad fa-circle fa-2x"></i>
+                                <i class="fas fa-users-class fa-2x"></i>
                             </div>
                             <div class="content">
                                 <h3>Benifit 1</h3>
-                                <p>It is good!</p>
+                                <p>Our industry specific professional team.</p>
                             </div>
                         </div>
                         <div class="item">
                             <div class="ico"> 
-                                <img src="#" alt=""> </div>
+                                <i class="far fa-chart-network fa-2x"></i>
+                            </div>
                             <div class="content">
                                 <h3>Benifit 2</h3>
-                                <p>It is still good.</p>
+                                <p>Excellent relationships with forwarders, logistics solutions providers and governmental ministries.</p>
                             </div>
                         </div>
                         <div class="item">
                             <div class="ico"> 
-                                <i class="fad fa-circle fa-2x"></i>
-                             </div>
+                                <!-- <img src="#" alt=""> -->
+                                <i class="fad fa-file-chart-pie fa-2x"></i>
+                            </div>
                             <div class="content">
                                 <h3>Benifit 3</h3>
-                                <p>It can be good, depends upon the eyes of beholder.</p>
+                                <p>Our knowledge In the project planning for infrastructure.</p>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ico"> <img src="{{ asset('public/frontend/images/index/icons/ben-ico5.svg') }}"
-                                    alt=""> </div>
+                            <div class="ico"> 
+                                <i class="fas fa-user-headset fa-2x"></i>
+                             </div>
                             <div class="content">
                                 <h3>Benifit 4</h3>
-                                <p>Everything is subjective.</p>
+                                <p>Customs classifier and freight forwarding for logistics facilities.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ico"> 
+                                <i class="fas fa-globe fa-2x"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Benifit 5</h3>
+                                <p>Wide coverage throughout Israel.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ico"> 
+                                <i class="far fa-clock fa-2x"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Benifit 6</h3>
+                                <p>Dedicated personnel available 24/7.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ico"> 
+                                <i class="fas fa-lightbulb-on fa-2x"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Benifit 7</h3>
+                                <p>1 STOP SHOP for supply chain.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ico"> 
+                                <i class="fas fa-badge-check fa-2x"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Benifit 8</h3>
+                                <p>Our recognition with the Israel logistics fields.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ico"> 
+                                <i class="fas fa-file-invoice fa-2x"></i>
+                            </div>
+                            <div class="content">
+                                <h3>Benifit 9</h3>
+                                <p>Our solutions.</p>
                             </div>
                         </div>
                     </div>

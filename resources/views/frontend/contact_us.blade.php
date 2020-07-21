@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="cu-ci-text">
-                        <h4>Email</h4> <a href="mailto:cs@logistiquote.com">cs@logistiquote.com</a>
+                        <h4>Email</h4> <a href="mailto:support@logistiquote.com">support@logistiquote.com</a>
                     </div>
                 </div>
             </div>

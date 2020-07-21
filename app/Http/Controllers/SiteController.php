@@ -33,7 +33,7 @@ class SiteController extends Controller
         // dd( (string) $request->message);
         $data = [];
         $data = array(
-            // 'to'      => array('cs@logistiquote.com'),
+            // 'to'      => array('support@logistiquote.com'),
             'to'      => array('support@logistiquote.com'),
             'subject' => $request->subject,
             'name' => $request->name,

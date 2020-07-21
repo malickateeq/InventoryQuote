@@ -54,8 +54,6 @@ function send_proposal_mail($user_id, $quotation_id)
     ->where('quotation_id', $quotation_id)->with('vendor')->get()->toArray();
      
     $quotation = Quotation::findOrFail($quotation_id);
-
-    // dd($proposals);
     
     $data = array(
             "proposals" => $proposals,
@@ -66,7 +64,7 @@ function send_proposal_mail($user_id, $quotation_id)
         $message->to($to_email, $to_name)
         ->subject('Proposals received related to Quotation#: '.$quotation['quotation_id']);
         $message->from(
-            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            env("MAIL_FROM_ADDRESS", "support@logistiquote.com"),   // Mail from email address
             'Quotation#'.$quotation['quotation_id'].' proposals | LogistiQuote'   // Title, Subject
         );
     });
@@ -96,7 +94,7 @@ function send_accept_proposal_mail($user_id, $partner_id, $quotation_id)
         $message->to($to_email, $to_name)
         ->subject('Proposals accepted of Quotation#: '.$quotation['quotation_id']);
         $message->from(
-            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            env("MAIL_FROM_ADDRESS", "support@logistiquote.com"),   // Mail from email address
             'Quotation#'.$quotation['quotation_id'].'\'s proposal accepted | LogistiQuote'   // Title, Subject
         );
     });
@@ -126,7 +124,7 @@ function send_notify_user_mail($user_id, $partner_id, $quotation_id)
         $message->to($to_email, $to_name)
         ->subject('Quotation#: '.$quotation['quotation_id'].' completion.');
         $message->from(
-            env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+            env("MAIL_FROM_ADDRESS", "support@logistiquote.com"),   // Mail from email address
             'Quotation#'.$quotation['quotation_id'].'\'s completed | LogistiQuote'   // Title, Subject
         );
     });
@@ -158,7 +156,7 @@ function notify_vendor_for_new_quotation($user_id, $quotation_id)
             $message->to($to_email, $to_name)
             ->subject( $quotation['quotation_id'].': a user has just posted a quote.');
             $message->from(
-                env("MAIL_FROM_ADDRESS", "cs@logistiquote.com"),   // Mail from email address
+                env("MAIL_FROM_ADDRESS", "support@logistiquote.com"),   // Mail from email address
                 'New quote requested by LogistiQuote user | LogistiQuote'   // Title, Subject
             );
         });

@@ -22,23 +22,13 @@
                             <h5> <b> Origin </b> </h5>
                             <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
                                 id="validationServer03" placeholder="City" value="{{ $quotation->origin }}" readonly
-                                name="origin_city" required>
-                            @error('origin_city')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                                name="origin_city" >
                         </div>
                         <div class="col-md-6 mb-3">
                             <h5> <b> Destination </b> </h5>
-                            <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
-                                id="validationServer03" placeholder="City" value="{{ $quotation->origin }}" readonly
-                                name="origin_city" required>
-                            @error('origin_city')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control @error('destination_city') is-invalid @enderror"
+                                id="validationServer03" placeholder="City" value="{{ $quotation->destination }}" readonly
+                                name="destination_city">
                         </div>
                     </div>
 

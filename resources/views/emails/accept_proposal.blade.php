@@ -6,6 +6,6 @@
 <p> <b> Phone: {{ $user['phone'] }} </b> </p>
 
 <p> Good luck </p>
-<p> Feel free to contact us on <a href="mailto:cs@logistiQuote.com">CS@logistiQuote.com</a> </p>
+<p> Feel free to contact us on <a href="mailto:support@logistiquote.com">support@logistiquote.com</a> </p>
 
 <p> <a href="{{ URL::route('index') }}">logistiQuote Team</a> </p>

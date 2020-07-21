@@ -119,13 +119,11 @@ class ProposalController extends Controller
         $quotation->proposals_received += 1;
 
         $proposal->user_id = $quotation->user_id;
-
         $proposal->save();
         $quotation->save();
 
         // Send proposal email to user
         send_proposal_mail($proposal->user_id, $quotation->id);
-        
         return redirect(route('proposal.index'));
     }
 
